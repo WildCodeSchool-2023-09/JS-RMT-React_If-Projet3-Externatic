@@ -1,6 +1,6 @@
 CREATE TABLE role (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  label VARCHAR(50)
+  label VARCHAR(50) NOT NULL
 );
 
 CREATE TABLE user (
@@ -9,7 +9,7 @@ CREATE TABLE user (
   firstname VARCHAR(100) NOT NULL,
   email VARCHAR(255) NOT NULL,
   password VARCHAR(255) NOT NULL,
-  role_id INTEGER,
+  role_id INTEGER NOT NULL,
   FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
 );
 
@@ -27,8 +27,7 @@ CREATE TABLE candidat (
   status VARCHAR(255),
   phone_number VARCHAR(10),
   city VARCHAR(200),
-  experience INTEGER,
-  employment_type VARCHAR(10),
+  employment_type VARCHAR(45),
   FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
@@ -71,24 +70,24 @@ CREATE TABLE application (
 
 CREATE TABLE file (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  candidat_id INTEGER,
-  name VARCHAR(255),
-  url VARCHAR(255),
+  candidat_id INTEGER NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  url VARCHAR(255) NOT NULL,
   FOREIGN KEY (candidat_id) REFERENCES candidat(id) ON DELETE CASCADE
 );
 
 CREATE TABLE diploma (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  label VARCHAR(255),
-  year DATE,
-  candidat_id INTEGER,
+  label VARCHAR(255) NOT NULL,
+  year DATE NOT NULL,
+  candidat_id INTEGER NOT NULL,
   FOREIGN KEY (candidat_id) REFERENCES candidat(id) ON DELETE CASCADE
 );
 
 CREATE TABLE experience (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  label VARCHAR(255),
-  years INTEGER,
-  candidat_id INTEGER,
+  label VARCHAR(255) NOT NULL,
+  year INTEGER NOT NULL,
+  candidat_id INTEGER NOT NULL,
   FOREIGN KEY (candidat_id) REFERENCES candidat(id) ON DELETE CASCADE
 );
