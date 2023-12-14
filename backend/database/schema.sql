@@ -46,9 +46,9 @@ CREATE TABLE job (
   salary VARCHAR(255) NOT NULL,
   location VARCHAR(200) NOT NULL,
   working_hours VARCHAR(20) NOT NULL,
-  starting_date VARCHAR(30) NOT NULL,
+  starting_date DATE,
   position_category VARCHAR(20) NOT NULL,
-  publication_date DATE NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   FOREIGN KEY (company_id) REFERENCES company(id) ON DELETE CASCADE,
   FOREIGN KEY (consultant_id) REFERENCES user(id) ON DELETE CASCADE
 );
@@ -61,12 +61,10 @@ CREATE TABLE application_status (
 CREATE TABLE application (
   application_id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   candidat_id INTEGER NOT NULL,
-  consultant_id INTEGER NOT NULL,
   job_id INTEGER NOT NULL,
-  date DATE NOT NULL,
+  created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   status_id INTEGER NOT NULL,
   FOREIGN KEY (candidat_id) REFERENCES candidat(id) ON DELETE CASCADE,
-  FOREIGN KEY (consultant_id) REFERENCES user(id) ON DELETE CASCADE,
   FOREIGN KEY (job_id) REFERENCES job(id) ON DELETE CASCADE,
   FOREIGN KEY (status_id) REFERENCES application_status(id) ON DELETE CASCADE
 );
