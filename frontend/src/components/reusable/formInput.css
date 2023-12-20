@@ -1,0 +1,14 @@
+.labelForm {
+  width: 539px;
+  height: 87px;
+  flex-shrink: 0;
+  border-radius: 20.5px;
+  border: 1px solid #fc005b;
+  background: #fff;
+  font-size: 16px;
+  text-align: center;
+}
+
+.labelForm:active {
+  border: 1px solid #fc005b;
+}
