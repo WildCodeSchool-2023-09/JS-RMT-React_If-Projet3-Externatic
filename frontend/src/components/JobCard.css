@@ -1,0 +1,10 @@
+.job-card-body {
+  margin-bottom: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+  border: 1px black solid;
+  border-radius: 0.3rem;
+}
