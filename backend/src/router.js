@@ -8,9 +8,11 @@ const router = express.Router();
 
 // Import itemControllers module for handling item-related operations
 const itemControllers = require("./controllers/itemControllers");
+const consultantControllers = require("./controllers/consultantControllers");
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
+router.get("/consultants", consultantControllers.browse);
 
 // Route to get a specific item by ID
 router.get("/items/:id", itemControllers.read);
