@@ -15,7 +15,8 @@ CREATE TABLE user (
   FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
 );
 
-INSERT INTO user (lastname, firstname, email, password, role_id) VALUES ('Anto', 'PA', 'admin@blog.com', 'wild', 1);
+INSERT INTO user (lastname, firstname, email, password, role_id) VALUES ('Anto', 'PA', 'candidat@blog.com', 'wildif', 1);
+INSERT INTO user (lastname, firstname, email, password, role_id) VALUES ('Anto', 'PA', 'admin@blog.com', 'wild', 2);
 
 
 CREATE TABLE company (
