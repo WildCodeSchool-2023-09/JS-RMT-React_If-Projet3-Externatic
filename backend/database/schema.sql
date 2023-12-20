@@ -3,6 +3,8 @@ CREATE TABLE role (
   label VARCHAR(50) NOT NULL
 );
 
+INSERT INTO role (label) VALUES ('candidat'), ('consultant'),('administrateur');
+
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   lastname VARCHAR(100) NOT NULL,
@@ -12,6 +14,9 @@ CREATE TABLE user (
   role_id INTEGER NOT NULL,
   FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
 );
+
+INSERT INTO user (lastname, firstname, email, password, role_id) VALUES ('Anto', 'PA', 'admin@blog.com', 'wild', 1);
+
 
 CREATE TABLE company (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,

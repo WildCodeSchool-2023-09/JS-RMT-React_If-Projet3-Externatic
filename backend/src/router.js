@@ -17,6 +17,9 @@ router.get("/items/:id", itemControllers.read);
 
 // Route to add a new item
 router.post("/items", itemControllers.add);
+const userControllers = require("./controllers/userControllers");
+
+router.post("/login", userControllers.login);
 
 /* ************************************************************************* */
 
