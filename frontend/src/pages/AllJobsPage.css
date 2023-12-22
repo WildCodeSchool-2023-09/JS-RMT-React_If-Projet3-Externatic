@@ -1,0 +1,33 @@
+.all-jobs-page-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.all-jobs-page-separator {
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(
+    to right,
+    black 0%,
+    black 40%,
+    white 40%,
+    white 60%,
+    black 60%,
+    black 100%
+  );
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.all-jobs-page-tutorial {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin-bottom: 2rem;
+}
+
+.all-jobs-page-tutorial-title {
+  color: var(--main-red);
+}
