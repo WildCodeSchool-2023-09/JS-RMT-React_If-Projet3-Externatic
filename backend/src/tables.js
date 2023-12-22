@@ -3,10 +3,10 @@
 /* ************************************************************************* */
 
 // Import the manager modules responsible for handling data operations on the tables
-const ConsultantManager = require("./models/ConsultantManager");
+const CompanyManager = require("./models/CompanyManager");
 
 const managers = [
-  ConsultantManager,
+  CompanyManager,
   // Add other managers here
 ];
 
