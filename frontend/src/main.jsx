@@ -1,10 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import axios from "axios";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import App from "./App";
-import ConsultantPage from "./pages/ConsultantPage";
+import ConsultantPage from "./pages/layout/ConsultantPage";
+import ConsultantCompany from "./pages/consultant/ConsultantCompany";
 
 const router = createBrowserRouter([
   {
@@ -12,14 +12,14 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/consultants",
+    path: "/consultants/",
     element: <ConsultantPage />,
-    loader: async () => {
-      const consultant = await axios
-        .get(`${import.meta.env.VITE_BACKEND_URL}/api/consultants`)
-        .then((res) => res.data);
-      return consultant;
-    },
+    children: [
+      {
+        path: "company",
+        element: <ConsultantCompany />,
+      },
+    ],
   },
 ]);
 
