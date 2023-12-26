@@ -13,8 +13,6 @@ CREATE TABLE user (
   FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
 );
 
-INSERT INTO role (label) VALUES("candidat"),("consultant"),("admin");
-
 CREATE TABLE company (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(255) NOT NULL,

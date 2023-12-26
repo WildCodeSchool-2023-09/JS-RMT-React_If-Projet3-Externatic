@@ -8,7 +8,7 @@ const browse = async (req, res, next) => {
     const jobs = await tables.job.readAll();
 
     // Respond with the jobs in JSON format
-    res.json(jobs);
+    res.status(200).json(jobs);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -23,10 +23,10 @@ const read = async (req, res, next) => {
 
     // If the job is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the job in JSON format
-    if (job == null) {
+    if (job.length === 0) {
       res.sendStatus(404);
     } else {
-      res.json(job);
+      res.status(200).json(job);
     }
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -38,7 +38,7 @@ const read = async (req, res, next) => {
 // This operation is not yet implemented
 
 // The A of BREAD - Add (Create) operation
-const add = async (req, res, next) => {
+/* const add = async (req, res, next) => {
   // Extract the job data from the request body
   const job = req.body;
 
@@ -52,7 +52,7 @@ const add = async (req, res, next) => {
     // Pass any errors to the error-handling middleware
     next(err);
   }
-};
+}; */
 
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
@@ -62,6 +62,6 @@ module.exports = {
   browse,
   read,
   // edit,
-  add,
+  // add,
   // destroy,
 };

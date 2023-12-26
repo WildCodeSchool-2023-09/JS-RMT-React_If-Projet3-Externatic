@@ -20,7 +20,7 @@ function AllJobsPage() {
 
   return (
     <div className="all-jobs-page-body">
-      <h1>Vos opportunités d'emploi</h1>
+      <h2>Vos opportunités d'emploi</h2>
       <AllJobs jobs={currentCards} />
       <Pagination
         cardsPerPage={cardsPerPage}

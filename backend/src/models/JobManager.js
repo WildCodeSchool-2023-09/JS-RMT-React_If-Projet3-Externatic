@@ -9,7 +9,7 @@ class JobManager extends AbstractManager {
 
   // The C of CRUD - Create operation
 
-  async create(job) {
+  /* async create(job) {
     // Execute the SQL INSERT query to add a new job to the "job" table
     const [result] = await this.database.query(
       `insert into ${this.table} (title) values (?)`,
@@ -18,7 +18,7 @@ class JobManager extends AbstractManager {
 
     // Return the ID of the newly inserted job
     return result.insertId;
-  }
+  } */
 
   // The Rs of CRUD - Read operations
 
