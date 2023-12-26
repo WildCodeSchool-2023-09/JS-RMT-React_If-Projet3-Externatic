@@ -7,6 +7,8 @@ import connexion from "./services/connexion";
 import App from "./App";
 import AllJobsPage from "./pages/AllJobsPage";
 
+import { JobProvider } from "./contexts/context";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -29,6 +31,8 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <JobProvider>
+      <RouterProvider router={router} />
+    </JobProvider>
   </React.StrictMode>
 );
