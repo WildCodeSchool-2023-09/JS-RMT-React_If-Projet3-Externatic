@@ -1,0 +1,19 @@
+import React from "react";
+import { Link } from "react-router-dom";
+import "./NavBar.css";
+import externatic from "../assets/externatic.png";
+
+function NavBar() {
+  return (
+    <div className="navBar">
+      <Link to="/">
+        <img className="logo" src={externatic} alt="externatic" />
+      </Link>
+      <Link className="homePage" to="/">
+        Home
+      </Link>
+    </div>
+  );
+}
+
+export default NavBar;
