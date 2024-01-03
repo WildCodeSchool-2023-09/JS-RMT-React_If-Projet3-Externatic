@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./NavBar.css";
-import externatic from "../assets/externatic.png";
+import externatic from "../public/externatic.png";
 
 function NavBar() {
   return (
