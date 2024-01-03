@@ -17,15 +17,15 @@ const router = createBrowserRouter([
     path: "/",
     element: <App />,
     children: [
-      { 
-        path: "/", 
-        element: <HomePage /> 
+      {
+        path: "/",
+        element: <HomePage />,
       },
       {
         path: "jobs",
         element: <AllJobsPage />,
         loader: () => {
-          return connexion.get(`/jobs`).then((response) => {
+          return connexion.get("/jobs").then((response) => {
             return response.data;
           });
         },
