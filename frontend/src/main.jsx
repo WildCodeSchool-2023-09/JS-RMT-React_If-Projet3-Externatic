@@ -3,11 +3,13 @@ import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import connexion from "./services/connexion";
+import { JobProvider } from "./contexts/context";
 
 import App from "./App";
-import AllJobsPage from "./pages/AllJobsPage";
 
-import { JobProvider } from "./contexts/context";
+import AllJobsPage from "./pages/AllJobsPage";
+import ConsultantPage from "./pages/layout/ConsultantPage";
+import ConsultantCompany from "./pages/consultant/ConsultantCompany";
 
 const router = createBrowserRouter([
   {
@@ -22,6 +24,16 @@ const router = createBrowserRouter([
             return response.data;
           });
         },
+      },
+    ],
+  },
+  {
+    path: "/consultants/",
+    element: <ConsultantPage />,
+    children: [
+      {
+        path: "company",
+        element: <ConsultantCompany />,
       },
     ],
   },

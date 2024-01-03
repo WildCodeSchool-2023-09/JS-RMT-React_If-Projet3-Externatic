@@ -1,0 +1,12 @@
+.logoImage {
+  height: 300px;
+  width: 300px;
+  border-radius: 10px;
+  border: solid;
+}
+
+img:hover {
+  -ms-transform: scale(1.1);
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
