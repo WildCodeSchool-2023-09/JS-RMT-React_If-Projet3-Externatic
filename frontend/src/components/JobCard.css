@@ -7,6 +7,7 @@
 
 .job-card:hover {
   border: 1px solid var(--main-red);
+  transition: border 0.3s ease;
   border-radius: 0.3rem;
 }
 

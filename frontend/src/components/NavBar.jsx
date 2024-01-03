@@ -12,6 +12,9 @@ function NavBar() {
       <Link className="homePage" to="/">
         Home
       </Link>
+      <Link className="homePage" to="/jobs">
+        jobs
+      </Link>
     </div>
   );
 }
