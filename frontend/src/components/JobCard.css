@@ -1,0 +1,48 @@
+.job-card {
+  margin: 2rem;
+  padding: 0.5rem;
+  border: 1px black solid;
+  border-radius: 0.3rem;
+}
+
+.job-card:hover {
+  border: 1px solid var(--main-red);
+  border-radius: 0.3rem;
+}
+
+.job-card-body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.job-card-header {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  width: 100%;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 1rem;
+}
+
+.job-card-title:hover {
+  text-decoration: underline;
+}
+
+.fav-button {
+  cursor: pointer;
+  background-color: white;
+  border: none;
+  font-size: 1.5rem;
+}
+
+.job-card-salary {
+  background-color: lightgrey;
+}

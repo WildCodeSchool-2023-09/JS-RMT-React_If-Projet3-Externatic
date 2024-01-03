@@ -1,0 +1,6 @@
+.all-jobs-body {
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  justify-content: center;
+}
