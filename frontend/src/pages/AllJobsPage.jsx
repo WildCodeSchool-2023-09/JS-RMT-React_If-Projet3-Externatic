@@ -4,8 +4,19 @@ import { useLoaderData } from "react-router-dom";
 import AllJobs from "../components/AllJobs";
 import Collapser from "../components/Collapser";
 import Pagination from "../components/Pagination";
+import FilterSelect from "../components/FilterSelect";
 
 import "./AllJobsPage.css";
+
+function extractUnique(jobs, property) {
+  const uniqueSet = new Set();
+  jobs.forEach((job) => {
+    if (job[property] && job[property].length > 0) {
+      uniqueSet.add(job[property]);
+    }
+  });
+  return Array.from(uniqueSet);
+}
 
 function AllJobsPage() {
   const allJobs = useLoaderData();
@@ -18,9 +29,20 @@ function AllJobsPage() {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+  const allLanguages = extractUnique(allJobs, "language");
+  const allLocations = extractUnique(allJobs, "location");
+
   return (
     <div className="all-jobs-page-body">
-      <h2>Vos opportunités d'emploi</h2>
+      <h2 className="all-jobs-page-title">Vos opportunités d'emploi</h2>
+      <div className="all-jobs-filters-bar">
+        <FilterSelect name="Langages" values={allLanguages} />
+        <FilterSelect name="Villes" values={allLocations} />
+        <label>
+          Text input: <input name="myInput" />
+        </label>
+        <button type="button">Rechercher</button>
+      </div>
       <AllJobs jobs={currentCards} />
       <Pagination
         cardsPerPage={cardsPerPage}
