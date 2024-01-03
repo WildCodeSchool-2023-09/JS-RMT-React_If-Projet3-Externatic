@@ -3,6 +3,8 @@ CREATE TABLE role (
   label VARCHAR(50) NOT NULL
 );
 
+INSERT INTO role (label) VALUES ("candidat"),("consultant"),("admin");
+
 CREATE TABLE user (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   lastname VARCHAR(100) NOT NULL,
@@ -12,16 +14,35 @@ CREATE TABLE user (
   role_id INTEGER NOT NULL,
   FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
 );
+INSERT INTO user (lastName, firstName, email, password, role_id)
+VALUES("MAAMIR", "Hipticem", "maamir.hipticem@gmail.com","hipticem",2);
+
 
 CREATE TABLE company (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL,
   city VARCHAR(200) NOT NULL,
-  phone_number VARCHAR(10) NOT NULL
+  phone_number VARCHAR(10) NOT NULL,
+  image_url VARCHAR(450) NOT NULL
 );
 
-CREATE TABLE candidat (
+INSERT INTO company (name, email, city, phone_number, image_url)
+VALUES ("orange", "orange@orange.com", "Paris", "0404040404", "https://www.1min30.com/wp-content/uploads/2017/07/Orange-logo-500x407.jpg");
+INSERT INTO company (name, email, city, phone_number, image_url)
+VALUES ("iAdvize", "iadvize@iadvize.com", "Lyon", "0404040404", "https://i0.wp.com/www.frenchweb.fr/wp-content/uploads/2023/01/LOGO-850-iadvize-1.png?w=850&ssl=1");
+INSERT INTO company (name, email, city, phone_number, image_url)
+VALUES ("Iris", "iris@iris.com", "Bordeaux", "0404040404", "https://nantes.tilt.events/community/wp-content/uploads/2017/01/U-IRIS-300x300.jpg");
+INSERT INTO company (name, email, city, phone_number, image_url)
+VALUES ("maisons du monde", "maisonsdumonde@maisonsdumonde.com", "Paris", "0404040404", "https://www.proxice.eu/wp-content/uploads/2022/03/MAISON-DU-MONDE.jpg");
+INSERT INTO company (name, email, city, phone_number, image_url)
+VALUES ("Nickel", "nickel@nickel.com", "Lyon", "0404040404", "https://lebureaudecom.fr/wp-content/uploads/2019/02/nickel-1200x485.jpg" );
+INSERT INTO company (name, email, city, phone_number, image_url)
+VALUES ("showroomprivee", "showroomprivee@showroomprivee.com", "Bordeaux", "0404040404", "https://www.blog-ventes-privees.com/data/medias/logos/showroomprive.png" );
+
+
+
+CREATE TABLE candidat ( 
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   user_id INTEGER NOT NULL,
   status VARCHAR(255),
