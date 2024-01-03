@@ -1,3 +1,4 @@
+-- SQLBook: Code
 CREATE TABLE role (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   label VARCHAR(50) NOT NULL
@@ -72,6 +73,9 @@ CREATE TABLE job (
   FOREIGN KEY (company_id) REFERENCES company(id) ON DELETE CASCADE,
   FOREIGN KEY (consultant_id) REFERENCES user(id) ON DELETE CASCADE
 );
+
+insert into job(company_id, consultant_id, title, description_mission, description_about_candidate, description_position, description_advantages, description_process, language, salary, location, working_hours, starting_date, position_category )
+VALUES (1,1, "consultant","abcddddsssssssssssssssssssss","xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx","sssssss","xxxxxxxxxxxxxxxxxxxxxxxxxxx","fffffff","xxxxxxxxxxxxxxxxxx","30000","dddddddddd","aaaaaaaaaaa","2024-12-10","dddddddddddddddd");
 
 CREATE TABLE application_status (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
