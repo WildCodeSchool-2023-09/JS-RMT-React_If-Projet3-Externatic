@@ -8,26 +8,26 @@ function Footer() {
   return (
     <footer className="footerContainer">
       <div className="contact">
-        <h2>Contact </h2>
-        <h2>Tél. +33 (0)2 85 52 26 33 </h2>
-        <h2>Mail : contact@externatic.fr </h2>
-        <h2>Adresse : 1 rue Racine – 44000 </h2>
-        <h2> NANTES – France</h2>
+        <p>Contact </p>
+        <p>Tél. +33 (0)2 85 52 26 33 </p>
+        <p>Mail : contact@externatic.fr </p>
+        <p>Adresse : 1 rue Racine – 44000 </p>
+        <p> NANTES – France</p>
       </div>
       <div className="explain">
-        <h2>Externatic, cabinet de </h2>
-        <h2>recrutement informatique</h2>
-        <h2>Externatic est un cabinet dédié au </h2>
-        <h2>recrutement de profils d’experts, </h2>
-        <h2>ingénieurs et managers dans le </h2>
-        <h2>domaine de l’informatique</h2>{" "}
+        <p>Externatic, cabinet de </p>
+        <p>recrutement informatique</p>
+        <p>Externatic est un cabinet dédié au </p>
+        <p>recrutement de profils d’experts, </p>
+        <p>ingénieurs et managers dans le </p>
+        <p>domaine de l’informatique</p>{" "}
         <div className="allRight">
-          <h2>Externatic © 2023 - Tous droits réservés</h2>
+          <p>Externatic © 2023 - Tous droits réservés</p>
         </div>
       </div>
 
       <div className="socialIcon">
-        <h2>Réseaux sociaux</h2>
+        <p>Réseaux sociaux</p>
         <a href="https://www.linkedin.com/" aria-label="LinkedIn">
           <FaLinkedin style={style} />
         </a>
