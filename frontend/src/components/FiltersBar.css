@@ -7,7 +7,7 @@
 }
 
 .search-input {
-  height: 2rem;
+  height: 1.1rem;
   width: 14rem;
   padding: 0.5rem;
   font-size: 1.2rem;
@@ -17,4 +17,9 @@
 
 .search-input:hover {
   border-color: var(--main-red);
+}
+
+.filter-select {
+  cursor: pointer;
+  border-radius: 0.3rem;
 }

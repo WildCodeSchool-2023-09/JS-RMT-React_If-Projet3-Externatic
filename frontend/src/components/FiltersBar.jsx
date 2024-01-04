@@ -1,7 +1,6 @@
 import React from "react";
+import Select from "react-select";
 import PropTypes from "prop-types";
-
-import FilterSelect from "./FilterSelect";
 
 import "./FiltersBar.css";
 
@@ -26,19 +25,36 @@ function FiltersBar({
   const allLanguages = extractUnique(allJobs, "language");
   const allLocations = extractUnique(allJobs, "location");
 
+  const languageOptions = allLanguages.map((lang) => ({
+    value: lang,
+    label: lang,
+  }));
+  const locationOptions = allLocations.map((loc) => ({
+    value: loc,
+    label: loc,
+  }));
+
   return (
     <div className="filters-bar">
-      <FilterSelect
-        name="Langages"
-        values={allLanguages}
-        selectedValue={selectedLanguage}
-        onChange={(value) => onLanguageChange(value)}
+      <Select
+        className="filter-select"
+        options={languageOptions}
+        value={languageOptions.filter((option) =>
+          selectedLanguage.includes(option.value)
+        )}
+        onChange={(selectedOptions) => onLanguageChange(selectedOptions)}
+        isMulti
+        placeholder="Sélectionner un langage"
       />
-      <FilterSelect
-        name="Villes"
-        values={allLocations}
-        selectedValue={selectedLocation}
-        onChange={(value) => onLocationChange(value)}
+      <Select
+        className="filter-select"
+        options={locationOptions}
+        value={locationOptions.filter((option) =>
+          selectedLocation.includes(option.value)
+        )}
+        onChange={(selectedOptions) => onLocationChange(selectedOptions)}
+        isMulti
+        placeholder="Sélectionner une ville"
       />
       <input
         className="search-input"
@@ -59,8 +75,8 @@ FiltersBar.propTypes = {
       location: PropTypes.string.isRequired,
     })
   ).isRequired,
-  selectedLanguage: PropTypes.string.isRequired,
-  selectedLocation: PropTypes.string.isRequired,
+  selectedLanguage: PropTypes.arrayOf(PropTypes.string).isRequired,
+  selectedLocation: PropTypes.arrayOf(PropTypes.string).isRequired,
   onLanguageChange: PropTypes.func.isRequired,
   onLocationChange: PropTypes.func.isRequired,
   onSearchChange: PropTypes.func.isRequired,

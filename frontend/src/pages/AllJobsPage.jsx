@@ -13,14 +13,16 @@ function AllJobsPage() {
   const cardsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(1);
 
-  const [selectedLanguage, setSelectedLanguage] = useState("");
-  const [selectedLocation, setSelectedLocation] = useState("");
+  const [selectedLanguage, setSelectedLanguage] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState([]);
   const [searchedJob, setSearchedJob] = useState("");
 
   const filteredJobs = allJobs.filter(
     (job) =>
-      (!selectedLanguage || job.language === selectedLanguage) &&
-      (!selectedLocation || job.location === selectedLocation) &&
+      (selectedLanguage.length === 0 ||
+        selectedLanguage.includes(job.language)) &&
+      (selectedLocation.length === 0 ||
+        selectedLocation.includes(job.location)) &&
       (!searchedJob || job.title.toLowerCase().includes(searchedJob))
   );
 
@@ -30,12 +32,14 @@ function AllJobsPage() {
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const handleLanguageChange = (value) => {
-    setSelectedLanguage(value);
+  const handleLanguageChange = (selectedOptions) => {
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setSelectedLanguage(selectedValues);
   };
 
-  const handleLocationChange = (value) => {
-    setSelectedLocation(value);
+  const handleLocationChange = (selectedOptions) => {
+    const selectedValues = selectedOptions.map((option) => option.value);
+    setSelectedLocation(selectedValues);
   };
 
   const handleSearchChange = (value) => {
