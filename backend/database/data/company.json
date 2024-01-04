@@ -1,0 +1,44 @@
+[
+  {
+    "name": "orange",
+    "email": "orange@orange.com",
+    "city": "Paris",
+    "phone_number": "0404040404",
+    "image_url": "https://www.1min30.com/wp-content/uploads/2017/07/Orange-logo-500x407.jpg"
+  },
+  {
+    "name": "iAdvize",
+    "email": "iadvize@iadvize.com",
+    "city": "Lyon",
+    "phone_number": "0404040404",
+    "image_url": "https://i0.wp.com/www.frenchweb.fr/wp-content/uploads/2023/01/LOGO-850-iadvize-1.png?w=850&ssl=1"
+  },
+  {
+    "name": "Iris",
+    "email": "iris@iris.com",
+    "city": "Bordeaux",
+    "phone_number": "0404040404",
+    "image_url": "https://nantes.tilt.events/community/wp-content/uploads/2017/01/U-IRIS-300x300.jpg"
+  },
+  {
+    "name": "maisons du monde",
+    "email": "maisonsdumonde@maisonsdumonde.com",
+    "city": "Paris",
+    "phone_number": "0404040404",
+    "image_url": "https://www.proxice.eu/wp-content/uploads/2022/03/MAISON-DU-MONDE.jpg"
+  },
+  {
+    "name": "Nickel",
+    "email": "nickel@nickel.com",
+    "city": "Lyon",
+    "phone_number": "0404040404",
+    "image_url": "https://lebureaudecom.fr/wp-content/uploads/2019/02/nickel-1200x485.jpg"
+  },
+  {
+    "name": "showroomprivee",
+    "email": "showroomprivee@showroomprivee.com",
+    "city": "Bordeaux",
+    "phone_number": "0404040404",
+    "image_url": "https://www.blog-ventes-privees.com/data/medias/logos/showroomprive.png"
+  }
+]
