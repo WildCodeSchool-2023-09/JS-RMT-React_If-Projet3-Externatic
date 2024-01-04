@@ -6,6 +6,7 @@ import connexion from "./services/connexion";
 import { JobProvider } from "./contexts/context";
 
 import App from "./App";
+import HomePage from "./pages/HomePage";
 
 import AllJobsPage from "./pages/AllJobsPage";
 import ConsultantPage from "./pages/layout/ConsultantPage";
@@ -17,10 +18,14 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
         path: "jobs",
         element: <AllJobsPage />,
         loader: () => {
-          return connexion.get(`/jobs`).then((response) => {
+          return connexion.get("/jobs").then((response) => {
             return response.data;
           });
         },
