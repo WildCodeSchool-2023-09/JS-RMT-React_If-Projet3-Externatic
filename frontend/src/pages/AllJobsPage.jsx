@@ -4,49 +4,59 @@ import { useLoaderData } from "react-router-dom";
 import AllJobs from "../components/AllJobs";
 import Collapser from "../components/Collapser";
 import Pagination from "../components/Pagination";
-import FilterSelect from "../components/FilterSelect";
 
 import "./AllJobsPage.css";
-
-function extractUnique(jobs, property) {
-  const uniqueSet = new Set();
-  jobs.forEach((job) => {
-    if (job[property] && job[property].length > 0) {
-      uniqueSet.add(job[property]);
-    }
-  });
-  return Array.from(uniqueSet);
-}
+import FiltersBar from "../components/FiltersBar";
 
 function AllJobsPage() {
   const allJobs = useLoaderData();
   const cardsPerPage = 9;
   const [currentPage, setCurrentPage] = useState(1);
 
+  const [selectedLanguage, setSelectedLanguage] = useState("");
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [searchedJob, setSearchedJob] = useState("");
+
+  const filteredJobs = allJobs.filter(
+    (job) =>
+      (!selectedLanguage || job.language === selectedLanguage) &&
+      (!selectedLocation || job.location === selectedLocation) &&
+      (!searchedJob || job.title.toLowerCase().includes(searchedJob))
+  );
+
   const indexOfLastCard = currentPage * cardsPerPage;
   const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = allJobs.slice(indexOfFirstCard, indexOfLastCard);
+  const currentCards = filteredJobs.slice(indexOfFirstCard, indexOfLastCard);
 
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
-  const allLanguages = extractUnique(allJobs, "language");
-  const allLocations = extractUnique(allJobs, "location");
+  const handleLanguageChange = (value) => {
+    setSelectedLanguage(value);
+  };
+
+  const handleLocationChange = (value) => {
+    setSelectedLocation(value);
+  };
+
+  const handleSearchChange = (value) => {
+    setSearchedJob(value.toLowerCase());
+  };
 
   return (
     <div className="all-jobs-page-body">
       <h2 className="all-jobs-page-title">Vos opportunités d'emploi</h2>
-      <div className="all-jobs-filters-bar">
-        <FilterSelect name="Langages" values={allLanguages} />
-        <FilterSelect name="Villes" values={allLocations} />
-        <label>
-          Text input: <input name="myInput" />
-        </label>
-        <button type="button">Rechercher</button>
-      </div>
+      <FiltersBar
+        allJobs={allJobs}
+        selectedLanguage={selectedLanguage}
+        selectedLocation={selectedLocation}
+        onLanguageChange={handleLanguageChange}
+        onLocationChange={handleLocationChange}
+        onSearchChange={handleSearchChange}
+      />
       <AllJobs jobs={currentCards} />
       <Pagination
         cardsPerPage={cardsPerPage}
-        totalCards={allJobs.length}
+        totalCards={filteredJobs.length}
         currentPage={currentPage}
         paginate={paginate}
       />

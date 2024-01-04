@@ -1,0 +1,20 @@
+.filters-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 80%;
+}
+
+.search-input {
+  height: 2rem;
+  width: 14rem;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+}
+
+.search-input:hover {
+  border-color: var(--main-red);
+}

@@ -1,0 +1,16 @@
+.filter-select {
+  cursor: pointer;
+  height: 3rem;
+  width: 14rem;
+  padding: 0.5rem;
+  font-size: 1.2rem;
+  border-radius: 0.3rem;
+}
+
+.filter-select option:hover {
+  background-color: var(--main-red);
+}
+
+.filter-select:hover {
+  border-color: var(--main-red);
+}
