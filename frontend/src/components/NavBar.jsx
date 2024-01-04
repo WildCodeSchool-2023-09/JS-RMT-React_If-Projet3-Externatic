@@ -5,14 +5,14 @@ import externatic from "../public/externatic.png";
 
 function NavBar() {
   return (
-    <div className="navBar">
+    <div className="navbar">
       <Link to="/">
         <img className="logo" src={externatic} alt="externatic" />
       </Link>
-      <Link className="homePage" to="/">
+      <Link className="link-page" to="/">
         Home
       </Link>
-      <Link className="homePage" to="/jobs">
+      <Link className="link-page" to="/jobs">
         jobs
       </Link>
     </div>

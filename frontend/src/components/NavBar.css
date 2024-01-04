@@ -5,19 +5,19 @@
   transition: 0.3s ease;
 }
 
-.navBar {
+.navbar {
   display: flex;
   border-bottom: solid 10px;
 }
 
-.homePage {
+.link-page {
   margin-top: 25px;
   margin-left: 100px;
   font-size: 25px;
   transition: color 0.3s ease;
 }
 
-.homePage:hover {
+.link-page:hover {
   color: #fc005b;
 }
 
@@ -27,12 +27,12 @@
     height: 50px;
   }
 
-  .homePage {
+  .link-page {
     font-size: 20px;
     transition: color 0.3s ease;
   }
 
-  .navBar {
+  .navbar {
     border-bottom: solid 7px;
   }
 }
