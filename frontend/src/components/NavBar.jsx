@@ -13,7 +13,7 @@ function NavBar() {
         Home
       </Link>
       <Link className="link-page" to="/jobs">
-        jobs
+        Jobs
       </Link>
     </div>
   );
