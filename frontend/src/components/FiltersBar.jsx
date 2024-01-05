@@ -29,10 +29,51 @@ function FiltersBar({
     value: lang,
     label: lang,
   }));
+
   const locationOptions = allLocations.map((loc) => ({
     value: loc,
     label: loc,
   }));
+
+  const colorStyles = {
+    control: (styles, { isSelected, isFocused }) => ({
+      ...styles,
+      backgroundColor: "white",
+      borderColor: isSelected || isFocused ? "#ca2061" : "black",
+      boxShadow: "none",
+      ":hover": { borderColor: "#ca2061" },
+    }),
+    clearIndicator: (styles) => ({
+      ...styles,
+      cursor: "pointer",
+      ":hover": { color: "red" },
+    }),
+    dropdownIndicator: (styles) => ({
+      ...styles,
+      cursor: "pointer",
+    }),
+    option: (styles, { isFocused }) => {
+      return {
+        ...styles,
+        backgroundColor: isFocused ? "#ca2061" : "white",
+        color: isFocused ? "white" : "black",
+        cursor: isFocused ? "pointer" : "default",
+      };
+    },
+    multiValue: (styles) => {
+      return {
+        ...styles,
+        backgroundColor: "#ffd1e3",
+      };
+    },
+    multiValueRemove: (styles) => {
+      return {
+        ...styles,
+        cursor: "pointer",
+        ":hover": { color: "red" },
+      };
+    },
+  };
 
   return (
     <div className="filters-bar">
@@ -45,6 +86,7 @@ function FiltersBar({
         onChange={(selectedOptions) => onLanguageChange(selectedOptions)}
         isMulti
         placeholder="Sélectionner un langage"
+        styles={colorStyles}
       />
       <Select
         className="filter-select"
@@ -55,6 +97,7 @@ function FiltersBar({
         onChange={(selectedOptions) => onLocationChange(selectedOptions)}
         isMulti
         placeholder="Sélectionner une ville"
+        styles={colorStyles}
       />
       <input
         className="search-input"
