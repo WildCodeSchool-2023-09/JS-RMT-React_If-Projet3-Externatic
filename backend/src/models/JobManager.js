@@ -35,7 +35,9 @@ class JobManager extends AbstractManager {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all jobs from the "job" table
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(
+      `select * from ${this.table} LIMIT 9`
+    );
 
     // Return the array of jobs
     return rows;
