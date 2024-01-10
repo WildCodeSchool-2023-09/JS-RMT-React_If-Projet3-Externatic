@@ -13,17 +13,20 @@ function Pagination({ pageNb, currentPage }) {
 
   return (
     <nav className="pagination">
-      <ol>
+      <ol className="pagination-list">
         {Array(pageNb)
           .fill(null)
           .map((_, index) => (
-            <li key={`page-${index + 1}`}>
+            <li
+              key={`page-${index + 1}`}
+              className={`pagination-item ${
+                index + 1 === currentPage ? "active" : ""
+              }`}
+            >
               <button
                 type="button"
                 onClick={() => handleClick(index + 1)}
-                className={`pagination-link ${
-                  index + 1 === currentPage ? "active" : ""
-                }`}
+                className="pagination-link"
               >
                 {index + 1}
               </button>
