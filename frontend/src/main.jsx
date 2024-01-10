@@ -24,10 +24,15 @@ const router = createBrowserRouter([
       {
         path: "jobs",
         element: <AllJobsPage />,
-        loader: () => {
-          return connexion.get("/jobs").then((response) => {
-            return response.data;
-          });
+        loader: ({ request }) => {
+          const url = new URL(request.url);
+          const page = url.searchParams.get("page") || 1;
+
+          return connexion
+            .get(`/jobs${url.search || "?page=1"}`)
+            .then((response) => {
+              return { data: response.data, page: parseInt(page, 10) };
+            });
         },
       },
     ],

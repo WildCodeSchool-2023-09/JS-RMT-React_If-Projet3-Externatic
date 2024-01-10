@@ -3,20 +3,20 @@ import { useLoaderData } from "react-router-dom";
 
 import AllJobs from "../components/AllJobs";
 import Collapser from "../components/Collapser";
+import Pagination from "../components/Pagination";
 
 import "./AllJobsPage.css";
-import Pagination from "../components/Pagination";
 
 function AllJobsPage() {
   const allJobsData = useLoaderData();
-  const allJobs = allJobsData.jobs;
-  const { totalPagesNb } = allJobsData;
+  const { jobs, totalPagesNb } = allJobsData.data;
+  const currentPage = allJobsData.page;
 
   return (
     <div className="all-jobs-page-body">
       <h2>Vos opportunités d'emploi</h2>
-      <AllJobs jobs={allJobs} />
-      <Pagination pageNb={totalPagesNb} />
+      <AllJobs jobs={jobs} />
+      <Pagination pageNb={totalPagesNb} currentPage={currentPage} />
       <div className="all-jobs-page-separator" />
       <div className="all-jobs-page-tutorial">
         <h2 className="all-jobs-page-tutorial-title">

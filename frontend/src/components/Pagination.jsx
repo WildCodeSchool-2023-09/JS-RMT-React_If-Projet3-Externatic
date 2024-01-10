@@ -1,15 +1,34 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import "./Pagination.css";
 
-function Pagination({ pageNb }) {
+function Pagination({ pageNb, currentPage }) {
+  const navigate = useNavigate();
+
+  const handleClick = (page) => {
+    navigate(`?page=${page}`);
+  };
+
   return (
     <nav className="pagination">
       <ol>
-        {Array.from({ length: pageNb }, (_, index) => (
-          <li key={index + 1}>{index + 1}</li>
-        ))}
+        {Array(pageNb)
+          .fill(null)
+          .map((_, index) => (
+            <li key={`page-${index + 1}`}>
+              <button
+                type="button"
+                onClick={() => handleClick(index + 1)}
+                className={`pagination-link ${
+                  index + 1 === currentPage ? "active" : ""
+                }`}
+              >
+                {index + 1}
+              </button>
+            </li>
+          ))}
       </ol>
     </nav>
   );
@@ -17,6 +36,7 @@ function Pagination({ pageNb }) {
 
 Pagination.propTypes = {
   pageNb: PropTypes.number.isRequired,
+  currentPage: PropTypes.number.isRequired,
 };
 
 export default Pagination;
