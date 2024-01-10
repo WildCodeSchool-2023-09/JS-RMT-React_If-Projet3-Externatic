@@ -1,22 +1,6 @@
-.pagination-list {
-  display: flex;
-  flex-direction: row;
+.pagination {
 }
 
-.pagination li {
-  list-style: none;
-  margin-left: 0.5rem;
-}
-
-.pagination li button {
-  cursor: pointer;
-  font-size: 1rem;
-  background-color: white;
-  border: none;
-  width: 2rem;
-}
-
-.pagination-item.active button {
-  background-color: var(--main-red);
-  color: #fff;
+ol {
+  list-style-type: none;
 }

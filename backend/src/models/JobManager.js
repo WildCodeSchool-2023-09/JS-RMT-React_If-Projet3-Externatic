@@ -33,14 +33,22 @@ class JobManager extends AbstractManager {
     return rows[0];
   }
 
-  async readAll() {
+  async readAll(page, jobsPerPage) {
+    const offset = (page - 1) * jobsPerPage;
     // Execute the SQL SELECT query to retrieve all jobs from the "job" table
     const [rows] = await this.database.query(
-      `select * from ${this.table} LIMIT 9`
+      `SELECT * FROM ${this.table} LIMIT ${jobsPerPage} OFFSET ${offset}`
     );
 
     // Return the array of jobs
     return rows;
+  }
+
+  async getTotalJobs() {
+    const [rows] = await this.database.query(
+      `SELECT COUNT(*) as count FROM ${this.table}`
+    );
+    return rows[0].count;
   }
 
   // The U of CRUD - Update operation

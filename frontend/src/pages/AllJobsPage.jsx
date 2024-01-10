@@ -5,14 +5,18 @@ import AllJobs from "../components/AllJobs";
 import Collapser from "../components/Collapser";
 
 import "./AllJobsPage.css";
+import Pagination from "../components/Pagination";
 
 function AllJobsPage() {
-  const allJobs = useLoaderData();
+  const allJobsData = useLoaderData();
+  const allJobs = allJobsData.jobs;
+  const { totalPagesNb } = allJobsData;
 
   return (
     <div className="all-jobs-page-body">
       <h2>Vos opportunités d'emploi</h2>
       <AllJobs jobs={allJobs} />
+      <Pagination pageNb={totalPagesNb} />
       <div className="all-jobs-page-separator" />
       <div className="all-jobs-page-tutorial">
         <h2 className="all-jobs-page-tutorial-title">
