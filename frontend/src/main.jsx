@@ -24,15 +24,13 @@ const router = createBrowserRouter([
       {
         path: "jobs",
         element: <AllJobsPage />,
-        loader: ({ request }) => {
+        loader: async ({ request }) => {
           const url = new URL(request.url);
           const page = url.searchParams.get("page") || 1;
-
-          return connexion
-            .get(`/jobs${url.search || "?page=1"}`)
-            .then((response) => {
-              return { data: response.data, page: parseInt(page, 10) };
-            });
+          const response = await connexion.get(
+            `/jobs${url.search || "?page=1"}`
+          );
+          return { data: response.data, page: parseInt(page, 10) };
         },
       },
     ],
