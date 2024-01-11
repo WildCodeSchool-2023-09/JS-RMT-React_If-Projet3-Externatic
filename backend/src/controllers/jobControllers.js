@@ -52,6 +52,23 @@ const readByCompany = async (req, res, next) => {
   }
 };
 
+const readByCompanyJob = async (req, res, next) => {
+  try {
+    // Fetch a specific job from the database based on the provided ID
+    const job = await tables.job.readByCompanyJob(req.params.id);
+
+    // If the job is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the job in JSON format
+    if (job.length === 0) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(job[0]);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 // The E of BREAD - Edit (Update) operation
 // This operation is not yet implemented
 
@@ -80,6 +97,7 @@ module.exports = {
   browse,
   read,
   readByCompany,
+  readByCompanyJob,
   // edit,
   // add,
   // destroy,
