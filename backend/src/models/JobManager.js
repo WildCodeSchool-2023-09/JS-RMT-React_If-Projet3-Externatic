@@ -35,30 +35,29 @@ class JobManager extends AbstractManager {
 
   async readAll(page, jobsPerPage, selectedLocations, selectedLanguages) {
     const offset = (page - 1) * jobsPerPage;
-    let where = "";
+    const query = `SELECT * FROM ${this.table}`;
+    const whereValues = [];
+    const values = [];
 
     if (selectedLocations) {
-      const locations = selectedLocations
-        .split("|^|")
-        .map((location) => `'${location}'`)
-        .join(",");
-      where += where
-        ? ` AND location IN (${locations})`
-        : `WHERE location IN (${locations})`;
+      const locations = selectedLocations.split("|^|");
+      whereValues.push(`location IN (?)`);
+      values.push(locations);
     }
 
     if (selectedLanguages) {
-      const languages = selectedLanguages
-        .split("|^|")
-        .map((language) => `'${language}'`)
-        .join(",");
-      where += where
-        ? ` AND language IN (${languages})`
-        : `WHERE language IN (${languages})`;
+      const languages = selectedLanguages.split("|^|");
+      whereValues.push(`language IN (?)`);
+      values.push(languages);
     }
 
+    const where =
+      whereValues.length > 0 ? ` WHERE ${whereValues.join(" AND ")}` : "";
+    values.push(jobsPerPage, offset);
+
     const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} ${where} LIMIT ${jobsPerPage} OFFSET ${offset}`
+      `${query}${where} LIMIT ? OFFSET ?`,
+      values
     );
 
     // Return the array of jobs
@@ -66,31 +65,29 @@ class JobManager extends AbstractManager {
   }
 
   async readAllJobs(selectedLocations, selectedLanguages) {
-    let where = "";
+    const whereValues = [];
+    const values = [];
 
     if (selectedLocations) {
-      const locations = selectedLocations
-        .split("|^|")
-        .map((location) => `'${location}'`)
-        .join(",");
-      /* where += `WHERE location IN (${locations})`; */
-      where += where
-        ? ` AND location IN (${locations})`
-        : `WHERE location IN (${locations})`;
-    }
-    if (selectedLanguages) {
-      const languages = selectedLanguages
-        .split("|^|")
-        .map((language) => `'${language}'`)
-        .join(",");
-      where += where
-        ? ` AND language IN (${languages})`
-        : `WHERE language IN (${languages})`;
+      const locations = selectedLocations.split("|^|");
+      whereValues.push(`location IN (?)`);
+      values.push(locations);
     }
 
+    if (selectedLanguages) {
+      const languages = selectedLanguages.split("|^|");
+      whereValues.push(`language IN (?)`);
+      values.push(languages);
+    }
+
+    const where =
+      whereValues.length > 0 ? ` WHERE ${whereValues.join(" AND ")}` : "";
+
     const [rows] = await this.database.query(
-      `SELECT COUNT(*) as count FROM ${this.table} ${where}`
+      `SELECT COUNT(*) as count FROM ${this.table}${where}`,
+      values
     );
+
     return rows[0].count;
   }
 
