@@ -33,6 +33,17 @@ class JobManager extends AbstractManager {
     return rows[0];
   }
 
+  async readByCompany(id) {
+    // Execute the SQL SELECT query to retrieve a specific job by its ID
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where company_id = ?`,
+      [id]
+    );
+
+    // Return the first row of the result, which represents the job
+    return rows;
+  }
+
   async readAll() {
     // Execute the SQL SELECT query to retrieve all jobs from the "job" table
     const [rows] = await this.database.query(`select * from ${this.table}`);

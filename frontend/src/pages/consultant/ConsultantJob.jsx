@@ -1,17 +1,34 @@
-import React from "react";
-import { useLoaderData } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
+import CompanyJob from "../../components/CompanyJob";
+import "./ConsultantJob.css";
+import connexion from "../../services/connexion";
 
 function ConsultantJob() {
-  const consultantJob = useLoaderData();
+  const [jobs, setJobs] = useState([]);
+  const { companyId } = useParams();
+  const getJobsByCompany = async () => {
+    const myJobs = await connexion
+
+      .get(`/companies/${companyId}/jobs`)
+      .then((res) => {
+        return res.data;
+      });
+
+    setJobs(myJobs);
+  };
+
+  useEffect(() => {
+    getJobsByCompany();
+  }, []);
 
   return (
     <div>
       <div>
-        <div>
-          <p>{consultantJob.title}</p>
-          <p>{consultantJob.description_mission}</p>
-          <p>{consultantJob.description_about_candidate}</p>
-          <p>{consultantJob.description_position}</p>
+        <div className="container">
+          {jobs.map((job) => (
+            <CompanyJob key={job.id} job={job} />
+          ))}
         </div>
       </div>
     </div>

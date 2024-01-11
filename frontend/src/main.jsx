@@ -1,7 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import axios from "axios";
 
 import connexion from "./services/connexion";
 import { JobProvider } from "./contexts/context";
@@ -13,6 +12,7 @@ import AllJobsPage from "./pages/AllJobsPage";
 import ConsultantPage from "./pages/layout/ConsultantPage";
 import ConsultantCompany from "./pages/consultant/ConsultantCompany";
 import ConsultantJob from "./pages/consultant/ConsultantJob";
+import ConsultantJobOffre from "./pages/consultant/ConsultantJobOffre";
 
 const router = createBrowserRouter([
   {
@@ -43,18 +43,15 @@ const router = createBrowserRouter([
           {
             path: "company/:companyId",
             element: <ConsultantJob />,
-            loader: async ({ params }) => {
-              const company = await axios
-                .get(
-                  `${import.meta.env.VITE_BACKEND_URL}/api/companies/${
-                    params.companyId
-                  }`
-                )
-                .then((res) => {
-                  return res.data;
-                });
-
-              return company;
+          },
+          {
+            path: "company/:companyId/jobs/:id",
+            element: <ConsultantJobOffre />,
+            loader: ({ params }) => {
+              return connexion
+                .get(`/jobs/${params.id}`)
+                .then((res) => res.data)
+                .catch((err) => console.error(err));
             },
           },
         ],
