@@ -9,7 +9,7 @@ const browse = async (req, res, next) => {
     const selectedLocations = req.query.location;
     const selectedLanguages = req.query.language;
 
-    const totalJobsNb = await tables.job.getTotalJobs(
+    const totalJobsNb = await tables.job.readAllJobs(
       selectedLocations,
       selectedLanguages
     );
@@ -32,22 +32,20 @@ const browse = async (req, res, next) => {
 
 const getLocations = async (req, res, next) => {
   try {
-    const locations = await tables.job.getLocationsList();
-    return res.status(200).json(locations);
+    const locations = await tables.job.readAllLocations();
+    res.status(200).json(locations);
   } catch (err) {
     next(err);
   }
-  return null;
 };
 
 const getLanguages = async (req, res, next) => {
   try {
-    const languages = await tables.job.getLanguagesList();
-    return res.status(200).json(languages);
+    const languages = await tables.job.readAllLanguages();
+    res.status(200).json(languages);
   } catch (err) {
     next(err);
   }
-  return null;
 };
 
 // The R of BREAD - Read operation

@@ -65,7 +65,7 @@ class JobManager extends AbstractManager {
     return rows;
   }
 
-  async getTotalJobs(selectedLocations, selectedLanguages) {
+  async readAllJobs(selectedLocations, selectedLanguages) {
     let where = "";
 
     if (selectedLocations) {
@@ -94,14 +94,14 @@ class JobManager extends AbstractManager {
     return rows[0].count;
   }
 
-  async getLocationsList() {
+  async readAllLocations() {
     const [rows] = await this.database.query(
       `SELECT DISTINCT(location) FROM ${this.table}`
     );
     return rows.map((row) => row.location);
   }
 
-  async getLanguagesList() {
+  async readAllLanguages() {
     const [rows] = await this.database.query(
       `SELECT DISTINCT(language) FROM ${this.table}`
     );
