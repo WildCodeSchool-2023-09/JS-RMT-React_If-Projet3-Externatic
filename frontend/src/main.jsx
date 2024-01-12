@@ -4,8 +4,10 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import connexion from "./services/connexion";
 import { JobProvider } from "./contexts/context";
+import { AuthProvider } from "./contexts/auth";
 
 import App from "./App";
+import FormLogin from "./pages/FormLogin";
 import HomePage from "./pages/HomePage";
 
 import AllJobsPage from "./pages/AllJobsPage";
@@ -35,15 +37,19 @@ const router = createBrowserRouter([
             });
         },
       },
-    ],
-  },
-  {
-    path: "/consultants/",
-    element: <ConsultantPage />,
-    children: [
       {
-        path: "company",
-        element: <ConsultantCompany />,
+        path: "/consultants/",
+        element: <ConsultantPage />,
+        children: [
+          {
+            path: "company",
+            element: <ConsultantCompany />,
+          },
+        ],
+      },
+      {
+        path: "/login",
+        element: <FormLogin />,
       },
     ],
   },
@@ -54,7 +60,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <JobProvider>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
     </JobProvider>
   </React.StrictMode>
 );
