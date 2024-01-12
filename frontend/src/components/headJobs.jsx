@@ -6,25 +6,22 @@ import "../styles/headJobs.css";
 function HeadJob() {
   const job = useLoaderData();
   return (
-    <div className="body">
-      <h1 className="title">{job.title}</h1>
-      <div className="resume_jobs">
-        <ul>
-          <br />
-          <li>Durée de travail:{job.working_type}</li>
-          <br />
-          <li>Niveau de formation:{job.position_requirements}</li>
-          <br />
-          <li>Lieu:{job.location}</li>
-        </ul>
-        <ul>
-          <br />
-          <li>Salaire:{job.salary}</li>
-          <br />
-          <li>Entrée en fonction:{job.starting_date}</li>
-          <br />
-          <li>CSP:{job.position_category}</li>
-        </ul>
+    <div className="headjob_container">
+      <img src="../src/assets/Logohead.svg" alt="Logo" />
+      <div className="body_job">
+        <h1 className="title">{job.title}</h1>
+        <div className="resume_jobs">
+          <ul>
+            <li>Durée de travail:{job.working_type}</li>
+            <li>Niveau de formation:{job.position_requirements}</li>
+            <li>Lieu:{job.location}</li>
+          </ul>
+          <ul>
+            <li>Salaire:{job.salary}</li>
+            <li>Entrée en fonction:{job.starting_date}</li>
+            <li>CSP:{job.position_category}</li>
+          </ul>
+        </div>
       </div>
     </div>
   );

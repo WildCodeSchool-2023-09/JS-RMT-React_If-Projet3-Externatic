@@ -8,7 +8,7 @@ import "../styles/jobId.css";
 function JobId() {
   const job = useLoaderData();
   return (
-    <div>
+    <div className="jobid">
       <HeadJob />
       <div className="resume">
         <br />

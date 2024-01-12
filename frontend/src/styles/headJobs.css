@@ -1,20 +1,43 @@
+.headjob_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
 .title {
   color: #fc005b;
   display: flex;
   justify-content: center;
+  font-size: 45px;
+  font-weight: bold;
+  z-index: 1;
+}
+
+.body_job {
+  position: absolute;
+  width: 100%;
 }
 
 .resume_jobs {
   display: flex;
   justify-content: space-around;
+  z-index: 1;
 }
 
-ul {
+.headjob_container ul {
   list-style: none;
   font-size: 25px;
+  font-weight: bold;
+  z-index: 1;
 }
 
-.body {
-  background-image: url("../assets/Logohead.svg");
-  background-size: cover;
+.headjob_container li {
+  margin: 20px 0;
+}
+
+.headjob_container img {
+  display: flex;
+  justify-content: center;
+  z-index: 0;
 }
