@@ -12,7 +12,7 @@ function JobId() {
       <HeadJob />
       <div className="resume">
         <br />
-        <div className="Description">
+        <div className="description">
           <h1>Les missions</h1>
           <div>{job.description_mission}</div>
           <br />
