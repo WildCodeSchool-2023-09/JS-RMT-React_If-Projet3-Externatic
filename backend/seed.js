@@ -69,11 +69,10 @@ const seed = async () => {
     for (let i = 0; i < job.length; i += 1) {
       jobQuery.push(
         database.query(
-          "insert into job(company_id, consultant_id, company_title, title, description_mission, description_about_candidate, description_position, description_advantages, description_process, language, salary, location, working_type, starting_date, position_category, contract_type, position_requirements) values (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
+          "insert into job(company_id, consultant_id, title, description_mission, description_about_candidate, description_position, description_advantages, description_process, language, salary, location, working_type, starting_date, position_category, contract_type, position_requirements) values (?,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
           [
             job[i].company_id,
             job[i].consultant_id,
-            job[i].company_title,
             job[i].title,
             job[i].description_mission,
             job[i].description_about_candidate,
