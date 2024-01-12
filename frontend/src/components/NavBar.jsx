@@ -15,6 +15,9 @@ function NavBar() {
       <Link className="link-page" to="/jobs">
         Jobs
       </Link>
+      <Link className="button-connect" to="/login">
+        Se connecter
+      </Link>
     </div>
   );
 }
