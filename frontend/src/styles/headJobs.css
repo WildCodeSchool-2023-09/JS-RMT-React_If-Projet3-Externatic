@@ -1,0 +1,19 @@
+.title {
+  display: flex;
+  justify-content: center;
+}
+
+.resume_jobs {
+  display: flex;
+  justify-content: space-around;
+}
+
+ul {
+  list-style: none;
+  font-size: 25px;
+}
+
+.body {
+  background-image: url("../assets/Logohead.svg");
+  background-size: cover;
+}
