@@ -9,10 +9,15 @@ const router = express.Router();
 // Import itemControllers module for handling item-related operations
 const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
+const jobControllers = require("./controllers/jobControllers");
+const companyControllers = require("./controllers/companyControllers");
 
 const validateUser = require("./validators/validateUser");
 // const checkCredentials = require("./middleware/checkCredentials");
-
+router.get("/jobs", jobControllers.browse);
+router.get("/locations", jobControllers.getLocations);
+router.get("/languages", jobControllers.getLanguages);
+router.get("/companies", companyControllers.browse);
 // Route to get a list of items
 
 // Route to get a specific item by ID

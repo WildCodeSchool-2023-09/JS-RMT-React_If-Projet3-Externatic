@@ -1,4 +1,4 @@
-.labelForm {
+.label-form {
   width: 539px;
   height: 87px;
   flex-shrink: 0;
@@ -9,6 +9,6 @@
   text-align: center;
 }
 
-.labelForm:active {
+.label-form:active {
   border: 1px solid #fc005b;
 }

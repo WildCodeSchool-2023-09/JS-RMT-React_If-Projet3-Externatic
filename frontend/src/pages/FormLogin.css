@@ -1,21 +1,21 @@
-.logContainer {
+.log-container {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
 }
 
-.labelForm {
+.label-form {
   display: flex;
   flex-direction: column;
   margin-bottom: 60px;
 }
 
-.formConnection {
+.form-connection {
   top: 60%;
 }
 
-.buttonContainer {
+.button-container {
   position: relative;
   display: flex;
   justify-content: center;

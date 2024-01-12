@@ -1,4 +1,4 @@
-.connectionButton {
+.connection-button {
   color: white;
   font-weight: 300;
   width: 250px;
@@ -10,6 +10,6 @@
   margin-top: 50px;
 }
 
-.connectionButton:active {
+.connection-button:active {
   transform: translateY(4px);
 }

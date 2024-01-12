@@ -41,14 +41,14 @@ function FormLogin() {
 
   return (
     <div>
-      <main className="logContainer">
-        <div className="formContainer">
-          <form onSubmit={handleRequest} className="formConnection">
+      <main className="log-container">
+        <div className="form-container">
+          <form onSubmit={handleRequest} className="form-connection">
             <label htmlFor="email">
               Email:
               <input
                 id="email"
-                className="labelForm"
+                className="label-form"
                 type="email"
                 name="email"
                 required
@@ -61,7 +61,7 @@ function FormLogin() {
               Password:
               <input
                 id="password"
-                className="labelForm"
+                className="label-form"
                 type="password"
                 name="password"
                 required
@@ -73,8 +73,8 @@ function FormLogin() {
 
             {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
 
-            <div className="buttonContainer">
-              <button type="submit" className="connectionButton">
+            <div className="button-container">
+              <button type="submit" className="connection-button">
                 Se connecter
               </button>
             </div>
