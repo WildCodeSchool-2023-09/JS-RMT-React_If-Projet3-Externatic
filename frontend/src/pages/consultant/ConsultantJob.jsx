@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import CompanyJob from "../../components/CompanyJob";
+import JobCard from "../../components/JobCard";
 import "./ConsultantJob.css";
 import connexion from "../../services/connexion";
 
@@ -27,7 +27,7 @@ function ConsultantJob() {
       <div>
         <div className="container">
           {jobs.map((job) => (
-            <CompanyJob key={job.id} job={job} />
+            <JobCard key={job.id} job={job} />
           ))}
         </div>
       </div>

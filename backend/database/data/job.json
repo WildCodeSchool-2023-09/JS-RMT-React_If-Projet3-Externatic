@@ -2,6 +2,7 @@
   {
     "company_id": 1,
     "consultant_id": 1,
+    "company_title": "Orange",
     "title": "Développeur Fullstack JS H/F",
     "description_mission": "Aujourd'hui, nous vous proposons une opportunité au sein d'un acteur Nantais proposant une solution dans le domaine de l'économie circulaire à grande échelle sur toute la France.",
     "description_about_candidate": "Nous recherchons un Développeur fullstack JS H/F avec les compétences suivantes :\n\n- Solide compréhension du développement web, y compris les technologies backend et frontend.\n- Au moins 4/5 ans d'expérience, capable d'autonomie et de responsabilité.\n- Sens des affaires et capacité à prendre des décisions basées sur les données.\n- Familiarité avec les plates-formes de développement no-code est un plus.\n- Approche pragmatique et orientée solution pour le développement.\n- Un état d'esprit agile et entrepreneurial, avec une capacité à comprendre les besoins commerciaux sans la présence d'un chef de produit dédié.",
@@ -20,6 +21,7 @@
   {
     "company_id": 2,
     "consultant_id": 2,
+    "company_title": "iAdvize",
     "title": "Ingénieur Logiciel Full Stack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -38,6 +40,7 @@
   {
     "company_id": 3,
     "consultant_id": 3,
+    "company_title": "Iris",
     "title": "Développeur Fullstack JS",
     "description_mission": "Opportunité au sein d'une entreprise Nantaise spécialisée dans l'économie circulaire à grande échelle.",
     "description_about_candidate": "Recherche d'un Développeur fullstack JS avec solide compréhension du développement web.",
@@ -56,6 +59,7 @@
   {
     "company_id": 4,
     "consultant_id": 1,
+    "company_title": "maisons du monde",
     "title": "Ingénieur Logiciel Fullstack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -74,6 +78,7 @@
   {
     "company_id": 5,
     "consultant_id": 2,
+    "company_title": "Nickel",
     "title": "Développeur PHP",
     "description_mission": "Opportunité au sein d'une entreprise Nantaise spécialisée dans l'économie circulaire à grande échelle.",
     "description_about_candidate": "Recherche d'un Développeur PHP avec solide compréhension du développement web.",
@@ -92,6 +97,7 @@
   {
     "company_id": 6,
     "consultant_id": 3,
+    "company_title": "showroomprivee",
     "title": "Ingénieur Logiciel Fullstack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -110,6 +116,7 @@
   {
     "company_id": 1,
     "consultant_id": 1,
+    "company_title": "Orange",
     "title": "Développeur Fullstack JS H/F",
     "description_mission": "Aujourd'hui, nous vous proposons une opportunité au sein d'un acteur Nantais proposant une solution dans le domaine de l'économie circulaire à grande échelle sur toute la France.",
     "description_about_candidate": "Nous recherchons un Développeur fullstack JS H/F avec les compétences suivantes :\n\n- Solide compréhension du développement web, y compris les technologies backend et frontend.\n- Au moins 4/5 ans d'expérience, capable d'autonomie et de responsabilité.\n- Sens des affaires et capacité à prendre des décisions basées sur les données.\n- Familiarité avec les plates-formes de développement no-code est un plus.\n- Approche pragmatique et orientée solution pour le développement.\n- Un état d'esprit agile et entrepreneurial, avec une capacité à comprendre les besoins commerciaux sans la présence d'un chef de produit dédié.",
@@ -128,6 +135,7 @@
   {
     "company_id": 2,
     "consultant_id": 2,
+    "company_title": "iAdvize",
     "title": "Ingénieur Logiciel Full Stack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -146,6 +154,7 @@
   {
     "company_id": 3,
     "consultant_id": 3,
+    "company_title": "Iris",
     "title": "Développeur Fullstack JS",
     "description_mission": "Opportunité au sein d'une entreprise Nantaise spécialisée dans l'économie circulaire à grande échelle.",
     "description_about_candidate": "Recherche d'un Développeur fullstack JS avec solide compréhension du développement web.",
@@ -164,6 +173,7 @@
   {
     "company_id": 4,
     "consultant_id": 1,
+    "company_title": "maisons du monde",
     "title": "Ingénieur Logiciel Fullstack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -182,6 +192,7 @@
   {
     "company_id": 5,
     "consultant_id": 2,
+    "company_title": "Nickel",
     "title": "Développeur Fullstack JS",
     "description_mission": "Opportunité au sein d'une entreprise Nantaise spécialisée dans l'économie circulaire à grande échelle.",
     "description_about_candidate": "Recherche d'un Développeur fullstack JS avec solide compréhension du développement web.",
@@ -200,6 +211,7 @@
   {
     "company_id": 6,
     "consultant_id": 3,
+    "company_title": "showroomprivee",
     "title": "Ingénieur Logiciel Fullstack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -218,6 +230,7 @@
   {
     "company_id": 1,
     "consultant_id": 1,
+    "company_title": "Orange",
     "title": "Développeur Fullstack JS H/F",
     "description_mission": "Aujourd'hui, nous vous proposons une opportunité au sein d'un acteur Nantais proposant une solution dans le domaine de l'économie circulaire à grande échelle sur toute la France.",
     "description_about_candidate": "Nous recherchons un Développeur fullstack JS H/F avec les compétences suivantes :\n\n- Solide compréhension du développement web, y compris les technologies backend et frontend.\n- Au moins 4/5 ans d'expérience, capable d'autonomie et de responsabilité.\n- Sens des affaires et capacité à prendre des décisions basées sur les données.\n- Familiarité avec les plates-formes de développement no-code est un plus.\n- Approche pragmatique et orientée solution pour le développement.\n- Un état d'esprit agile et entrepreneurial, avec une capacité à comprendre les besoins commerciaux sans la présence d'un chef de produit dédié.",
@@ -236,6 +249,7 @@
   {
     "company_id": 2,
     "consultant_id": 2,
+    "company_title": "iAdvize",
     "title": "Ingénieur Logiciel Full Stack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -254,6 +268,7 @@
   {
     "company_id": 3,
     "consultant_id": 3,
+    "company_title": "Iris",
     "title": "Développeur Fullstack JS",
     "description_mission": "Opportunité au sein d'une entreprise Nantaise spécialisée dans l'économie circulaire à grande échelle.",
     "description_about_candidate": "Recherche d'un Développeur fullstack JS avec solide compréhension du développement web.",
@@ -272,6 +287,7 @@
   {
     "company_id": 4,
     "consultant_id": 1,
+    "company_title": "maisons du monde",
     "title": "Ingénieur Logiciel Fullstack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -290,6 +306,7 @@
   {
     "company_id": 5,
     "consultant_id": 2,
+    "company_title": "Nickel",
     "title": "Développeur Fullstack JS",
     "description_mission": "Opportunité au sein d'une entreprise Nantaise spécialisée dans l'économie circulaire à grande échelle.",
     "description_about_candidate": "Recherche d'un Développeur fullstack JS avec solide compréhension du développement web.",
@@ -308,6 +325,7 @@
   {
     "company_id": 6,
     "consultant_id": 3,
+    "company_title": "showroomprivee",
     "title": "Ingénieur Logiciel Fullstack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -326,6 +344,7 @@
   {
     "company_id": 1,
     "consultant_id": 1,
+    "company_title": "Orange",
     "title": "Développeur Python",
     "description_mission": "Aujourd'hui, nous vous proposons une opportunité au sein d'un acteur Nantais proposant une solution dans le domaine de l'économie circulaire à grande échelle sur toute la France.",
     "description_about_candidate": "Nous recherchons un Développeur Python avec les compétences suivantes :\n\n- Solide compréhension du développement web, y compris les technologies backend et frontend.\n- Au moins 4/5 ans d'expérience, capable d'autonomie et de responsabilité.\n- Sens des affaires et capacité à prendre des décisions basées sur les données.\n- Familiarité avec les plates-formes de développement no-code est un plus.\n- Approche pragmatique et orientée solution pour le développement.\n- Un état d'esprit agile et entrepreneurial, avec une capacité à comprendre les besoins commerciaux sans la présence d'un chef de produit dédié.",
@@ -344,6 +363,7 @@
   {
     "company_id": 2,
     "consultant_id": 2,
+    "company_title": "iAdvize",
     "title": "Ingénieur Logiciel Full Stack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -362,6 +382,7 @@
   {
     "company_id": 3,
     "consultant_id": 3,
+    "company_title": "Iris",
     "title": "Développeur Fullstack JS",
     "description_mission": "Opportunité au sein d'une entreprise Nantaise spécialisée dans l'économie circulaire à grande échelle.",
     "description_about_candidate": "Recherche d'un Développeur fullstack JS avec solide compréhension du développement web.",
@@ -380,6 +401,7 @@
   {
     "company_id": 4,
     "consultant_id": 1,
+    "company_title": "maisons du monde",
     "title": "Ingénieur Logiciel Fullstack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -398,6 +420,7 @@
   {
     "company_id": 5,
     "consultant_id": 2,
+    "company_title": "Nickel",
     "title": "Développeur Python",
     "description_mission": "Opportunité au sein d'une entreprise Nantaise spécialisée dans l'économie circulaire à grande échelle.",
     "description_about_candidate": "Recherche d'un Développeur Python avec solide compréhension du développement web.",
@@ -416,6 +439,7 @@
   {
     "company_id": 6,
     "consultant_id": 3,
+    "company_title": "showroomprivee",
     "title": "Ingénieur Logiciel Fullstack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -434,6 +458,7 @@
   {
     "company_id": 1,
     "consultant_id": 1,
+    "company_title": "Orange",
     "title": "Développeur Fullstack JS H/F",
     "description_mission": "Aujourd'hui, nous vous proposons une opportunité au sein d'un acteur Nantais proposant une solution dans le domaine de l'économie circulaire à grande échelle sur toute la France.",
     "description_about_candidate": "Nous recherchons un Développeur fullstack JS H/F avec les compétences suivantes :\n\n- Solide compréhension du développement web, y compris les technologies backend et frontend.\n- Au moins 4/5 ans d'expérience, capable d'autonomie et de responsabilité.\n- Sens des affaires et capacité à prendre des décisions basées sur les données.\n- Familiarité avec les plates-formes de développement no-code est un plus.\n- Approche pragmatique et orientée solution pour le développement.\n- Un état d'esprit agile et entrepreneurial, avec une capacité à comprendre les besoins commerciaux sans la présence d'un chef de produit dédié.",
@@ -452,6 +477,7 @@
   {
     "company_id": 2,
     "consultant_id": 2,
+    "company_title": "iAdvize",
     "title": "Ingénieur Logiciel Full Stack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -470,6 +496,7 @@
   {
     "company_id": 3,
     "consultant_id": 3,
+    "company_title": "Iris",
     "title": "Développeur React JS",
     "description_mission": "Opportunité au sein d'une entreprise Nantaise spécialisée dans l'économie circulaire à grande échelle.",
     "description_about_candidate": "Recherche d'un Développeur React JS avec solide compréhension du développement web.",
@@ -488,6 +515,7 @@
   {
     "company_id": 4,
     "consultant_id": 1,
+    "company_title": "maisons du monde",
     "title": "Ingénieur Logiciel Fullstack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
@@ -506,6 +534,7 @@
   {
     "company_id": 5,
     "consultant_id": 2,
+    "company_title": "Nickel",
     "title": "Développeur Fullstack JS",
     "description_mission": "Opportunité au sein d'une entreprise Nantaise spécialisée dans l'économie circulaire à grande échelle.",
     "description_about_candidate": "Recherche d'un Développeur fullstack JS avec solide compréhension du développement web.",
@@ -524,6 +553,7 @@
   {
     "company_id": 6,
     "consultant_id": 3,
+    "company_title": "showroomprivee",
     "title": "Ingénieur Logiciel Fullstack",
     "description_mission": "Développement d'applications logicielles de pointe.",
     "description_about_candidate": "Recherche d'un développeur compétent pour rejoindre notre équipe.",
