@@ -33,22 +33,76 @@ class JobManager extends AbstractManager {
     return rows[0];
   }
 
-  async readAll(page, jobsPerPage) {
+  async readAll(page, jobsPerPage, selectedLocations, selectedLanguages) {
     const offset = (page - 1) * jobsPerPage;
-    // Execute the SQL SELECT query to retrieve all jobs from the "job" table
+    const query = `SELECT * FROM ${this.table}`;
+    const whereValues = [];
+    const values = [];
+
+    if (selectedLocations) {
+      const locations = selectedLocations.split("|^|");
+      whereValues.push(`location IN (?)`);
+      values.push(locations);
+    }
+
+    if (selectedLanguages) {
+      const languages = selectedLanguages.split("|^|");
+      whereValues.push(`language IN (?)`);
+      values.push(languages);
+    }
+
+    const where =
+      whereValues.length > 0 ? ` WHERE ${whereValues.join(" AND ")}` : "";
+    values.push(jobsPerPage, offset);
+
     const [rows] = await this.database.query(
-      `SELECT * FROM ${this.table} LIMIT ${jobsPerPage} OFFSET ${offset}`
+      `${query}${where} LIMIT ? OFFSET ?`,
+      values
     );
 
     // Return the array of jobs
     return rows;
   }
 
-  async getTotalJobs() {
+  async readAllJobs(selectedLocations, selectedLanguages) {
+    const whereValues = [];
+    const values = [];
+
+    if (selectedLocations) {
+      const locations = selectedLocations.split("|^|");
+      whereValues.push(`location IN (?)`);
+      values.push(locations);
+    }
+
+    if (selectedLanguages) {
+      const languages = selectedLanguages.split("|^|");
+      whereValues.push(`language IN (?)`);
+      values.push(languages);
+    }
+
+    const where =
+      whereValues.length > 0 ? ` WHERE ${whereValues.join(" AND ")}` : "";
+
     const [rows] = await this.database.query(
-      `SELECT COUNT(*) as count FROM ${this.table}`
+      `SELECT COUNT(*) as count FROM ${this.table}${where}`,
+      values
     );
+
     return rows[0].count;
+  }
+
+  async readAllLocations() {
+    const [rows] = await this.database.query(
+      `SELECT DISTINCT(location) FROM ${this.table}`
+    );
+    return rows.map((row) => row.location);
+  }
+
+  async readAllLanguages() {
+    const [rows] = await this.database.query(
+      `SELECT DISTINCT(language) FROM ${this.table}`
+    );
+    return rows.map((row) => row.language);
   }
 
   // The U of CRUD - Update operation
