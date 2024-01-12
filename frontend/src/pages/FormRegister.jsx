@@ -63,10 +63,9 @@ function FormRegister() {
         <div className="form-container">
           <form onSubmit={handleRequest} className="form-connection">
             <div className="form-alllabel">
-              <label htmlFor="email">
+              <label>
                 Email:
                 <input
-                  id="email"
                   className="label-form"
                   type="email"
                   name="email"
@@ -76,10 +75,9 @@ function FormRegister() {
                   placeholder="Email"
                 />
               </label>
-              <label htmlFor="password">
+              <label>
                 Password:
                 <input
-                  id="password"
                   className="label-form"
                   type="password"
                   name="password"
@@ -89,10 +87,9 @@ function FormRegister() {
                   placeholder="Password"
                 />
               </label>
-              <label htmlFor="password">
+              <label>
                 Confirm Password:
                 <input
-                  id="confirmPassword"
                   className="label-form"
                   type="password"
                   name="confirmPassword"
