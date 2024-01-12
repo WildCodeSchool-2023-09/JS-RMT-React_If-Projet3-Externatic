@@ -8,7 +8,7 @@ import { useJobContext } from "../contexts/context";
 
 function JobCard({ job }) {
   const { favorites, manageFavorites } = useJobContext();
-  const companyId = useParams();
+  const { companyId } = useParams();
   const dateDiffInDaysFromToday = (date) => {
     const targetDate = new Date(date);
     const today = new Date();
