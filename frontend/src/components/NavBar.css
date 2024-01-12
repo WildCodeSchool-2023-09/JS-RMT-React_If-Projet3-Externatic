@@ -24,9 +24,9 @@
 .button-connect {
   margin-left: auto;
   margin-right: 20px;
-}
-
-.button-connected {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   color: white;
   font-weight: 300;
   width: 150px;
@@ -39,7 +39,7 @@
   font-size: 15px;
 }
 
-.button-connected:active {
+.button-connect:active {
   transform: translateY(4px);
 }
 
@@ -58,7 +58,7 @@
     border-bottom: solid 7px;
   }
 
-  .button-connected {
+  .button-connect {
     width: 120px;
     height: 40px;
     margin-top: 20px;

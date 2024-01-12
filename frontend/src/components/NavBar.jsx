@@ -4,10 +4,6 @@ import "./NavBar.css";
 import externatic from "../public/externatic.png";
 
 function NavBar() {
-  const handleClick = () => {
-    window.location.href = "/login";
-  };
-
   return (
     <div className="navbar">
       <Link to="/">
@@ -19,15 +15,9 @@ function NavBar() {
       <Link className="link-page" to="/jobs">
         Jobs
       </Link>
-      <div className="button-connect">
-        <button
-          type="button"
-          className="button-connected"
-          onClick={handleClick}
-        >
-          Se connecter
-        </button>
-      </div>
+      <Link className="button-connect" to="/login">
+        Se connecter
+      </Link>
     </div>
   );
 }
