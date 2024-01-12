@@ -8,6 +8,15 @@ const options = {
   secret,
 };
 
+const hash = async (password) => {
+  try {
+    return await argon2.hash(password, options);
+  } catch (err) {
+    console.error(err);
+    throw new Error("Something went wrong hashing the password");
+  }
+};
+
 const verify = async (password, hashed) => {
   try {
     return await argon2.verify(hashed, password, options);
@@ -17,4 +26,4 @@ const verify = async (password, hashed) => {
   }
 };
 
-module.exports = { verify };
+module.exports = { hash, verify };
