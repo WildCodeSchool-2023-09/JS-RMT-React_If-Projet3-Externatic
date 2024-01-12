@@ -6,15 +6,44 @@ const browse = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page, 10) || 1;
     const jobsPerPage = 9;
-    const totalJobsNb = await tables.job.getTotalJobs();
+    const selectedLocations = req.query.location;
+    const selectedLanguages = req.query.language;
+
+    const totalJobsNb = await tables.job.readAllJobs(
+      selectedLocations,
+      selectedLanguages
+    );
     const totalPagesNb = Math.ceil(totalJobsNb / jobsPerPage);
-    // Fetch all jobs from the database
-    const jobs = await tables.job.readAll(page, jobsPerPage);
+
+    const jobs = await tables.job.readAll(
+      page,
+      jobsPerPage,
+      selectedLocations,
+      selectedLanguages
+    );
 
     // Respond with the jobs in JSON format
     res.status(200).json({ jobs, totalPagesNb });
   } catch (err) {
     // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+const getLocations = async (req, res, next) => {
+  try {
+    const locations = await tables.job.readAllLocations();
+    res.status(200).json(locations);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getLanguages = async (req, res, next) => {
+  try {
+    const languages = await tables.job.readAllLanguages();
+    res.status(200).json(languages);
+  } catch (err) {
     next(err);
   }
 };
@@ -64,6 +93,8 @@ const read = async (req, res, next) => {
 // Ready to export the controller functions
 module.exports = {
   browse,
+  getLocations,
+  getLanguages,
   read,
   // edit,
   // add,

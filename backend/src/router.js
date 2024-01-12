@@ -14,7 +14,6 @@ const validateUser = require("./validators/validateUser");
 // const checkCredentials = require("./middleware/checkCredentials");
 
 // Route to get a list of items
-router.get("/items", itemControllers.browse);
 
 // Route to get a specific item by ID
 router.get("/items/:id", itemControllers.read);

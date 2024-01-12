@@ -1,14 +1,20 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import PropTypes from "prop-types";
 
 import "./Pagination.css";
 
 function Pagination({ pageNb, currentPage }) {
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+
+  const getLocation = (location) => {
+    return `&location=${location}`;
+  };
 
   const handleClick = (page) => {
-    navigate(`?page=${page}`);
+    const location = searchParams.get("location");
+    navigate(`?page=${page}${location ? getLocation(location) : ""}`);
   };
 
   return (
