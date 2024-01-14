@@ -7,6 +7,8 @@ import { JobProvider } from "./contexts/context";
 
 import App from "./App";
 import HomePage from "./pages/HomePage";
+import Administration from "./pages/admin/Administration";
+import AdminJob from "./pages/admin/AdminJob";
 
 import AllJobsPage from "./pages/AllJobsPage";
 import ConsultantPage from "./pages/layout/ConsultantPage";
@@ -53,6 +55,16 @@ const router = createBrowserRouter([
                 .then((res) => res.data)
                 .catch((err) => console.error(err));
             },
+          },
+          {
+            path: "administration",
+            element: <Administration />,
+            children: [
+              {
+                path: "Job",
+                element: <AdminJob />,
+              },
+            ],
           },
         ],
       },
