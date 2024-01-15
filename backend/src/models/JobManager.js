@@ -31,7 +31,6 @@ class JobManager extends AbstractManager {
     return rows[0];
   }
 
-
   async readByCompany(id) {
     // Execute the SQL SELECT query to retrieve all jobs for a specific company by its ID
     const [rows] = await this.database.query(
@@ -44,7 +43,13 @@ class JobManager extends AbstractManager {
     return rows;
   }
 
-  async readAll(page, jobsPerPage, selectedLocations, selectedLanguages) {
+  async readAll(
+    page,
+    jobsPerPage,
+    selectedLocations,
+    selectedLanguages,
+    searchedJob
+  ) {
     const offset = (page - 1) * jobsPerPage;
     const query = `SELECT * FROM ${this.table}`;
     const whereValues = [];
@@ -62,6 +67,11 @@ class JobManager extends AbstractManager {
       values.push(languages);
     }
 
+    if (searchedJob) {
+      whereValues.push(`title LIKE ?`);
+      values.push(`%${searchedJob}%`);
+    }
+
     const where =
       whereValues.length > 0 ? ` WHERE ${whereValues.join(" AND ")}` : "";
     values.push(jobsPerPage, offset);
@@ -76,7 +86,7 @@ class JobManager extends AbstractManager {
     return rows;
   }
 
-  async readAllJobs(selectedLocations, selectedLanguages) {
+  async readAllJobs(selectedLocations, selectedLanguages, searchedJob) {
     const whereValues = [];
     const values = [];
 
@@ -90,6 +100,11 @@ class JobManager extends AbstractManager {
       const languages = selectedLanguages.split("|^|");
       whereValues.push(`language IN (?)`);
       values.push(languages);
+    }
+
+    if (searchedJob) {
+      whereValues.push(`title LIKE ?`);
+      values.push(`%${searchedJob}%`);
     }
 
     const where =

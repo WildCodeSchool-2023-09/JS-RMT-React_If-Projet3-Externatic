@@ -1,0 +1,31 @@
+.search-bar {
+  display: flex;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+.search-input {
+  height: 3rem;
+  width: 20rem;
+  padding-left: 0.5rem;
+  font-size: 1.5rem;
+  border: 1px solid black;
+  border-radius: 0.3rem;
+}
+
+.search-input:hover {
+  border: 1px solid var(--main-red);
+  transition: border 0.3s ease;
+}
+
+.search-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  height: 3rem;
+  width: 3rem;
+  font-size: 2rem;
+  background-color: white;
+  border: none;
+}

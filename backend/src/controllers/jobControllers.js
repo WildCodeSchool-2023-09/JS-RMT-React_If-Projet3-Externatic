@@ -6,12 +6,16 @@ const browse = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page, 10) || 1;
     const jobsPerPage = 9;
-    const selectedLocations = req.query.location;
-    const selectedLanguages = req.query.language;
+    const {
+      location: selectedLocations,
+      language: selectedLanguages,
+      search: searchedJob,
+    } = req.query;
 
     const totalJobsNb = await tables.job.readAllJobs(
       selectedLocations,
-      selectedLanguages
+      selectedLanguages,
+      searchedJob
     );
     const totalPagesNb = Math.ceil(totalJobsNb / jobsPerPage);
 
@@ -19,7 +23,8 @@ const browse = async (req, res, next) => {
       page,
       jobsPerPage,
       selectedLocations,
-      selectedLanguages
+      selectedLanguages,
+      searchedJob
     );
 
     // Respond with the jobs in JSON format
