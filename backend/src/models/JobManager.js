@@ -81,7 +81,6 @@ class JobManager extends AbstractManager {
       values
     );
 
-
     // Return the array of jobs
     return rows;
   }
