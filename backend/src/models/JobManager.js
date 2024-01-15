@@ -15,8 +15,6 @@ class JobManager extends AbstractManager {
       `insert into ${this.table} (title) values (?)`,
       [job.title]
     );
-
-    // Return the ID of the newly inserted job
     return result.insertId;
   } */
 
@@ -56,8 +54,8 @@ class JobManager extends AbstractManager {
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing job
 
-  // async update(job) {
-  //   ...
+  // async update(job){
+  //  ...
   // }
 
   // The D of CRUD - Delete operation
