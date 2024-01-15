@@ -28,7 +28,7 @@ router.get("/items/:id", itemControllers.read);
 router.post("/items", itemControllers.add);
 
 router.post("/login", validateUser, userControllers.login);
-
+router.post("/register", validateUser, userControllers.add);
 /* ************************************************************************* */
 
 module.exports = router;
