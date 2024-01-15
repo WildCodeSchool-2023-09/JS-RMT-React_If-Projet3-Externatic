@@ -1,0 +1,22 @@
+.log-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.label-form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 60px;
+}
+
+.form-connection {
+  top: 60%;
+}
+
+.button-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
