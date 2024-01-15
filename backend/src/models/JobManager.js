@@ -15,8 +15,6 @@ class JobManager extends AbstractManager {
       `insert into ${this.table} (title) values (?)`,
       [job.title]
     );
-
-    // Return the ID of the newly inserted job
     return result.insertId;
   } */
 
@@ -31,6 +29,18 @@ class JobManager extends AbstractManager {
 
     // Return the first row of the result, which represents the job
     return rows[0];
+  }
+
+  async readByCompany(id) {
+    // Execute the SQL SELECT query to retrieve all jobs for a specific company by its ID
+    const [rows] = await this.database.query(
+      `SELECT 
+         job.company_id , job.consultant_id , job.id, job.title, job.description_mission, job.description_about_candidate, job.description_position, job.description_advantages, job.description_process, job.language, job.salary, job.location, job.working_type, job.starting_date, job.position_category, job.contract_type, job.position_requirements, company.id, company.name FROM job INNER JOIN company ON company.id = ${this.table}.company_id WHERE company.id = ?`,
+      [id]
+    );
+
+    // Return the result rows, which represent all jobs associated with the specified company
+    return rows;
   }
 
   async readAll(
@@ -124,8 +134,8 @@ class JobManager extends AbstractManager {
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing job
 
-  // async update(job) {
-  //   ...
+  // async update(job){
+  //  ...
   // }
 
   // The D of CRUD - Delete operation

@@ -14,6 +14,8 @@ import HomePage from "./pages/HomePage";
 import AllJobsPage from "./pages/AllJobsPage";
 import ConsultantPage from "./pages/layout/ConsultantPage";
 import ConsultantCompany from "./pages/consultant/ConsultantCompany";
+import ConsultantJob from "./pages/consultant/ConsultantJob";
+// import ConsultantJobOffre from "./pages/consultant/ConsultantJobOffre";
 
 const router = createBrowserRouter([
   {
@@ -37,13 +39,28 @@ const router = createBrowserRouter([
         },
       },
       {
-        path: "/consultants/",
+        path: "consultants",
         element: <ConsultantPage />,
         children: [
           {
             path: "company",
             element: <ConsultantCompany />,
           },
+
+          {
+            path: "company/:companyId",
+            element: <ConsultantJob />,
+          },
+          // {
+          //   path: "company/:companyId/jobs/:id",
+          //   element: <ConsultantJobOffre />,
+          //   loader: ({ params }) => {
+          //     return connexion
+          //       .get(`/jobs/${params.id}`)
+          //       .then((res) => res.data)
+          //       .catch((err) => console.error(err));
+          //   },
+          // },
         ],
       },
       {

@@ -22,7 +22,7 @@ router.get("/companies", companyControllers.browse);
 
 // Route to get a specific item by ID
 router.get("/items/:id", itemControllers.read);
-
+router.get("/companies/:id/jobs", jobControllers.readByCompany);
 // Route to add a new item
 
 router.post("/items", itemControllers.add);
