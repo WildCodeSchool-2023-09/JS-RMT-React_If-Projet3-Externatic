@@ -56,7 +56,7 @@ const readByCompany = async (req, res, next) => {
 // This operation is not yet implemented
 
 // The A of BREAD - Add (Create) operation
-/* const add = async (req, res, next) => {
+const add = async (req, res, next) => {
   // Extract the job data from the request body
   const job = req.body;
 
@@ -70,7 +70,7 @@ const readByCompany = async (req, res, next) => {
     // Pass any errors to the error-handling middleware
     next(err);
   }
-}; */
+};
 
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
@@ -81,6 +81,6 @@ module.exports = {
   read,
   readByCompany,
   // edit,
-  // add,
+  add,
   // destroy,
 };
