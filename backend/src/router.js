@@ -21,6 +21,7 @@ router.get("/items/:id", itemControllers.read);
 router.get("/companies/:id/jobs", jobControllers.readByCompany);
 // Route to add a new item
 router.post("/items", itemControllers.add);
+router.post("/jobs", jobControllers.add);
 
 /* ************************************************************************* */
 
