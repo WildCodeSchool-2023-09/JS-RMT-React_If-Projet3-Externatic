@@ -23,13 +23,14 @@ function JobId() {
           <div>{job.description_position}</div>
           <h2>Le processus</h2>
           <div>{job.description_process}</div>
+          <div>{job.language}</div>
+          <div>{job.salary}</div>
+          <div>{job.location}</div>
+          <div>{job.working_hours}</div>
+          <div>{job.starting_date}</div>
+          <div>{job.created_at}</div>
         </div>
-        <div>{job.language}</div>
-        <div>{job.salary}</div>
-        <div>{job.location}</div>
-        <div>{job.working_hours}</div>
-        <div>{job.starting_date}</div>
-        <div>{job.created_at}</div>
+        <button type="button">postuler a l'offre</button>
       </div>
     </div>
   );

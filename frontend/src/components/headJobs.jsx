@@ -22,6 +22,7 @@ function HeadJob() {
             <li>CSP:{job.position_category}</li>
           </ul>
         </div>
+        <button type="button">postuler a l'offre</button>
       </div>
     </div>
   );
