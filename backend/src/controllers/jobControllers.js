@@ -67,6 +67,14 @@ const read = async (req, res, next) => {
   }
 };
 
+const browseLatest = async (req, res, next) => {
+  try {
+    const latestJobs = await tables.job.readLatest();
+    res.status(200).json(latestJobs);
+  } catch (err) {
+    next(err);
+  }
+};
 // The E of BREAD - Edit (Update) operation
 // This operation is not yet implemented
 
@@ -96,6 +104,7 @@ module.exports = {
   getLocations,
   getLanguages,
   read,
+  browseLatest,
   // edit,
   // add,
   // destroy,

@@ -29,6 +29,8 @@ router.post("/items", itemControllers.add);
 
 router.post("/login", validateUser, userControllers.login);
 
+router.get("/latestjobs", jobControllers.browseLatest);
+
 /* ************************************************************************* */
 
 module.exports = router;

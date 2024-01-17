@@ -6,7 +6,7 @@ import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import "./JobCard.css";
 import { useJobContext } from "../contexts/context";
 
-function JobCard({ job }) {
+function JobCard({ job, cardStyle }) {
   const { favorites, manageFavorites } = useJobContext();
 
   const dateDiffInDaysFromToday = (date) => {
@@ -17,10 +17,10 @@ function JobCard({ job }) {
   };
 
   return (
-    <div className="job-card">
-      <div className="job-card-header">
+    <div className={cardStyle}>
+      <div className={`${cardStyle}-header`}>
         <Link to={`/jobs/${job.id}`}>
-          <h3 className="job-card-title">{job.title}</h3>
+          <h3 className={`${cardStyle}-title`}>{job.title}</h3>
         </Link>
         <button
           type="button"
@@ -31,14 +31,20 @@ function JobCard({ job }) {
           {favorites.includes(job.id) ? <IoIosHeart /> : <IoIosHeartEmpty />}
         </button>
       </div>
-      <div className="job-card-body">
-        <div className="job-card-language">{job.language}</div>
-        <div className="job-card-position-category">
-          {job.position_category}
+      <div className={`${cardStyle}-body`}>
+        <div className={`${cardStyle}-requirement`}>
+          <div className="job-card-language">{job.language}</div>
+          <div className="job-card-position-category">
+            {job.position_category}
+          </div>
+          <div>{job.position_requirements}</div>
         </div>
-        <div className="job-card-location">{job.location}</div>
-        <div className="job-card-salary">{job.salary}</div>
-        <div className="job-card-publish-date">
+        <div className={`${cardStyle}-location`}>{job.location}</div>
+        <div className={`${cardStyle}-salary-type`}>
+          <div className="job-card-type">{job.contract_type}</div>
+          <div className="job-card-salary">{job.salary}</div>
+        </div>
+        <div className={`${cardStyle}-publish-date`}>
           {dateDiffInDaysFromToday(job.created_at) === 0
             ? "Offre publiée aujourd'hui"
             : `Offre publiée il y a ${dateDiffInDaysFromToday(
@@ -60,7 +66,10 @@ JobCard.propTypes = {
     salary: PropTypes.string.isRequired,
     language: PropTypes.string.isRequired,
     position_category: PropTypes.string.isRequired,
+    position_requirements: PropTypes.string.isRequired,
+    contract_type: PropTypes.string.isRequired,
   }).isRequired,
+  cardStyle: PropTypes.string.isRequired,
 };
 
 export default JobCard;

@@ -7,7 +7,9 @@ function AllJobs({ jobs }) {
   return (
     <div className="all-jobs-body">
       {jobs.map((job) => (
-        <JobCard key={job.id} job={job} />
+        <div key={job.id} className="job-card-wrapper">
+          <JobCard key={job.id} job={job} cardStyle="job-card" />
+        </div>
       ))}
     </div>
   );

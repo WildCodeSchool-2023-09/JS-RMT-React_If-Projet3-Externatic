@@ -1,0 +1,77 @@
+.slick-dots {
+  bottom: 5px;
+}
+
+.slick-next {
+  right: 20px;
+}
+
+.slick-prev {
+  left: 20px;
+  z-index: 9999;
+}
+
+.slick-prev:before,
+.slick-next:before {
+  color: black;
+  font-size: 30px;
+  opacity: 1;
+}
+
+.card-carrousel {
+  margin-left: 1rem;
+  margin-right: 1rem;
+  width: 350px;
+  height: 400px;
+  padding: 0.5rem;
+  border: 1px black solid;
+  border-radius: 0.3rem;
+  margin-bottom: 50px;
+}
+
+.card-carrousel:hover {
+  border: 1px solid var(--main-red);
+  transition: border 0.3s ease;
+  border-radius: 0.3rem;
+}
+
+.card-carrousel-header {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  width: 100%;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 1rem;
+}
+
+.card-carrousel-title {
+  font-weight: bolder;
+  font-size: 22px;
+}
+
+.slick-list {
+  margin-left: 100px;
+}
+
+.card-carrousel-publish-date {
+  margin-top: 100px;
+  margin-right: 150px;
+}
+
+.card-carrousel-salary-type {
+  display: flex;
+  margin-right: 100px;
+  margin-top: 40px;
+}
+
+.card-carrousel-location {
+  margin-right: 320px;
+  margin-top: 50px;
+  font-size: 18px;
+}
+
+.card-carrousel-requirement {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+}

@@ -22,6 +22,10 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+        loader: async () => {
+          const response = await connexion.get(`/latestjobs`);
+          return response.data;
+        },
       },
       {
         path: "jobs",
