@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./FormLogin.css";
 import connexion from "../services/connexion";
 import { AuthContext } from "../contexts/auth";
@@ -69,7 +69,13 @@ function FormLogin() {
               />
             </label>
 
-            {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+            <Link to="/register">Crée un compte</Link>
+
+            {errorMessage && (
+              <p className="validate-password" style={{ color: "red" }}>
+                {errorMessage}
+              </p>
+            )}
 
             <div className="button-container">
               <button type="submit" className="connection-button">

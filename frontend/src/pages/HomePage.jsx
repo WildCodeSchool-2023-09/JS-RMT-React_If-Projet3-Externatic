@@ -7,12 +7,15 @@ import succes from "../public/Group 90.png";
 import offer from "../public/Group 91.png";
 import network from "../public/Group 92.png";
 import free from "../public/Group 93.png";
+import SearchBar from "../components/SearchBar";
 
 function HomePage() {
   const allJobsData = useLoaderData();
 
   return (
     <div>
+      HomePage
+      <SearchBar />
       <h2>Latest Jobs</h2>
       <Carousel jobs={allJobsData} />
       <div className="all-button">

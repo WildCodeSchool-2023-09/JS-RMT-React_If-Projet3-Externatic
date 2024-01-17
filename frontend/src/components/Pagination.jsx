@@ -12,9 +12,23 @@ function Pagination({ pageNb, currentPage }) {
     return `&location=${location}`;
   };
 
+  const getLanguage = (language) => {
+    return `&language=${language}`;
+  };
+
+  const getSearch = (search) => {
+    return `&search=${search}`;
+  };
+
   const handleClick = (page) => {
     const location = searchParams.get("location");
-    navigate(`?page=${page}${location ? getLocation(location) : ""}`);
+    const language = searchParams.get("language");
+    const search = searchParams.get("search");
+    navigate(
+      `?page=${page}${location ? getLocation(location) : ""}${
+        language ? getLanguage(language) : ""
+      }${search ? getSearch(search) : ""}`
+    );
   };
 
   return (
