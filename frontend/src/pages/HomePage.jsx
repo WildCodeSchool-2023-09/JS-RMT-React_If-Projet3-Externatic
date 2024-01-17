@@ -10,8 +10,8 @@ function HomePage() {
 
   return (
     <div>
-    HomePage
-    <SearchBar />
+      HomePage
+      <SearchBar />
       <h2>Latest Jobs</h2>
       <Carousel jobs={allJobsData} />
       <div className="all-button">
@@ -22,5 +22,4 @@ function HomePage() {
     </div>
   );
 }
-
 export default HomePage;
