@@ -8,6 +8,7 @@ import { AuthProvider } from "./contexts/auth";
 
 import App from "./App";
 import FormLogin from "./pages/FormLogin";
+import FormRegister from "./pages/FormRegister";
 import HomePage from "./pages/HomePage";
 
 import AllJobsPage from "./pages/AllJobsPage";
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
       {
         path: "/login",
         element: <FormLogin />,
+      },
+      {
+        path: "/register",
+        element: <FormRegister />,
       },
     ],
   },

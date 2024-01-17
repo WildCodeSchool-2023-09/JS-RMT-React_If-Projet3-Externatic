@@ -1,6 +1,6 @@
 // Import access to database tables
 const tables = require("../tables");
-const { verify } = require("../services/hash");
+const { hash, verify } = require("../services/hash");
 const { createToken } = require("../services/jwt");
 
 // The B of BREAD - Browse (Read All) operation
@@ -50,6 +50,20 @@ const login = async (req, res, next) => {
 // This operation is not yet implemented
 
 // The A of BREAD - Add (Create) operation
+const add = async (req, res, next) => {
+  // Extract the user data from the request body
+
+  try {
+    const hashPassword = await hash(req.body.password);
+    await tables.user.create(req.body.email, hashPassword);
+    // Insert the user into the database
+    // Respond with HTTP 201 (Created) and the ID of the newly inserted user
+    res.status(201).json("OK");
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
@@ -59,5 +73,6 @@ module.exports = {
   // browse,
   login,
   // edit,
+  add,
   // destroy,
 };
