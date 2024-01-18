@@ -31,7 +31,7 @@ function SearchBar() {
       <input
         className="search-input"
         type="text"
-        placeholder="Rechercher un emploi"
+        placeholder="Un job en particulier ?"
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />
