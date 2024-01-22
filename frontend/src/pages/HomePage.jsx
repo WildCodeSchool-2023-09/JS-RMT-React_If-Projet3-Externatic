@@ -8,10 +8,10 @@ function HomePage() {
   return (
     <div>
       <div className="search-area">
-        <p className="title">
-          <div className="externatic-red">Externatic,</div>
-          <h1>plus qu'un cabinet de recrutement informatique</h1>
-        </p>
+        <div className="title">
+          <h1 className="externatic-red">Externatic,</h1>
+          <h2>plus qu'un cabinet de recrutement informatique</h2>
+        </div>
         <SearchBar />
       </div>
       <CarouselCompanies />
