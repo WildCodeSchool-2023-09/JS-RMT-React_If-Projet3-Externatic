@@ -5,13 +5,20 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@react-spring/parallax": "^9.7.3",
+    "@react-spring/web": "^9.7.3",
+    "@vitejs/plugin-react": "^4.0.3",
     "axios": "^1.6.2",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^4.12.0",
+    "react-parallax": "^3.5.1",
     "react-router-dom": "^6.14.2",
-    "react-select": "^5.8.0"
+    "react-select": "^5.8.0",
+    "react-slick": "^0.29.0",
+    "slick-carousel": "^1.8.1",
+    "vite": "^4.4.7"
   },
   "devDependencies": {
     "@vitejs/plugin-react": "^4.0.3",

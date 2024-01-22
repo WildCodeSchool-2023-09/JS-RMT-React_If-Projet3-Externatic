@@ -121,6 +121,13 @@ class JobManager extends AbstractManager {
     return rows.map((row) => row.language);
   }
 
+  async readLatest() {
+    const [rows] = await this.database.query(
+      `SELECT * FROM ${this.table} ORDER BY created_at DESC LIMIT 10`
+    );
+
+    return rows;
+  }
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing job
 
