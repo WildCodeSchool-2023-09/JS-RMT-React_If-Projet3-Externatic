@@ -33,16 +33,14 @@ function JobCard({ job, cardStyle }) {
       </div>
       <div className={`${cardStyle}-body`}>
         <div className={`${cardStyle}-requirement`}>
-          <div className="job-card-language">{job.language}</div>
-          <div className="job-card-position-category">
-            {job.position_category}
-          </div>
-          <div>{job.position_requirements}</div>
+          <p className="job-card-language">{job.language}</p>
+          <p className="job-card-position-category">{job.position_category}</p>
+          <p>{job.position_requirements}</p>
         </div>
-        <div className={`${cardStyle}-location`}>{job.location}</div>
+        <p className={`${cardStyle}-location`}>{job.location}</p>
         <div className={`${cardStyle}-salary-type`}>
-          <div className="job-card-type">{job.contract_type}</div>
-          <div className="job-card-salary">{job.salary}</div>
+          <p className="job-card-type">{job.contract_type}</p>
+          <p className="job-card-salary">{job.salary}</p>
         </div>
         <div className={`${cardStyle}-publish-date`}>
           {dateDiffInDaysFromToday(job.created_at) === 0

@@ -26,7 +26,7 @@
   align-items: center;
 }
 
-.barre-fleche-container {
+.bar-arrow-container {
   position: relative;
   display: inline-block;
   display: flex;
@@ -48,20 +48,99 @@
 
 .small-image-1 {
   top: -100px;
-  left: 640px;
+  left: 540px;
 }
 
 .small-image-2 {
   top: 200px;
-  left: 955px;
+  left: 860px;
 }
 
 .small-image-3 {
   top: 510px;
-  left: 650px;
+  left: 550px;
 }
 
 .small-image-4 {
   top: 770px;
-  left: 955px;
+  left: 860px;
+}
+
+.tuto-account {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 600px;
+}
+
+.tuto-accounty {
+  display: flex;
+  justify-content: center;
+}
+
+.consul-container {
+  margin-top: 125px;
+  margin-left: 150px;
+}
+
+.button-signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 300;
+  width: 225px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #fc005b;
+  border: 0;
+  margin-top: 0px;
+  margin-bottom: 40px;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.button-signup:active {
+  transform: translateY(4px);
+}
+
+.join-signup {
+  display: flex;
+  justify-content: center;
+  margin-top: 50px;
+  margin-bottom: 40px;
+  font-weight: 1200;
+  color: #fc005b;
+}
+
+.search-area {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 20rem;
+  background-image: url("../public/sfddsfdfsfddf.png");
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+.title {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.externatic-red {
+  color: var(--main-red);
+  font-size: 2rem;
+}
+
+.red-line {
+  background-color: var(--main-red);
+  height: 0.2rem;
+  margin-bottom: 10px;
 }

@@ -2,20 +2,25 @@
   display: flex;
   margin-top: 1rem;
   margin-bottom: 1rem;
+  border-top: 4px solid var(--main-red);
+  border-right: 7px solid var(--main-red);
+  border-bottom: 2px solid var(--main-red);
+  border-left: 1px solid var(--main-red);
+  border-radius: 0.3rem;
 }
 
 .search-input {
   height: 3rem;
   width: 20rem;
-  padding-left: 0.5rem;
+  padding-left: 1rem;
   font-size: 1.5rem;
-  border: 1px solid black;
+  border: none;
   border-radius: 0.3rem;
 }
 
-.search-input:hover {
-  border: 1px solid var(--main-red);
-  transition: border 0.3s ease;
+.search-input:focus {
+  outline: none;
+  border-color: var(--main-red);
 }
 
 .search-button {
