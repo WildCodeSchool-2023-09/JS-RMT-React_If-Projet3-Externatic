@@ -20,8 +20,8 @@ function HomePage() {
     <div>
       <div className="search-area">
         <p className="title">
-          <div className="externatic-red">Externatic,</div>
-          <h1>plus qu'un cabinet de recrutement informatique</h1>
+          <h1 className="externatic-red">Externatic,</h1>
+          <h2>plus qu'un cabinet de recrutement informatique</h2>
         </p>
         <SearchBar />
       </div>
@@ -32,7 +32,7 @@ function HomePage() {
           Plus d'offre d'emploi &gt;&gt;&gt;
         </Link>
       </div>
-      <h1 className="join-us">Nous Rejoindre</h1>
+      <h2 className="join-us">Nous Rejoindre</h2>
       <div className="join-us-container">
         <div className="bar-arrow-container">
           <img className="bar-arrow" src={bararrow} alt="bar-arrow" />
@@ -53,7 +53,7 @@ function HomePage() {
       <div className="red-line" />
       <CarouselCompanies />
       <div className="red-line" />
-      <h1 className="join-us">Comment ça marche ?</h1>
+      <h2 className="join-us">Comment ça marche ?</h2>
       <div className="tuto-accounty">
         <div className="tuto-account">
           <img src={account} alt="account" />
@@ -63,7 +63,7 @@ function HomePage() {
           </div>
         </div>
       </div>
-      <h1 className="join-signup">On se lance ?</h1>
+      <h2 className="join-signup">On se lance ?</h2>
       <div className="all-button">
         <Link className="button-signup" to="/register">
           Se connecter
