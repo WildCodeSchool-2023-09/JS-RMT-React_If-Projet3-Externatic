@@ -10,11 +10,13 @@ const router = express.Router();
 const itemControllers = require("./controllers/itemControllers");
 const jobControllers = require("./controllers/jobControllers");
 const companyControllers = require("./controllers/companyControllers");
+const userControllers = require("./controllers/userControllers");
 
 // Route to get a list of items
 router.get("/items", itemControllers.browse);
 router.get("/jobs", jobControllers.browse);
 router.get("/companies", companyControllers.browse);
+router.get("/consultants", userControllers.getConsultant);
 
 // Route to get a specific item by ID
 router.get("/items/:id", itemControllers.read);

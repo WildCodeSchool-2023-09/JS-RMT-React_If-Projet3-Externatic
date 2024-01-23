@@ -2,13 +2,13 @@
 const tables = require("../tables");
 
 // The B of BREAD - Browse (Read All) operation
-const browse = async (req, res, next) => {
+const getConsultant = async (req, res, next) => {
   try {
     // Fetch all items from the database
-    const companys = await tables.company.readAll();
+    const consultants = await tables.user.readAllConsultant();
 
     // Respond with the items in JSON format
-    res.status(200).json(companys);
+    res.status(200).json(consultants);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -16,23 +16,23 @@ const browse = async (req, res, next) => {
 };
 
 // The R of BREAD - Read operation
-const read = async (req, res, next) => {
-  try {
-    //     // Fetch a specific item from the database based on the provided ID
-    const company = await tables.company.read(req.params.id);
+// const read = async (req, res, next) => {
+//   try {
+//     //     // Fetch a specific item from the database based on the provided ID
+//     const consultant = await tables.consultant.read(req.params.id);
 
-    //     // If the item is not found, respond with HTTP 404 (Not Found)
-    //     // Otherwise, respond with the item in JSON format
-    if (company == null) {
-      res.sendStatus(404);
-    } else {
-      res.status(200).json(company);
-    }
-  } catch (err) {
-    //     // Pass any errors to the error-handling middleware
-    next(err);
-  }
-};
+//     //     // If the item is not found, respond with HTTP 404 (Not Found)
+//     //     // Otherwise, respond with the item in JSON format
+//     if (consultant == null) {
+//       res.sendStatus(404);
+//     } else {
+//       res.status(200).json(consultant);
+//     }
+//   } catch (err) {
+//     //     // Pass any errors to the error-handling middleware
+//     next(err);
+//   }
+// };
 
 // The E of BREAD - Edit (Update) operation
 // This operation is not yet implemented
@@ -59,8 +59,8 @@ const read = async (req, res, next) => {
 
 // Ready to export the controller functions
 module.exports = {
-  browse,
-  read,
+  getConsultant,
+  // read,
   // edit,
   // add,
   // destroy,

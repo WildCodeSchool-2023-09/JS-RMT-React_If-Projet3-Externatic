@@ -1,5 +1,8 @@
 import React, { useState } from "react";
+
 import connexion from "../services/connexion";
+import Select from "../components/Select";
+import SelectFromList from "../components/SelectFromList";
 import "./Adminjobs.css";
 
 const jobType = {
@@ -23,6 +26,8 @@ const jobType = {
 
 function AdminJobs() {
   const [job, setJob] = useState(jobType);
+  const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState(false);
+
   const handleJob = (event) => {
     setJob((previousState) => ({
       ...previousState,
@@ -34,38 +39,37 @@ function AdminJobs() {
     event.preventDefault();
     try {
       await connexion.post("/jobs", job);
+      setIsSubmissionSuccessful(true);
+      setJob(jobType);
     } catch (error) {
-      // eslint-disable-next-line no-restricted-syntax
-      console.log(error);
+      console.error(error);
     }
   };
   return (
     <div>
-      <h1>Administration d'un job</h1>
+      <h2>Ajout d'un job</h2>
+      {isSubmissionSuccessful && (
+        <p>Votre annonce a été envoyée avec succès.</p>
+      )}
       <form onSubmit={postJob}>
-        Ajout d'un job
+        <Select
+          label="Entreprise"
+          text="Choisissez une entreprise"
+          url="companies"
+          criteria="name"
+          handleSelect={handleJob}
+          name="company_id"
+        />
+        <Select
+          label="Consultant"
+          text="Choisissez un consultant"
+          url="consultants"
+          criteria="firstname"
+          handleSelect={handleJob}
+          name="consultant_id"
+        />
         <label className="label">
-          Company_id{" "}
-          <input
-            type="number"
-            name="company_id"
-            required
-            value={job.company_id}
-            onChange={handleJob}
-          />
-        </label>
-        <label className="label">
-          consultant_id
-          <input
-            type="number"
-            name="consultant_id"
-            required
-            value={job.consultant_id}
-            onChange={handleJob}
-          />
-        </label>
-        <label className="label">
-          title{" "}
+          Titre
           <input
             type="text"
             name="title"
@@ -75,7 +79,7 @@ function AdminJobs() {
           />
         </label>
         <label className="label">
-          description mission
+          Description de la mission
           <textarea
             name="description_mission"
             required
@@ -84,7 +88,7 @@ function AdminJobs() {
           />
         </label>
         <label className="label">
-          description about candidate
+          Description sur le candidat
           <textarea
             name="description_about_candidate"
             required
@@ -93,7 +97,7 @@ function AdminJobs() {
           />
         </label>
         <label className="label">
-          description position
+          Description de la position
           <input
             type="text"
             name="description_position"
@@ -103,7 +107,7 @@ function AdminJobs() {
           />
         </label>
         <label className="label">
-          description advantages
+          Description des avantages
           <input
             type="text"
             name="description_advantages"
@@ -113,7 +117,7 @@ function AdminJobs() {
           />
         </label>
         <label className="label">
-          description process
+          Description du process
           <textarea
             name="description_process"
             required
@@ -121,18 +125,15 @@ function AdminJobs() {
             onChange={handleJob}
           />
         </label>
+        <SelectFromList
+          label="Language"
+          text="Choisissez un language"
+          handleSelect={handleJob}
+          name="language"
+          dataSet={["Java-script", "React", "PHP", "Java"]}
+        />
         <label className="label">
-          language
-          <input
-            type="text"
-            name="language"
-            required
-            value={job.language}
-            onChange={handleJob}
-          />
-        </label>
-        <label className="label">
-          salary
+          Salaire
           <input
             type="text"
             name="salary"
@@ -142,7 +143,7 @@ function AdminJobs() {
           />
         </label>
         <label className="label">
-          location
+          Localisation
           <input
             type="text"
             name="location"
@@ -151,18 +152,15 @@ function AdminJobs() {
             onChange={handleJob}
           />
         </label>
+        <SelectFromList
+          label="Horaire hebdomadaire"
+          text="Choisissez un horaire hebdomadaire"
+          handleSelect={handleJob}
+          name="working_type"
+          dataSet={["35 heures", "30 heures", "25 heures"]}
+        />
         <label className="label">
-          working type
-          <input
-            type="text"
-            name="working_type"
-            required
-            value={job.working_type}
-            onChange={handleJob}
-          />
-        </label>
-        <label className="label">
-          starting date
+          Date de début
           <input
             type="date"
             name="starting_date"
@@ -172,7 +170,7 @@ function AdminJobs() {
           />
         </label>
         <label className="label">
-          position category
+          Position
           <input
             type="text"
             name="position_category"
@@ -181,16 +179,13 @@ function AdminJobs() {
             onChange={handleJob}
           />
         </label>
-        <label className="label">
-          contract type{" "}
-          <input
-            type="text"
-            name="contract_type"
-            required
-            value={job.contract_type}
-            onChange={handleJob}
-          />
-        </label>
+        <SelectFromList
+          label="Contrat Type"
+          text="Choisissez un type de contrat"
+          handleSelect={handleJob}
+          name="contract_type"
+          dataSet={["CDI", "CDD", "Alternance", "Stage"]}
+        />
         <label className="label">
           position requirements
           <input
