@@ -10,6 +10,7 @@ function HeadJob() {
       <img src="../src/assets/Logohead.svg" alt="Logo" />
       <div className="body_job">
         <h1 className="title">{job.title}</h1>
+        <button type="button">postuler a l'offre</button>
         <div className="resume_jobs">
           <ul>
             <li>Durée de travail:{job.working_type}</li>
@@ -22,7 +23,6 @@ function HeadJob() {
             <li>CSP:{job.position_category}</li>
           </ul>
         </div>
-        <button type="button">postuler a l'offre</button>
       </div>
     </div>
   );
