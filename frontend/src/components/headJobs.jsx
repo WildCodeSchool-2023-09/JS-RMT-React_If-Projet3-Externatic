@@ -3,6 +3,10 @@ import { useLoaderData } from "react-router-dom";
 
 import "../styles/headJobs.css";
 
+function formatDate(time) {
+  return time.split("T")[0];
+}
+
 function HeadJob() {
   const job = useLoaderData();
   return (
@@ -21,7 +25,7 @@ function HeadJob() {
           </ul>
           <ul>
             <li>Salaire:{job.salary}</li>
-            <li>Entrée en fonction:{job.starting_date}</li>
+            <li>Entrée en fonction:{formatDate(job.starting_date)}</li>
             <li>CSP:{job.position_category}</li>
           </ul>
         </div>

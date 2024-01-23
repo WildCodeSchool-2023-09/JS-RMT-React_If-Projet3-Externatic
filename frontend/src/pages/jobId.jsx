@@ -30,7 +30,7 @@ function JobId() {
           <div>{job.language}</div>
           <div>{job.salary}</div>
           <div>{job.location}</div>
-          <div>{job.working_hours}</div>
+          <div>{job.working_type}</div>
           <div>{formatDate(job.starting_date)}</div>
           <div>{formatDate(job.created_at)}</div>
         </div>
