@@ -7,7 +7,9 @@ function AllJobs({ jobs }) {
   return (
     <div className="all-jobs-body">
       {jobs.map((job) => (
-        <JobCard key={job.id} job={job} />
+        <div key={job.id} className="job-card-wrapper">
+          <JobCard key={job.id} job={job} cardStyle="job-card" />
+        </div>
       ))}
     </div>
   );
@@ -16,16 +18,14 @@ function AllJobs({ jobs }) {
 AllJobs.propTypes = {
   jobs: PropTypes.arrayOf(
     PropTypes.shape({
-      job: PropTypes.shape({
-        id: PropTypes.number.isRequired,
-        title: PropTypes.string.isRequired,
-        description_position: PropTypes.string.isRequired,
-        created_at: PropTypes.string.isRequired,
-        location: PropTypes.string.isRequired,
-        salary: PropTypes.string.isRequired,
-        language: PropTypes.string.isRequired,
-        position_category: PropTypes.string.isRequired,
-      }).isRequired,
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      description_position: PropTypes.string.isRequired,
+      created_at: PropTypes.string.isRequired,
+      location: PropTypes.string.isRequired,
+      salary: PropTypes.string.isRequired,
+      language: PropTypes.string.isRequired,
+      position_category: PropTypes.string.isRequired,
     })
   ).isRequired,
 };

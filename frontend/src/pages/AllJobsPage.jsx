@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { useLoaderData } from "react-router-dom";
 
 import AllJobs from "../components/AllJobs";
@@ -6,28 +6,19 @@ import Collapser from "../components/Collapser";
 import Pagination from "../components/Pagination";
 
 import "./AllJobsPage.css";
+import FiltersBar from "../components/FiltersBar";
 
 function AllJobsPage() {
-  const allJobs = useLoaderData();
-  const cardsPerPage = 9;
-  const [currentPage, setCurrentPage] = useState(1);
-
-  const indexOfLastCard = currentPage * cardsPerPage;
-  const indexOfFirstCard = indexOfLastCard - cardsPerPage;
-  const currentCards = allJobs.slice(indexOfFirstCard, indexOfLastCard);
-
-  const paginate = (pageNumber) => setCurrentPage(pageNumber);
+  const allJobsData = useLoaderData();
+  const { jobs, totalPagesNb } = allJobsData.data;
+  const currentPage = allJobsData.page;
 
   return (
     <div className="all-jobs-page-body">
       <h2>Vos opportunités d'emploi</h2>
-      <AllJobs jobs={currentCards} />
-      <Pagination
-        cardsPerPage={cardsPerPage}
-        totalCards={allJobs.length}
-        currentPage={currentPage}
-        paginate={paginate}
-      />
+      <FiltersBar />
+      <AllJobs jobs={jobs} />
+      <Pagination pageNb={totalPagesNb} currentPage={currentPage} />
       <div className="all-jobs-page-separator" />
       <div className="all-jobs-page-tutorial">
         <h2 className="all-jobs-page-tutorial-title">
