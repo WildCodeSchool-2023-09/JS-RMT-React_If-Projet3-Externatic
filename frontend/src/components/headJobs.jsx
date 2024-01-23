@@ -9,8 +9,10 @@ function HeadJob() {
     <div className="headjob_container">
       <img src="../src/assets/Logohead.svg" alt="Logo" />
       <div className="body_job">
-        <h1 className="title">{job.title}</h1>
-        <button type="button">postuler a l'offre</button>
+        <div className="offer">
+          <h1 className="title">{job.title}</h1>
+          <button type="button">postuler a l'offre</button>
+        </div>
         <div className="resume_jobs">
           <ul>
             <li>Durée de travail:{job.working_type}</li>

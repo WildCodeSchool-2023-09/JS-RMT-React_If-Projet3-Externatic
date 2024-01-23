@@ -5,6 +5,10 @@ import HeadJob from "../components/headJobs";
 
 import "../styles/jobId.css";
 
+function formatDate(time) {
+  return time.split("T")[0];
+}
+
 function JobId() {
   const job = useLoaderData();
   return (
@@ -27,8 +31,8 @@ function JobId() {
           <div>{job.salary}</div>
           <div>{job.location}</div>
           <div>{job.working_hours}</div>
-          <div>{job.starting_date}</div>
-          <div>{job.created_at}</div>
+          <div>{formatDate(job.starting_date)}</div>
+          <div>{formatDate(job.created_at)}</div>
         </div>
         <button type="button">postuler a l'offre</button>
       </div>
