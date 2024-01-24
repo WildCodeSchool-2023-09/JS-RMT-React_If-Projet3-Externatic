@@ -34,6 +34,10 @@ function JobId() {
           <div>{formatDate(job.starting_date)}</div>
           <div>{formatDate(job.created_at)}</div>
         </div>
+        <div className="consultant">
+          <h2>Votre consultant</h2>
+        </div>
+        <div>Veuillez vous connecter pour en savoir plus</div>
         <button type="button">postuler a l'offre</button>
       </div>
     </div>
