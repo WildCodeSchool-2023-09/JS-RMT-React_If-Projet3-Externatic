@@ -25,9 +25,15 @@ function NavBar() {
         ""
       )}
       <div className="button-container">
-        <Link className="button-connect" to="/account">
-          Mon Compte
-        </Link>
+        {connected.role_id === 1 ||
+        connected.role_id === 2 ||
+        connected.role_id === 3 ? (
+          <Link className="button-connect" to="/account">
+            Mon Compte
+          </Link>
+        ) : (
+          ""
+        )}
         <Link className="button-connect" to="/login">
           Se connecter
         </Link>
