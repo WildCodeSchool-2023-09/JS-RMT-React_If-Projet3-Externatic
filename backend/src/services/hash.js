@@ -1,6 +1,6 @@
 const argon2 = require("argon2");
 
-const secret = Buffer.from(process.env.ARGON_SECRET);
+const secret = Buffer.from(process.env.ARGON_SECRET || "");
 
 const options = {
   type: argon2.argon2d,
