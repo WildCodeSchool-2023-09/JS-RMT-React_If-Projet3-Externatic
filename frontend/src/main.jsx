@@ -15,6 +15,8 @@ import AllJobsPage from "./pages/AllJobsPage";
 import ConsultantPage from "./pages/layout/ConsultantPage";
 import ConsultantCompany from "./pages/consultant/ConsultantCompany";
 import CandidatAccount from "./pages/CandidatAccount";
+import AdminPage from "./pages/AdminPage";
+import AdminSpecific from "./pages/AdminSpecific";
 
 const router = createBrowserRouter([
   {
@@ -62,6 +64,16 @@ const router = createBrowserRouter([
       {
         path: "/account",
         element: <CandidatAccount />,
+      },
+      {
+        path: "/administration",
+        element: <AdminPage />,
+        children: [
+          {
+            path: "companies",
+            element: <AdminSpecific pageTitle="companies" route="/companies" />,
+          },
+        ],
       },
     ],
   },

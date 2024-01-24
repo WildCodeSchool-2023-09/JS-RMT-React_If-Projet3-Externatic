@@ -1,9 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { useAuthContext } from "../contexts/auth";
 import "./NavBar.css";
 import externatic from "../public/externatic.png";
 
 function NavBar() {
+  const { connected } = useAuthContext();
   return (
     <div className="navbar">
       <Link to="/">
@@ -15,6 +17,13 @@ function NavBar() {
       <Link className="link-page" to="/jobs">
         Jobs
       </Link>
+      {connected.role_id === 3 ? (
+        <Link className="link-page" to="/administration">
+          Admin
+        </Link>
+      ) : (
+        ""
+      )}
       <div className="button-container">
         <Link className="button-connect" to="/account">
           Mon Compte
