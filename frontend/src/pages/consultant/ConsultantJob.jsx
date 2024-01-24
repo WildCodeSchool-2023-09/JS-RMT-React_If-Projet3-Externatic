@@ -9,11 +9,9 @@ function ConsultantJob() {
   const { companyId } = useParams();
   const getJobsByCompany = async () => {
     const myJobs = await connexion
-
       .get(`/companies/${companyId}/jobs`)
-      .then((res) => {
-        return res.data;
-      });
+      .then((res) => res.data)
+      .catch((err) => console.error(err));
 
     setJobs(myJobs);
   };

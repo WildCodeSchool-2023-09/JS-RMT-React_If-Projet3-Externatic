@@ -187,7 +187,7 @@ function AdminJobs() {
           dataSet={["CDI", "CDD", "Alternance", "Stage"]}
         />
         <label className="label">
-          position requirements
+          Qualification
           <input
             type="text"
             name="position_requirements"

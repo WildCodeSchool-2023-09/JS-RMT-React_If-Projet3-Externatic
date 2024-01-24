@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
-// import ConsultantJobOffre from "../pages/consultant/ConsultantJobOffre";
 import "./CompanyJob.css";
 
 function CompanyJob({ job }) {
