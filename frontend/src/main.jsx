@@ -1,14 +1,64 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
+import connexion from "./services/connexion";
+import { JobProvider } from "./contexts/context";
+import { AuthProvider } from "./contexts/auth";
+
 import App from "./App";
+import FormLogin from "./pages/FormLogin";
+import FormRegister from "./pages/FormRegister";
+import HomePage from "./pages/HomePage";
+
+import AllJobsPage from "./pages/AllJobsPage";
+import ConsultantPage from "./pages/layout/ConsultantPage";
+import ConsultantCompany from "./pages/consultant/ConsultantCompany";
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+        loader: async () => {
+          const response = await connexion.get(`/jobs/latest`);
+          return response.data;
+        },
+      },
+      {
+        path: "jobs",
+        element: <AllJobsPage />,
+        loader: async ({ request }) => {
+          const url = new URL(request.url);
+          const page = url.searchParams.get("page") || 1;
+          const response = await connexion.get(
+            `/jobs${url.search || "?page=1"}`
+          );
+          return { data: response.data, page: parseInt(page, 10) };
+        },
+      },
+      {
+        path: "/consultants/",
+        element: <ConsultantPage />,
+        children: [
+          {
+            path: "company",
+            element: <ConsultantCompany />,
+          },
+        ],
+      },
+      {
+        path: "/login",
+        element: <FormLogin />,
+      },
+      {
+        path: "/register",
+        element: <FormRegister />,
+      },
+    ],
   },
 ]);
 
@@ -16,6 +66,10 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <React.StrictMode>
-    <RouterProvider router={router} />
+    <JobProvider>
+      <AuthProvider>
+        <RouterProvider router={router} />
+      </AuthProvider>
+    </JobProvider>
   </React.StrictMode>
 );

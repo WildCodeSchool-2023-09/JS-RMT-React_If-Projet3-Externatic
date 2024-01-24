@@ -1,0 +1,67 @@
+.logo {
+  margin-top: 20px;
+  width: 100px;
+  height: 70px;
+  transition: 0.3s ease;
+}
+
+.navbar {
+  display: flex;
+  border-bottom: solid 10px;
+}
+
+.link-page {
+  margin-top: 25px;
+  margin-left: 100px;
+  font-size: 25px;
+  transition: color 0.3s ease;
+}
+
+.link-page:hover {
+  color: #fc005b;
+}
+
+.button-connect {
+  margin-left: auto;
+  margin-right: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-weight: 300;
+  width: 150px;
+  height: 50px;
+  flex-shrink: 0;
+  border-radius: 5px;
+  background: #fc005b;
+  border: 0;
+  margin-top: 20px;
+  font-size: 15px;
+}
+
+.button-connect:active {
+  transform: translateY(4px);
+}
+
+@media screen and (min-width: 700px) and (max-width: 1000px) {
+  .logo {
+    width: 70px;
+    height: 50px;
+  }
+
+  .link-page {
+    font-size: 20px;
+    transition: color 0.3s ease;
+  }
+
+  .navbar {
+    border-bottom: solid 7px;
+  }
+
+  .button-connect {
+    width: 120px;
+    height: 40px;
+    margin-top: 20px;
+    font-size: 15px;
+  }
+}
