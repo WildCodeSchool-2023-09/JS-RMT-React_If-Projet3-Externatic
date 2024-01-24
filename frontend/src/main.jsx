@@ -14,6 +14,7 @@ import HomePage from "./pages/HomePage";
 import AllJobsPage from "./pages/AllJobsPage";
 import ConsultantPage from "./pages/layout/ConsultantPage";
 import ConsultantCompany from "./pages/consultant/ConsultantCompany";
+import CandidatAccount from "./pages/CandidatAccount";
 
 const router = createBrowserRouter([
   {
@@ -57,6 +58,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <FormRegister />,
+      },
+      {
+        path: "/account",
+        element: <CandidatAccount />,
       },
     ],
   },

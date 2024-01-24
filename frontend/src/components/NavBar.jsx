@@ -15,9 +15,14 @@ function NavBar() {
       <Link className="link-page" to="/jobs">
         Jobs
       </Link>
-      <Link className="button-connect" to="/login">
-        Se connecter
-      </Link>
+      <div className="button-container">
+        <Link className="button-connect" to="/account">
+          Mon Compte
+        </Link>
+        <Link className="button-connect" to="/login">
+          Se connecter
+        </Link>
+      </div>
     </div>
   );
 }

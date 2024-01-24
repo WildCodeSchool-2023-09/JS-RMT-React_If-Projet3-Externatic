@@ -22,13 +22,15 @@ CREATE TABLE company (
   image_url VARCHAR(450) NOT NULL
 );
 
-CREATE TABLE candidat ( 
+CREATE TABLE candidat (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   user_id INTEGER NOT NULL,
   status VARCHAR(255),
   phone_number VARCHAR(10),
   city VARCHAR(200),
   employment_type VARCHAR(45),
+    experience varchar(30),
+  diploma varchar(30),
   FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 

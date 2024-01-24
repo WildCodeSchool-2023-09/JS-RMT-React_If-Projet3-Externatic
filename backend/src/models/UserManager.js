@@ -32,6 +32,7 @@ class UserManager extends AbstractManager {
     // Return the first row of the result, which represents the user
     return rows[0];
   }
+
   /*
   async readAll() {
     // Execute the SQL SELECT query to retrieve all users from the "user" table
