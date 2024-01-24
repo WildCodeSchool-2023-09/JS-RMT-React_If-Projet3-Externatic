@@ -1,0 +1,18 @@
+form {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+}
+h2 {
+  margin: 20px;
+  text-align: center;
+}
+.label {
+  gap: 10px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  color: #ca2061;
+  margin-bottom: 10px;
+}

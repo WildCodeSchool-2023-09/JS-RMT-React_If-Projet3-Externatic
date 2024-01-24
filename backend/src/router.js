@@ -20,15 +20,17 @@ router.get("/jobs", jobControllers.browse);
 router.get("/locations", jobControllers.getLocations);
 router.get("/languages", jobControllers.getLanguages);
 router.get("/companies", companyControllers.browse);
-// Route to get a list of items
+router.get("/consultants", userControllers.getConsultant);
 
 // Route to get a specific item by ID
 router.get("/items/:id", itemControllers.read);
+router.get("/companies/:id/jobs", jobControllers.readByCompany);
 router.get("/users/profile", checkCredentials, userControllers.getProfile);
 
 // Route to add a new item
 
 router.post("/items", itemControllers.add);
+router.post("/jobs", jobControllers.add);
 
 router.post("/login", validateUser, userControllers.login);
 router.get("/jobs/latest", jobControllers.browseLatest);
