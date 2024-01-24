@@ -32,6 +32,18 @@ class UserManager extends AbstractManager {
     // Return the first row of the result, which represents the user
     return rows[0];
   }
+
+  async readProfile(id) {
+    // Execute the SQL SELECT query to retrieve a specific user by its ID
+    const [rows] = await this.database.query(
+      `select id, firstname, lastname, email, role_id from ${this.table} where id = ?`,
+      [id]
+    );
+
+    // Return the first row of the result, which represents the user
+    return rows[0];
+  }
+
   /*
   async readAll() {
     // Execute the SQL SELECT query to retrieve all users from the "user" table
