@@ -6,5 +6,12 @@ export default defineConfig({
   plugins: [react()],
   server: {
     port: 3000,
+    fs: {
+      allow: ["."],
+      strict: false,
+    },
+  },
+  optimizeDeps: {
+    include: ["slick-carousel"],
   },
 });

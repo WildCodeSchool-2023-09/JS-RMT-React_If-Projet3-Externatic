@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
-// import ConsultantJobOffre from "../pages/consultant/ConsultantJobOffre";
 import "./CompanyJob.css";
 
 function CompanyJob({ job }) {
@@ -10,15 +9,15 @@ function CompanyJob({ job }) {
     <div>
       <Link to={`/consultants/company/${companyId}/jobs/${job.id}`}>
         <div className="containerJobcompany">
-          <div className="jobCompanyHeader">
+          <ul className="jobCompanyHeader">
             <h3 className="jobCompanyTitle">{job.title}</h3>
-          </div>
+          </ul>
           <div className="jobCompanyHeader">
             <li>{job.working_type}</li>
 
             <li> {job.position_requirements}</li>
 
-            <div>{job.location}</div>
+            <li>{job.location}</li>
 
             <div className="jobCompanySalary">
               {job.contract_type} {job.salary}
