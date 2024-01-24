@@ -17,6 +17,8 @@ import AllJobsPage from "./pages/AllJobsPage";
 import ConsultantPage from "./pages/layout/ConsultantPage";
 import ConsultantCompany from "./pages/consultant/ConsultantCompany";
 import ConsultantJob from "./pages/consultant/ConsultantJob";
+import AdminPage from "./pages/AdminPage";
+import AdminSpecific from "./pages/AdminSpecific";
 
 const router = createBrowserRouter([
   {
@@ -74,6 +76,16 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <FormRegister />,
+      },
+      {
+        path: "/administration",
+        element: <AdminPage />,
+        children: [
+          {
+            path: "companies",
+            element: <AdminSpecific pageTitle="companies" route="/companies" />,
+          },
+        ],
       },
     ],
   },

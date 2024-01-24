@@ -49,11 +49,23 @@ const login = async (req, res, next) => {
         res
           .cookie("auth", createToken(user), { httpOnly: true })
           .status(200)
-          .json({ id: user.id, email: user.email, role: user.role });
+          .json({ id: user.id, email: user.email, roleId: user.role_id });
       } else {
         res.sendStatus(403);
       }
     }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const getProfile = async (req, res, next) => {
+  try {
+    const profile = await tables.user.readProfile(req.user.id);
+    res
+      .cookie("auth", createToken(profile), { httpOnly: true })
+      .status(200)
+      .json(profile);
   } catch (err) {
     next(err);
   }
@@ -128,6 +140,7 @@ module.exports = {
   // add,
   // browse,
   login,
+  getProfile,
   // edit,
   add,
   // destroy,

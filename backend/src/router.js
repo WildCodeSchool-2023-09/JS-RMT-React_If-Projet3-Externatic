@@ -12,8 +12,10 @@ const userControllers = require("./controllers/userControllers");
 const jobControllers = require("./controllers/jobControllers");
 const companyControllers = require("./controllers/companyControllers");
 
+const checkCredentials = require("./middleware/checkCredentials");
+
 const validateUser = require("./validators/validateUser");
-// const checkCredentials = require("./middleware/checkCredentials");
+
 router.get("/jobs", jobControllers.browse);
 router.get("/locations", jobControllers.getLocations);
 router.get("/languages", jobControllers.getLanguages);
@@ -23,6 +25,8 @@ router.get("/consultants", userControllers.getConsultant);
 // Route to get a specific item by ID
 router.get("/items/:id", itemControllers.read);
 router.get("/companies/:id/jobs", jobControllers.readByCompany);
+router.get("/users/profile", checkCredentials, userControllers.getProfile);
+
 // Route to add a new item
 
 router.post("/items", itemControllers.add);
