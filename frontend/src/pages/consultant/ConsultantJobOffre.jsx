@@ -10,14 +10,18 @@ function ConsultantJobOffre() {
   return (
     <div>
       <div className="consultant-job-offre">
-        <div>{job.name}</div>
+        <div>
+          <h2>{job.name}</h2>
+        </div>
 
         <h2 className="consultant-job-offre-title">{job.title}</h2>
-        <p>
-          <div>Durée de travail : {job.contract_type}</div>
-          <div>Niveau de formation : {job.position_requirements}</div>
-          <div>Lieux : {job.location}</div>
-        </p>
+
+        <div>
+          <p>Type de contrat: {job.contract_type}</p>
+        </div>
+        <div>Niveau de formation : {job.position_requirements}</div>
+        <div>Lieux : {job.location}</div>
+
         <p>
           <div>Salaire : {job.salary}</div>
           <div>Entrée en fonction : {job.starting_date}</div>
