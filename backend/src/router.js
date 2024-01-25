@@ -24,6 +24,7 @@ router.get("/consultants", userControllers.getConsultant);
 
 // Route to get a specific item by ID
 router.get("/items/:id", itemControllers.read);
+router.get("/companies/:id", companyControllers.read);
 router.get("/companies/:id/jobs", jobControllers.readByCompany);
 router.get("/users/profile", checkCredentials, userControllers.getProfile);
 
@@ -35,6 +36,8 @@ router.post("/jobs", jobControllers.add);
 router.post("/login", validateUser, userControllers.login);
 router.get("/jobs/latest", jobControllers.browseLatest);
 router.post("/register", validateUser, userControllers.add);
+
+router.delete("/companies/:id", companyControllers.destroy);
 
 /* ************************************************************************* */
 
