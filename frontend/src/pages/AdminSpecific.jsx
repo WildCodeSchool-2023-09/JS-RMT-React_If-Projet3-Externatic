@@ -35,18 +35,16 @@ function AdminSpecific({ pageTitle, route }) {
       <h2 className="admin-specific-title">Administration {pageTitle}</h2>
       <div className="admin-cards-container">
         {specific.map((elt) => (
-          <div className="admin-card">
+          <div className="admin-card" key={elt.id}>
             <button
               type="button"
               className="connection-button admin-button"
-              key={elt.id}
               onClick={() => handleDeleteClick(elt.id)}
             >
               Supprimer
             </button>
             {route === "/companies" ? (
               <img
-                key={elt.name}
                 src={elt.image_url}
                 alt={elt.name}
                 className="compagny-img"
