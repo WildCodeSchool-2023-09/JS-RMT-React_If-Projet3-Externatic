@@ -9,10 +9,10 @@ function ConsultantJobOffre() {
 
   return (
     <div>
-      <div className="consultantjoboffre">
+      <div className="consultant-job-offre">
         <div>{job.name}</div>
 
-        <h2 className="consultantjoboffretitle">{job.title}</h2>
+        <h2 className="consultant-job-offre-title">{job.title}</h2>
         <p>
           <div>Durée de travail : {job.contract_type}</div>
           <div>Niveau de formation : {job.position_requirements}</div>
@@ -25,7 +25,9 @@ function ConsultantJobOffre() {
           <div>Language : {job.language}</div>
         </p>
         <div>
-          <h3 className="consultantjoboffretitle">L'entreprise et l'équipe</h3>
+          <h3 className="consultant-job-offre-title">
+            L'entreprise et l'équipe
+          </h3>
           <p>
             Cette PME, spécialisée dans le domaine de l'éducation, souhaite
             renforcer ses équipes <br /> dans le cadre de son
@@ -35,7 +37,7 @@ function ConsultantJobOffre() {
           </p>
         </div>
         <p>
-          <h3 className="consultantjoboffretitle">Les missions</h3>
+          <h3 className="consultant-job-offre-title">Les missions</h3>
           <div>
             <div>{job.description_about_candidate}</div>
             Vous aurez notammnent en charge : <li>{job.description_mission}</li>
