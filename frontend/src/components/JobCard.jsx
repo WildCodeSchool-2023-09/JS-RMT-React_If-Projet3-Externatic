@@ -18,7 +18,7 @@ function JobCard({ job, cardStyle }) {
   return (
     <div className={cardStyle}>
       <div className={`${cardStyle}-header`}>
-        <Link to={`/consultants/company/${companyId}/jobs/${job.id}`}>
+        <Link to={`/consultants/company/${companyId}/jobs/${job.job_id}`}>
           <h3 className={`${cardStyle}-title`}>{job.title}</h3>
         </Link>
         <button
@@ -55,6 +55,7 @@ function JobCard({ job, cardStyle }) {
 
 JobCard.propTypes = {
   job: PropTypes.shape({
+    job_id: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     description_position: PropTypes.string.isRequired,

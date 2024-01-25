@@ -34,7 +34,7 @@ router.post("/items", itemControllers.add);
 router.post("/jobs", jobControllers.add);
 
 router.post("/login", validateUser, userControllers.login);
-router.get("/jobs/latest", jobControllers.browseLatest);
+router.get("/jobs/all/latest", jobControllers.browseLatest);
 router.post("/register", validateUser, userControllers.add);
 
 /* ************************************************************************* */

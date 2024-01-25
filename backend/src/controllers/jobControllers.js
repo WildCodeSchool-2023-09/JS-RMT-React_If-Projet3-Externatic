@@ -90,7 +90,6 @@ const readByCompany = async (req, res, next) => {
   }
 };
 
-
 const readByCompanyJob = async (req, res, next) => {
   try {
     // Fetch a specific job from the database based on the provided ID
@@ -104,7 +103,9 @@ const readByCompanyJob = async (req, res, next) => {
       res.status(200).json(job[0]);
     }
   } catch (err) {
-    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 
 const browseLatest = async (req, res, next) => {
   try {
