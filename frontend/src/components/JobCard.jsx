@@ -1,14 +1,13 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
-
 import "./JobCard.css";
 import { useJobContext } from "../contexts/context";
 
 function JobCard({ job, cardStyle }) {
   const { favorites, manageFavorites } = useJobContext();
-
+  const { companyId } = useParams();
   const dateDiffInDaysFromToday = (date) => {
     const targetDate = new Date(date);
     const today = new Date();
@@ -19,7 +18,7 @@ function JobCard({ job, cardStyle }) {
   return (
     <div className={cardStyle}>
       <div className={`${cardStyle}-header`}>
-        <Link to={`/jobs/${job.id}`}>
+        <Link to={`/consultants/company/${companyId}/jobs/${job.job_id}`}>
           <h3 className={`${cardStyle}-title`}>{job.title}</h3>
         </Link>
         <button
@@ -56,6 +55,7 @@ function JobCard({ job, cardStyle }) {
 
 JobCard.propTypes = {
   job: PropTypes.shape({
+    job_id: PropTypes.number.isRequired,
     id: PropTypes.number.isRequired,
     title: PropTypes.string.isRequired,
     description_position: PropTypes.string.isRequired,

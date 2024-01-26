@@ -9,16 +9,33 @@ class JobManager extends AbstractManager {
 
   // The C of CRUD - Create operation
 
-  /* async create(job) {
+  async create(job) {
     // Execute the SQL INSERT query to add a new job to the "job" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (title) values (?)`,
-      [job.title]
+      `insert into ${this.table} (company_id, consultant_id, title, description_mission , description_about_candidate , description_position, description_advantages, description_process, language, salary, location, working_type, starting_date, position_category, contract_type, position_requirements) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+      [
+        job.company_id,
+        job.consultant_id,
+        job.title,
+        job.description_mission,
+        job.description_about_candidate,
+        job.description_position,
+        job.description_advantages,
+        job.description_process,
+        job.language,
+        job.salary,
+        job.location,
+        job.working_type,
+        job.starting_date,
+        job.position_category,
+        job.contract_type,
+        job.position_requirements,
+      ]
     );
 
     // Return the ID of the newly inserted job
     return result.insertId;
-  } */
+  }
 
   // The Rs of CRUD - Read operations
 
@@ -31,6 +48,30 @@ class JobManager extends AbstractManager {
 
     // Return the first row of the result, which represents the job
     return rows[0];
+  }
+
+  async readByCompany(id) {
+    // Execute the SQL SELECT query to retrieve all jobs for a specific company by its ID
+    const [rows] = await this.database.query(
+      `SELECT 
+         job.company_id , job.consultant_id , job.id AS job_id, job.title, job.description_mission, job.description_about_candidate, job.description_position, job.description_advantages, job.description_process, job.language, job.salary, job.location, job.working_type, job.starting_date, job.position_category, job.contract_type, job.position_requirements, company.name FROM ${this.table} INNER JOIN company ON company.id = ${this.table}.company_id WHERE company.id = ?`,
+      [id]
+    );
+
+    // Return the result rows, which represent all jobs associated with the specified company
+    return rows;
+  }
+
+  async readByCompanyJob(id) {
+    // Execute the SQL SELECT query to retrieve a specific job by its ID
+    const [rows] = await this.database.query(
+      `SELECT 
+         job.company_id , job.consultant_id , job.id AS job_id, job.title, job.description_mission, job.description_about_candidate, job.description_position, job.description_advantages, job.description_process, job.language, job.salary, job.location, job.working_type, job.starting_date, job.position_category, job.contract_type, job.position_requirements, company.id, company.name FROM job INNER JOIN company ON company.id = ${this.table}.company_id WHERE job.id = ?`,
+      [id]
+    );
+
+    // Return the first row of the result, which represents the job
+    return rows;
   }
 
   async readAll(

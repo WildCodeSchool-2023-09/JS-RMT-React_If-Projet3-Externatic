@@ -22,16 +22,13 @@ class CompanyManager extends AbstractManager {
 
   // The Rs of CRUD - Read operations
 
-  // async read(id) {
-  //   // Execute the SQL SELECT query to retrieve a specific company by its ID
-  //   const [rows] = await this.database.query(
-  //     `select * from ${this.table} where id = ?`,
-  //     [id]
-  //   );
-
-  //   // Return the first row of the result, which represents the company
-  //   return rows[0];
-  // }
+  async read(id) {
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where id = ?`,
+      [id]
+    );
+    return rows[0];
+  }
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all companys from the "company" table
@@ -49,7 +46,15 @@ class CompanyManager extends AbstractManager {
   // }
 
   // The D of CRUD - Delete operation
-  // TODO: Implement the delete operation to remove an company by its ID
+  async delete(id) {
+    const result = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+
+    // Return the first row of the result, which represents the user
+    return result;
+  }
 
   // async delete(id) {
   //   ...

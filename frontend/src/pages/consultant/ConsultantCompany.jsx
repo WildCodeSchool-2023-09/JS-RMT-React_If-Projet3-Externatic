@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import connexion from "../../services/connexion";
 import CompanyCard from "../../components/card/CompanyCard";
+import connexion from "../../services/connexion";
 
 function ConsultantCompany() {
   const [companies, setCompanies] = useState([]);

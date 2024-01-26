@@ -3,6 +3,10 @@
   width: 300px;
   border-radius: 10px;
   border: solid;
+  margin: 2rem;
+  padding: 0.5rem;
+  border: 1px black solid;
+  border-radius: 0.3rem;
 }
 
 img:hover {
