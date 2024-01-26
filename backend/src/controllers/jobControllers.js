@@ -72,6 +72,24 @@ const read = async (req, res, next) => {
   }
 };
 
+const readByCompany = async (req, res, next) => {
+  try {
+    // Fetch a specific job from the database based on the provided ID
+    const job = await tables.job.readByCompany(req.params.id);
+
+    // If the job is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the job in JSON format
+    if (job.length === 0) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(job);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
 const browseLatest = async (req, res, next) => {
   try {
     const latestJobs = await tables.job.readLatest();
@@ -84,7 +102,7 @@ const browseLatest = async (req, res, next) => {
 // This operation is not yet implemented
 
 // The A of BREAD - Add (Create) operation
-/* const add = async (req, res, next) => {
+const add = async (req, res, next) => {
   // Extract the job data from the request body
   const job = req.body;
 
@@ -98,7 +116,7 @@ const browseLatest = async (req, res, next) => {
     // Pass any errors to the error-handling middleware
     next(err);
   }
-}; */
+};
 
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
@@ -109,8 +127,9 @@ module.exports = {
   getLocations,
   getLanguages,
   read,
+  readByCompany,
   browseLatest,
   // edit,
-  // add,
+  add,
   // destroy,
 };
