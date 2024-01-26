@@ -19,15 +19,26 @@ function ConsultantJobOffre() {
         <div>
           <p>Type de contrat: {job.contract_type}</p>
         </div>
-        <div>Niveau de formation : {job.position_requirements}</div>
-        <div>Lieux : {job.location}</div>
-
-        <p>
-          <div>Salaire : {job.salary}</div>
-          <div>Entrée en fonction : {job.starting_date}</div>
-          <div>CSP : {job.position_category}</div>
-          <div>Language : {job.language}</div>
-        </p>
+        <div>
+          <p>Niveau de formation : {job.position_requirements}</p>
+        </div>
+        <div>
+          <p>Lieux : {job.location}</p>
+        </div>
+        <div>
+          <div>
+            <p>Salaire : {job.salary}</p>
+          </div>
+          <div>
+            <p>Entrée en fonction : {job.starting_date}</p>
+          </div>
+          <div>
+            <p>CSP : {job.position_category}</p>
+          </div>
+          <div>
+            <p>Language : {job.language}</p>
+          </div>
+        </div>
         <div>
           <h3 className="consultant-job-offre-title">
             L'entreprise et l'équipe
@@ -43,7 +54,9 @@ function ConsultantJobOffre() {
         <p>
           <h3 className="consultant-job-offre-title">Les missions</h3>
           <div>
-            <div>{job.description_about_candidate}</div>
+            <div>
+              <p>{job.description_about_candidate}</p>
+            </div>
             Vous aurez notammnent en charge : <li>{job.description_mission}</li>
             <li>{job.description_advantages}</li>
             <li>{job.description_process}</li>
