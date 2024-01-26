@@ -10,60 +10,43 @@ function ConsultantJobOffre() {
   return (
     <div>
       <div className="consultant-job-offre">
-        <div>
-          <h2>{job.name}</h2>
-        </div>
+        <h2>{job.name}</h2>
 
         <h2 className="consultant-job-offre-title">{job.title}</h2>
 
-        <div>
-          <p>Type de contrat: {job.contract_type}</p>
-        </div>
-        <div>
-          <p>Niveau de formation : {job.position_requirements}</p>
-        </div>
-        <div>
-          <p>Lieux : {job.location}</p>
-        </div>
-        <div>
-          <div>
-            <p>Salaire : {job.salary}</p>
-          </div>
-          <div>
-            <p>Entrée en fonction : {job.starting_date}</p>
-          </div>
-          <div>
-            <p>CSP : {job.position_category}</p>
-          </div>
-          <div>
-            <p>Language : {job.language}</p>
-          </div>
-        </div>
-        <div>
-          <h3 className="consultant-job-offre-title">
-            L'entreprise et l'équipe
-          </h3>
-          <p>
-            Cette PME, spécialisée dans le domaine de l'éducation, souhaite
-            renforcer ses équipes <br /> dans le cadre de son
-            internationalisation et du développement de nouveaux marchés.
-            <br />
-            L'équipe technique comprend 6 personnes managées par le CTO.
-          </p>
-        </div>
+        <p>Type de contrat: {job.contract_type}</p>
+
+        <p>Niveau de formation : {job.position_requirements}</p>
+
+        <p>Lieux : {job.location}</p>
+
+        <p>Salaire : {job.salary}</p>
+
+        <p>Entrée en fonction : {job.starting_date}</p>
+
+        <p>CSP : {job.position_category}</p>
+
+        <p>Language : {job.language}</p>
+
+        <h3 className="consultant-job-offre-title">L'entreprise et l'équipe</h3>
+        <p>
+          Cette PME, spécialisée dans le domaine de l'éducation, souhaite
+          renforcer ses équipes <br /> dans le cadre de son internationalisation
+          et du développement de nouveaux marchés.
+          <br />
+          L'équipe technique comprend 6 personnes managées par le CTO.
+        </p>
+
         <p>
           <h3 className="consultant-job-offre-title">Les missions</h3>
-          <div>
-            <div>
-              <p>{job.description_about_candidate}</p>
-            </div>
-            <ul>
-              Vous aurez notammnent en charge :{" "}
-              <li>{job.description_mission}</li>
-              <li>{job.description_advantages}</li>
-              <li>{job.description_process}</li>
-            </ul>
-          </div>
+
+          <p>{job.description_about_candidate}</p>
+
+          <ul>
+            Vous aurez notammnent en charge : <li>{job.description_mission}</li>
+            <li>{job.description_advantages}</li>
+            <li>{job.description_process}</li>
+          </ul>
         </p>
       </div>
     </div>
