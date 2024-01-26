@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useRef } from "react";
 import { useLoaderData } from "react-router-dom";
 
+import Modal from "./modal";
 import "../styles/headJobs.css";
 
 function formatDate(time) {
@@ -9,13 +10,22 @@ function formatDate(time) {
 
 function HeadJob() {
   const job = useLoaderData();
+  const modal = useRef(null);
+
+  function toggleRefModal() {
+    modal.current.toggleModal();
+  }
+
   return (
     <div className="headjob_container">
       <img src="../src/assets/Logohead.svg" alt="Logo" />
       <div className="body_job">
         <div className="offer">
           <h1 className="title">{job.title}</h1>
-          <button type="button">postuler a l'offre</button>
+          <button type="button" onClick={toggleRefModal} className="btn-modal">
+            Postuler a l'offre
+          </button>
+          <Modal ref={modal} />
         </div>
         <div className="resume_jobs">
           <ul>
