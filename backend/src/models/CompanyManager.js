@@ -9,16 +9,22 @@ class CompanyManager extends AbstractManager {
 
   // The C of CRUD - Create operation
 
-  // async create(company) {
-  //   // Execute the SQL INSERT query to add a new company to the "company" table
-  //   const [result] = await this.database.query(
-  //     `insert into ${this.table} (title) values (?)`,
-  //     [company.title]
-  //   );
+  async create(company) {
+    // Execute the SQL INSERT query to add a new company to the "company" table
+    const [result] = await this.database.query(
+      `insert into ${this.table} (name, email, city, phone_number, image_url)  values (?, ?, ?, ?, ?)`,
+      [
+        company.name,
+        company.email,
+        company.city,
+        company.phone_number,
+        company.image_url,
+      ]
+    );
 
-  //   // Return the ID of the newly inserted company
-  //   return result.insertId;
-  // }
+    // Return the ID of the newly inserted company
+    return result.insertId;
+  }
 
   // The Rs of CRUD - Read operations
 

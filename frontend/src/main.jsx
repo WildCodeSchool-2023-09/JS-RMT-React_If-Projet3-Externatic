@@ -19,6 +19,7 @@ import ConsultantCompany from "./pages/consultant/ConsultantCompany";
 import ConsultantJob from "./pages/consultant/ConsultantJob";
 import AdminPage from "./pages/AdminPage";
 import AdminSpecific from "./pages/AdminSpecific";
+import FormCompany from "./pages/FormCompany";
 
 const router = createBrowserRouter([
   {
@@ -83,7 +84,13 @@ const router = createBrowserRouter([
         children: [
           {
             path: "companies",
-            element: <AdminSpecific pageTitle="companies" route="/companies" />,
+            element: (
+              <AdminSpecific pageTitle="entreprise" route="/companies" />
+            ),
+          },
+          {
+            path: "companies/add",
+            element: <FormCompany />,
           },
         ],
       },

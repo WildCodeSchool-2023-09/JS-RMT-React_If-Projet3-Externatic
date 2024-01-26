@@ -37,6 +37,8 @@ router.post("/login", validateUser, userControllers.login);
 router.get("/jobs/latest", jobControllers.browseLatest);
 router.post("/register", validateUser, userControllers.add);
 
+router.post("/companies", companyControllers.add);
+
 router.delete("/companies/:id", companyControllers.destroy);
 
 /* ************************************************************************* */
