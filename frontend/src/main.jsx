@@ -103,6 +103,10 @@ const router = createBrowserRouter([
             path: "companies/add",
             element: <FormCompany />,
           },
+          {
+            path: "companies/:id/edit",
+            element: <FormCompany />,
+          },
         ],
       },
     ],

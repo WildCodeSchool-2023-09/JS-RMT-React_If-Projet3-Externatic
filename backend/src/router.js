@@ -39,6 +39,7 @@ router.get("/jobs/all/latest", jobControllers.browseLatest);
 router.post("/register", validateUser, userControllers.add);
 
 router.post("/companies", companyControllers.add);
+router.put("/companies/:id", companyControllers.edit);
 
 router.delete("/companies/:id", companyControllers.destroy);
 

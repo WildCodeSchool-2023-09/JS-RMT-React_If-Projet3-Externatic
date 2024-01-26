@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 
 import connexion from "../services/connexion";
 
@@ -8,6 +8,8 @@ import "../components/reusable/formInput.css";
 import "../components/reusable/button.css";
 
 function FormCompany() {
+  const { id } = useParams();
+
   const companyTemplate = {
     name: "",
     email: "",
@@ -18,6 +20,20 @@ function FormCompany() {
 
   const [company, setCompany] = useState(companyTemplate);
   const navigate = useNavigate();
+
+  if (id) {
+    useEffect(() => {
+      const getCompanyData = async () => {
+        try {
+          const response = await connexion.get(`/companies/${id}`);
+          setCompany(response.data);
+        } catch (err) {
+          console.error(err);
+        }
+      };
+      getCompanyData();
+    }, [id]);
+  }
 
   const updateCompany = (event) => {
     setCompany((previousState) => ({
@@ -36,10 +52,23 @@ function FormCompany() {
     }
   };
 
+  const putCompany = async (event) => {
+    event.preventDefault();
+    try {
+      await connexion.put(`/companies/${id}`, company);
+      navigate("/administration/companies");
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   return (
     <div>
       <h2>Ajout / Modification entreprise</h2>
-      <form onSubmit={postCompany} className="admin-form-container">
+      <form
+        onSubmit={id ? putCompany : postCompany}
+        className="admin-form-container"
+      >
         <label>
           Nom:
           <input
