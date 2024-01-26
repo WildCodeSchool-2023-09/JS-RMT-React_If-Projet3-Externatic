@@ -57,9 +57,12 @@ function ConsultantJobOffre() {
             <div>
               <p>{job.description_about_candidate}</p>
             </div>
-            Vous aurez notammnent en charge : <li>{job.description_mission}</li>
-            <li>{job.description_advantages}</li>
-            <li>{job.description_process}</li>
+            <ul>
+              Vous aurez notammnent en charge :{" "}
+              <li>{job.description_mission}</li>
+              <li>{job.description_advantages}</li>
+              <li>{job.description_process}</li>
+            </ul>
           </div>
         </p>
       </div>
