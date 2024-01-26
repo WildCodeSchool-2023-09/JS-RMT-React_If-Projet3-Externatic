@@ -26,6 +26,7 @@ router.get("/consultants", userControllers.getConsultant);
 router.get("/items/:id", itemControllers.read);
 router.get("/companies/:id", companyControllers.read);
 router.get("/companies/:id/jobs", jobControllers.readByCompany);
+router.get("/jobs/:id", jobControllers.readByCompanyJob);
 router.get("/users/profile", checkCredentials, userControllers.getProfile);
 
 // Route to add a new item
@@ -34,7 +35,7 @@ router.post("/items", itemControllers.add);
 router.post("/jobs", jobControllers.add);
 
 router.post("/login", validateUser, userControllers.login);
-router.get("/jobs/latest", jobControllers.browseLatest);
+router.get("/jobs/all/latest", jobControllers.browseLatest);
 router.post("/register", validateUser, userControllers.add);
 
 router.delete("/companies/:id", companyControllers.destroy);

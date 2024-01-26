@@ -90,6 +90,23 @@ const readByCompany = async (req, res, next) => {
   }
 };
 
+const readByCompanyJob = async (req, res, next) => {
+  try {
+    // Fetch a specific job from the database based on the provided ID
+    const job = await tables.job.readByCompanyJob(req.params.id);
+
+    // If the job is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the job in JSON format
+    if (job.length === 0) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(job[0]);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const browseLatest = async (req, res, next) => {
   try {
     const latestJobs = await tables.job.readLatest();
@@ -128,6 +145,7 @@ module.exports = {
   getLanguages,
   read,
   readByCompany,
+  readByCompanyJob,
   browseLatest,
   // edit,
   add,

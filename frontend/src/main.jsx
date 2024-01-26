@@ -17,6 +17,7 @@ import AllJobsPage from "./pages/AllJobsPage";
 import ConsultantPage from "./pages/layout/ConsultantPage";
 import ConsultantCompany from "./pages/consultant/ConsultantCompany";
 import ConsultantJob from "./pages/consultant/ConsultantJob";
+import ConsultantJobOffre from "./pages/consultant/ConsultantJobOffre";
 import AdminPage from "./pages/AdminPage";
 import AdminSpecific from "./pages/AdminSpecific";
 
@@ -29,7 +30,7 @@ const router = createBrowserRouter([
         path: "/",
         element: <HomePage />,
         loader: async () => {
-          const response = await connexion.get(`/jobs/latest`);
+          const response = await connexion.get(`/jobs/all/latest`);
           return response.data;
         },
       },
@@ -56,6 +57,16 @@ const router = createBrowserRouter([
           {
             path: "company/:companyId",
             element: <ConsultantJob />,
+          },
+          {
+            path: "company/:companyId/jobs/:id",
+            element: <ConsultantJobOffre />,
+            loader: ({ params }) => {
+              return connexion
+                .get(`/jobs/${params.id}`)
+                .then((res) => res.data)
+                .catch((err) => console.error(err));
+            },
           },
           {
             path: "administration",

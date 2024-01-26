@@ -54,11 +54,23 @@ class JobManager extends AbstractManager {
     // Execute the SQL SELECT query to retrieve all jobs for a specific company by its ID
     const [rows] = await this.database.query(
       `SELECT 
-         job.company_id , job.consultant_id , job.id, job.title, job.description_mission, job.description_about_candidate, job.description_position, job.description_advantages, job.description_process, job.language, job.salary, job.location, job.working_type, job.starting_date, job.position_category, job.contract_type, job.position_requirements, company.id, company.name FROM ${this.table} INNER JOIN company ON company.id = ${this.table}.company_id WHERE company.id = ?`,
+         job.company_id , job.consultant_id , job.id AS job_id, job.title, job.description_mission, job.description_about_candidate, job.description_position, job.description_advantages, job.description_process, job.language, job.salary, job.location, job.working_type, job.starting_date, job.position_category, job.contract_type, job.position_requirements, company.name FROM ${this.table} INNER JOIN company ON company.id = ${this.table}.company_id WHERE company.id = ?`,
       [id]
     );
 
     // Return the result rows, which represent all jobs associated with the specified company
+    return rows;
+  }
+
+  async readByCompanyJob(id) {
+    // Execute the SQL SELECT query to retrieve a specific job by its ID
+    const [rows] = await this.database.query(
+      `SELECT 
+         job.company_id , job.consultant_id , job.id AS job_id, job.title, job.description_mission, job.description_about_candidate, job.description_position, job.description_advantages, job.description_process, job.language, job.salary, job.location, job.working_type, job.starting_date, job.position_category, job.contract_type, job.position_requirements, company.id, company.name FROM job INNER JOIN company ON company.id = ${this.table}.company_id WHERE job.id = ?`,
+      [id]
+    );
+
+    // Return the first row of the result, which represents the job
     return rows;
   }
 
