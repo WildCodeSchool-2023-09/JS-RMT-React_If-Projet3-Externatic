@@ -7,33 +7,34 @@ import "./FormCompany.css";
 import "../components/reusable/formInput.css";
 import "../components/reusable/button.css";
 
+const companyTemplate = {
+  name: "",
+  email: "",
+  city: "",
+  phone_number: "",
+  image_url: "",
+};
+
 function FormCompany() {
   const { id } = useParams();
-
-  const companyTemplate = {
-    name: "",
-    email: "",
-    city: "",
-    phone_number: "",
-    image_url: "",
-  };
 
   const [company, setCompany] = useState(companyTemplate);
   const navigate = useNavigate();
 
-  if (id) {
-    useEffect(() => {
-      const getCompanyData = async () => {
-        try {
-          const response = await connexion.get(`/companies/${id}`);
-          setCompany(response.data);
-        } catch (err) {
-          console.error(err);
-        }
-      };
+  const getCompanyData = async () => {
+    try {
+      const response = await connexion.get(`/companies/${id}`);
+      setCompany(response.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  useEffect(() => {
+    if (id !== "new") {
       getCompanyData();
-    }, [id]);
-  }
+    }
+  }, [id]);
 
   const updateCompany = (event) => {
     setCompany((previousState) => ({
@@ -66,7 +67,7 @@ function FormCompany() {
     <div>
       <h2>Ajout / Modification entreprise</h2>
       <form
-        onSubmit={id ? putCompany : postCompany}
+        onSubmit={id !== "new" ? putCompany : postCompany}
         className="admin-form-container"
       >
         <label>
