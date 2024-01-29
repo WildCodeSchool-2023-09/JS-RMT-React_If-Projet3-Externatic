@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         element: <JobId />,
         loader: ({ params }) => {
           return connexion
-            .get(`/job/${params.jobId}`)
+            .get(`/jobs/${params.jobId}`)
             .then((res) => res.data)
             .catch((err) => console.error(err));
         },
