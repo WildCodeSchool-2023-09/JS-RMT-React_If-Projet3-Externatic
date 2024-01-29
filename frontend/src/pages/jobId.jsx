@@ -40,7 +40,7 @@ function JobId() {
           <h3>Les conditions de travail</h3>
           <p>Localisation:{job.location}</p>
           <h3>Ce que vous aller y gagner</h3>
-          <p>{job.working_type}</p>
+          <p>Type de contrat:{job.working_type}</p>
           <h2>Le processus</h2>
           <p>{job.description_process}</p>
 
