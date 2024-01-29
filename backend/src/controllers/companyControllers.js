@@ -5,10 +5,10 @@ const tables = require("../tables");
 const browse = async (req, res, next) => {
   try {
     // Fetch all items from the database
-    const companys = await tables.company.readAll();
+    const companies = await tables.company.readAll();
 
     // Respond with the items in JSON format
-    res.status(200).json(companys);
+    res.status(200).json(companies);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -35,7 +35,24 @@ const read = async (req, res, next) => {
 };
 
 // The E of BREAD - Edit (Update) operation
-// This operation is not yet implemented
+const edit = async (req, res, next) => {
+  // Extract the company data from the request body
+  const company = req.body;
+  try {
+    // Fetch a specific city from the database based on the provided ID
+    const result = await tables.company.update(req.params.id, company);
+
+    // If the company is not found, respond with HTTP 404 (Not Found)
+    if (result.affectedRows === 1) {
+      res.sendStatus(204);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
@@ -64,7 +81,7 @@ const destroy = async (req, res, next) => {
 module.exports = {
   browse,
   read,
-  // edit,
+  edit,
   add,
   destroy,
 };

@@ -47,9 +47,16 @@ class CompanyManager extends AbstractManager {
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing company
 
-  // async update(company) {
-  //   ...
-  // }
+  async update(id, company) {
+    // Execute the SQL SELECT query to retrieve a specific company by its ID
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} set ? WHERE id = ?`,
+      [company, id]
+    );
+
+    // Return the first row of the result, which represents the item
+    return result;
+  }
 
   // The D of CRUD - Delete operation
   async delete(id) {
