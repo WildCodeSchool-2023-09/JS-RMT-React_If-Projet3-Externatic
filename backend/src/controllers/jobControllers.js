@@ -138,16 +138,6 @@ const browseLatest = async (req, res, next) => {
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
-
-  // Extract the item data from the request body
-  const item = req.body;
-
-  try {
-    // Insert the item into the database
-    const insertId = await tables.item.create(item);
-
-    // Respond with HTTP 201 (Created) and the ID of the newly inserted item
-
   // Extract the job data from the request body
   const job = req.body;
 
