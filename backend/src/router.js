@@ -40,7 +40,7 @@ router.get("/jobs/all/latest", jobControllers.browseLatest);
 router.post("/register", validateUser, userControllers.add);
 
 router.post("/companies", validateCompany, companyControllers.add);
-router.put("/companies/:id", companyControllers.edit);
+router.put("/companies/:id", validateCompany, companyControllers.edit);
 
 router.delete("/companies/:id", companyControllers.destroy);
 
