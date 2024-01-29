@@ -3,6 +3,8 @@ import Select from "react-select";
 import { useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 
+import colorStyles from "../assets/selectStyle";
+
 function SelectExternatic({ filterType, optionsList, title, filterValue }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -30,46 +32,6 @@ function SelectExternatic({ filterType, optionsList, title, filterValue }) {
     const newUrl = `${location.pathname}?${urlSearchParams.toString()}`;
     navigate(newUrl);
   }, [selectedValues, filterType, filterValue, navigate, location.pathname]);
-
-  const colorStyles = {
-    control: (styles, { isSelected, isFocused }) => ({
-      ...styles,
-      backgroundColor: "white",
-      borderColor: isSelected || isFocused ? "#ca2061" : "black",
-      boxShadow: "none",
-      ":hover": { borderColor: "#ca2061" },
-    }),
-    clearIndicator: (styles) => ({
-      ...styles,
-      cursor: "pointer",
-      ":hover": { color: "red" },
-    }),
-    dropdownIndicator: (styles) => ({
-      ...styles,
-      cursor: "pointer",
-    }),
-    option: (styles, { isFocused }) => {
-      return {
-        ...styles,
-        backgroundColor: isFocused ? "#ca2061" : "white",
-        color: isFocused ? "white" : "black",
-        cursor: isFocused ? "pointer" : "default",
-      };
-    },
-    multiValue: (styles) => {
-      return {
-        ...styles,
-        backgroundColor: "#ffd1e3",
-      };
-    },
-    multiValueRemove: (styles) => {
-      return {
-        ...styles,
-        cursor: "pointer",
-        ":hover": { color: "red" },
-      };
-    },
-  };
 
   return (
     <Select
