@@ -1,8 +1,11 @@
 import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
+import Select from "react-select";
 import connexion from "../services/connexion";
 
-function Select({ label, text, url, criteria, handleSelect, name }) {
+import colorStyles from "../assets/selectStyle";
+
+function SelectConsultant({ label, url, criteria, handleSelect, name }) {
   const [list, setList] = useState([]);
 
   const getList = async () => {
@@ -18,26 +21,32 @@ function Select({ label, text, url, criteria, handleSelect, name }) {
     getList();
   }, []);
 
+  const standardizeEvent = (option) => {
+    handleSelect({ target: { name, value: option.value } });
+  };
+
   return (
     <label className="label">
       {label}
-      <select onChange={handleSelect} name={name} required>
-        <option value="">{text}</option>
-        {list.map((el) => (
-          <option value={el.id}>{el[criteria]}</option>
-        ))}
-      </select>
+      <Select
+        onChange={standardizeEvent}
+        required
+        options={list.map((el) => ({
+          value: el.id,
+          label: el[criteria],
+        }))}
+        styles={colorStyles}
+      />
     </label>
   );
 }
 
-Select.propTypes = {
+SelectConsultant.propTypes = {
   label: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   criteria: PropTypes.string.isRequired,
-  handleSelect: PropTypes.string.isRequired,
+  handleSelect: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };
 
-export default Select;
+export default SelectConsultant;
