@@ -4,13 +4,6 @@ const tables = require("../tables");
 // The B of BREAD - Browse (Read All) operation
 const browse = async (req, res, next) => {
   try {
-
-    // Fetch all items from the database
-    const jobs = await tables.job.readAll();
-
-    // Respond with the items in JSON format
-    res.json(jobs);
-
     const page = parseInt(req.query.page, 10) || 1;
     const jobsPerPage = 9;
     const {
