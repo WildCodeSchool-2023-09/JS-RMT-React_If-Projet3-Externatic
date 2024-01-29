@@ -1,0 +1,23 @@
+.collapser {
+  margin-top: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 60%;
+}
+
+.collapser-title {
+  background-color: white;
+  border: none;
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.collapser-title:hover {
+  cursor: pointer;
+}
+
+.collapser-content {
+  margin-top: 1rem;
+}

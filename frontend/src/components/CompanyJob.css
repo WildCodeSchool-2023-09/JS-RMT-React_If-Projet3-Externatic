@@ -1,0 +1,35 @@
+.containerJobcompany {
+  margin: 2rem;
+  padding: 0.5rem;
+  border: 1px black solid;
+  border-radius: 0.3rem;
+}
+
+.containerJobcompany:hover {
+  border: 1px solid var(--main-red);
+  transition: border 0.3s ease;
+  border-radius: 0.3rem;
+}
+.jobCompanyHeader {
+  display: grid;
+  grid-template-columns: 9fr 1fr;
+  width: 100%;
+  align-items: center;
+  justify-items: center;
+  margin-bottom: 1rem;
+}
+.jobCompanyTitle:hover {
+  text-decoration: underline;
+}
+
+.jobCompanyHeader {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 25rem;
+}
+
+.jobCompanySalary {
+  background-color: lightgrey;
+}
