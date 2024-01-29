@@ -13,7 +13,7 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/job/:jobId",
+        path: "/jobs/:jobId",
         element: <JobId />,
         loader: ({ params }) => {
           return axios
