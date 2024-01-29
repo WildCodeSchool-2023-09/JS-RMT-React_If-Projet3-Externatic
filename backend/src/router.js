@@ -15,6 +15,7 @@ const companyControllers = require("./controllers/companyControllers");
 const checkCredentials = require("./middleware/checkCredentials");
 
 const validateUser = require("./validators/validateUser");
+const validateCompany = require("./validators/validateCompany");
 
 router.get("/jobs", jobControllers.browse);
 router.get("/locations", jobControllers.getLocations);
@@ -38,7 +39,7 @@ router.post("/login", validateUser, userControllers.login);
 router.get("/jobs/all/latest", jobControllers.browseLatest);
 router.post("/register", validateUser, userControllers.add);
 
-router.post("/companies", companyControllers.add);
+router.post("/companies", validateCompany, companyControllers.add);
 router.put("/companies/:id", companyControllers.edit);
 
 router.delete("/companies/:id", companyControllers.destroy);
