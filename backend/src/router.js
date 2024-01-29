@@ -43,6 +43,7 @@ router.post("/companies", validateCompany, companyControllers.add);
 router.put("/companies/:id", validateCompany, companyControllers.edit);
 
 router.delete("/companies/:id", companyControllers.destroy);
+router.delete("/consultants/:id", userControllers.destroy);
 
 /* ************************************************************************* */
 
