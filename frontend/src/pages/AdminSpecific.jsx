@@ -39,7 +39,7 @@ function AdminSpecific({ pageTitle, route }) {
       <button
         type="button"
         className="connection-button"
-        onClick={() => navigate(`${location.pathname}/add`)}
+        onClick={() => navigate(`${location.pathname}/new`)}
       >
         Ajouter {pageTitle}
       </button>
@@ -57,7 +57,7 @@ function AdminSpecific({ pageTitle, route }) {
               <button
                 type="button"
                 className="connection-button admin-button"
-                onClick={() => navigate(`${location.pathname}/${elt.id}/edit`)}
+                onClick={() => navigate(`${location.pathname}/${elt.id}`)}
               >
                 Editer
               </button>
