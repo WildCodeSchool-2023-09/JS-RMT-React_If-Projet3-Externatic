@@ -48,7 +48,6 @@ router.get("/companies/:id/jobs", jobControllers.readByCompany);
 router.get("/jobs/:id", jobControllers.readByCompanyJob);
 router.get("/users/profile", checkCredentials, userControllers.getProfile);
 
-
 // Route to add a new item
 
 router.post("/items", itemControllers.add);
