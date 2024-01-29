@@ -25,7 +25,7 @@ function JobId() {
       <div className="resume">
         <br />
         <div className="description">
-          <h1>Les missions</h1>
+          <h2>Les missions</h2>
           <h3>Vous aurez notamment en charge:</h3>
           <p>{job.description_mission}</p>
           <p>type de language de developpement:{job.language}</p>

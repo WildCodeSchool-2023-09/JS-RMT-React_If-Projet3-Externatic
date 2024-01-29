@@ -30,7 +30,7 @@ const Modal = forwardRef((props, ref) => {
           <div
             role="button"
             tabIndex={0}
-            aria-label="btnmodal"
+            aria-label="fermeture-modal"
             onClick={toggleModal}
             onKeyDown={handleKeyDown}
             className="overlay"
@@ -38,7 +38,7 @@ const Modal = forwardRef((props, ref) => {
           <div className="modal-content">
             <p>Connecte toi pour accéder à cette page !</p>
             <button type="button" className="close-modal" onClick={toggleModal}>
-              CLOSE
+              Fermer
             </button>
           </div>
         </div>
