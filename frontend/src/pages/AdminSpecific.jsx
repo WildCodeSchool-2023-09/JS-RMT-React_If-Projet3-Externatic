@@ -36,13 +36,17 @@ function AdminSpecific({ pageTitle, route }) {
   return (
     <div className="admin-section">
       <h2 className="admin-specific-title">Administration {pageTitle}</h2>
-      <button
-        type="button"
-        className="connection-button"
-        onClick={() => navigate(`${location.pathname}/new`)}
-      >
-        Ajouter {pageTitle}
-      </button>
+      {route === "/companies" ? (
+        <button
+          type="button"
+          className="connection-button"
+          onClick={() => navigate(`${location.pathname}/new`)}
+        >
+          Ajouter {pageTitle}
+        </button>
+      ) : (
+        ""
+      )}
       <div className="admin-cards-container">
         {specific.map((elt) => (
           <div className="admin-card" key={elt.id}>
@@ -54,13 +58,17 @@ function AdminSpecific({ pageTitle, route }) {
               >
                 Supprimer
               </button>
-              <button
-                type="button"
-                className="connection-button admin-button"
-                onClick={() => navigate(`${location.pathname}/${elt.id}`)}
-              >
-                Editer
-              </button>
+              {route !== "/consultants" ? (
+                <button
+                  type="button"
+                  className="connection-button admin-button"
+                  onClick={() => navigate(`${location.pathname}/${elt.id}`)}
+                >
+                  Editer
+                </button>
+              ) : (
+                ""
+              )}
             </div>
             {route === "/companies" ? (
               <img
