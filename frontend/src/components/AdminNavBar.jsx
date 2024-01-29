@@ -11,9 +11,11 @@ function AdminNavBar() {
           Admin entreprises
         </button>
       </Link>
-      <button type="button" className="connection-button">
-        Admin consultants
-      </button>
+      <Link to="consultants">
+        <button type="button" className="connection-button">
+          Admin consultants
+        </button>
+      </Link>
       <button type="button" className="connection-button">
         Admin candidats
       </button>

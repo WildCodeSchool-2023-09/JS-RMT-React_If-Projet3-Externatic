@@ -11,18 +11,18 @@ function AdminSpecific({ pageTitle, route }) {
   const navigate = useNavigate();
   const location = useLocation();
 
-  useEffect(() => {
-    const getSpecific = async () => {
-      try {
-        const response = await connexion.get(route);
-        setSpecific(response.data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-    getSpecific();
-  }, []);
+  const getSpecific = async () => {
+    try {
+      const response = await connexion.get(route);
+      setSpecific(response.data);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
+  useEffect(() => {
+    getSpecific();
+  }, [location]);
   const handleDeleteClick = async (id) => {
     try {
       await connexion.delete(`${route}/${id}`);
@@ -68,6 +68,11 @@ function AdminSpecific({ pageTitle, route }) {
                 alt={elt.name}
                 className="compagny-img"
               />
+            ) : null}
+            {route === "/consultants" ? (
+              <div>
+                {elt.firstname} <br /> {elt.lastname} <br /> {elt.email}
+              </div>
             ) : null}
           </div>
         ))}

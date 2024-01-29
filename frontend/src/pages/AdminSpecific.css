@@ -24,7 +24,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  height: 20rem;
+  height: auto;
   border: 1px solid black;
 }
 
