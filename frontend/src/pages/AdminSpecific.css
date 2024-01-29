@@ -1,0 +1,40 @@
+.admin-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.admin-specific-title {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.admin-cards-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  margin: auto;
+  width: 90%;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+.admin-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+  border: 1px solid black;
+}
+
+.compagny-img {
+  margin: auto auto;
+  width: 12rem;
+}
+
+.admin-button {
+  margin-top: 0.5rem;
+  height: 1.5rem;
+  width: 6rem;
+}
