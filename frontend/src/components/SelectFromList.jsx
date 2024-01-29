@@ -25,8 +25,8 @@ function SelectFromList({ label, dataSet, handleSelect, name }) {
 
 SelectFromList.propTypes = {
   label: PropTypes.string.isRequired,
-  dataSet: PropTypes.string.isRequired,
-  handleSelect: PropTypes.string.isRequired,
+  dataSet: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleSelect: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };
 
