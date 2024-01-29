@@ -94,5 +94,3 @@ CREATE TABLE experience (
   candidat_id INTEGER NOT NULL,
   FOREIGN KEY (candidat_id) REFERENCES candidat(id) ON DELETE CASCADE
 );
-
-

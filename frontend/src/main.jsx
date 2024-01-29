@@ -22,11 +22,23 @@ import AdminPage from "./pages/AdminPage";
 import AdminSpecific from "./pages/AdminSpecific";
 import FormCompany from "./pages/FormCompany";
 
+import JobId from "./pages/jobId";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/jobs/:jobId",
+        element: <JobId />,
+        loader: ({ params }) => {
+          return connexion
+            .get(`/jobs/${params.jobId}`)
+            .then((res) => res.data)
+            .catch((err) => console.error(err));
+        },
+      },
       {
         path: "/",
         element: <HomePage />,
@@ -64,7 +76,7 @@ const router = createBrowserRouter([
             element: <ConsultantJobOffre />,
             loader: ({ params }) => {
               return connexion
-                .get(`/jobs/${params.id}`)
+                .get(`/companies/${params.companyId}/jobs/${params.id}`)
                 .then((res) => res.data)
                 .catch((err) => console.error(err));
             },
