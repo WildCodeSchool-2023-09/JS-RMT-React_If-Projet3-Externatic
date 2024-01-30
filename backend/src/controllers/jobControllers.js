@@ -136,6 +136,15 @@ const add = async (req, res, next) => {
 };
 
 // The D of BREAD - Destroy (Delete) operation
+
+const destroy = async (req, res, next) => {
+  try {
+    await tables.job.delete(req.params.id);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
 // This operation is not yet implemented
 
 // Ready to export the controller functions
@@ -149,5 +158,5 @@ module.exports = {
   browseLatest,
   // edit,
   add,
-  // destroy,
+  destroy,
 };

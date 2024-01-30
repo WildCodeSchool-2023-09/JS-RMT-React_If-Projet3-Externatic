@@ -10,7 +10,6 @@ import App from "./App";
 import FormLogin from "./pages/FormLogin";
 import FormRegister from "./pages/FormRegister";
 import HomePage from "./pages/HomePage";
-import Administration from "./pages/Administration";
 import AdminJob from "./pages/AdminJobs";
 
 import AllJobsPage from "./pages/AllJobsPage";
@@ -21,6 +20,7 @@ import ConsultantJobOffre from "./pages/consultant/ConsultantJobOffre";
 import AdminPage from "./pages/AdminPage";
 import AdminSpecific from "./pages/AdminSpecific";
 import FormCompany from "./pages/FormCompany";
+// import AdminJobDelete from "./pages/AdminJobDelete";
 
 const router = createBrowserRouter([
   {
@@ -71,11 +71,25 @@ const router = createBrowserRouter([
           },
           {
             path: "administration",
-            element: <Administration />,
             children: [
               {
-                path: "job",
+                path: "job/:id",
                 element: <AdminJob />,
+              },
+              {
+                path: "job",
+                element: <AllJobsPage />,
+                loader: async ({ request }) => {
+                  const url = new URL(request.url);
+                  const page = url.searchParams.get("page") || 1;
+                  const response = await connexion.get(
+                    `/jobs${url.search || "?page=1"}`
+                  );
+                  return { data: response.data, page: parseInt(page, 10) };
+                },
+                // element: <AdminJobDelete />,
+                // loader: async () => {
+                //   return connexion.get(`/jobs`).then((res) => res.data);
               },
             ],
           },
