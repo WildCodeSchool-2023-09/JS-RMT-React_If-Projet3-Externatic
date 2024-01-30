@@ -60,7 +60,7 @@ class UserManager extends AbstractManager {
 
   // The Rs of CRUD - Read operations
 
-  async read(email) {
+  async readByEmail(email) {
     // Execute the SQL SELECT query to retrieve a specific user by its ID
     const [rows] = await this.database.query(
       `select * from ${this.table} where email = ?`,
@@ -74,12 +74,41 @@ class UserManager extends AbstractManager {
   async readProfile(id) {
     // Execute the SQL SELECT query to retrieve a specific user by its ID
     const [rows] = await this.database.query(
-      `select id, firstname, lastname, email, role_id from ${this.table} where id = ?`,
+      `select id, firstname, lastname, email, city, employment_type, phone_number, experience, diploma, status, url, role_id from ${this.table} where id = ?`,
       [id]
     );
 
     // Return the first row of the result, which represents the user
     return rows[0];
+  }
+
+  async update(id, userData) {
+    // Execute the SQL UPDATE query to update the user in the "user" table
+    await this.database.query(
+      `update ${this.table} set firstname = ?, lastname = ?, email = ?, phone_number = ?, city = ?, employment_type = ?, experience = ?, diploma = ?, status = ? , url = ? where id = ?`,
+      [
+        userData.firstname,
+        userData.lastname,
+        userData.email,
+        userData.phone_number,
+        userData.city,
+        userData.employment_type,
+        userData.experience,
+        userData.diploma,
+        userData.status,
+        userData.url,
+        id,
+      ]
+    );
+  }
+
+  async updateCV(userId, filePath) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET url = ? WHERE id = ?`,
+      [filePath, userId]
+    );
+
+    return result.affectedRows;
   }
 
   /*

@@ -16,6 +16,7 @@ CREATE TABLE user (
   employment_type VARCHAR(45),
     experience varchar(30),
   diploma varchar(30),
+  url VARCHAR(255),
   role_id INTEGER NOT NULL DEFAULT 1,
   FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
 );

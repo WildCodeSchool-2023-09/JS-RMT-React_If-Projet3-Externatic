@@ -36,7 +36,7 @@ const browse = async (req, res, next) => {
 const login = async (req, res, next) => {
   try {
     // Fetch a specific user from the database based on the provided ID
-    const user = await tables.user.read(req.body.email);
+    const user = await tables.user.readByEmail(req.body.email);
 
     // If the user is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the user in JSON format
@@ -90,6 +90,33 @@ const add = async (req, res, next) => {
   }
 };
 
+const updateUser = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+
+    const userData = req.body;
+
+    await tables.user.update(userId, userData);
+
+    res.status(200).json("User updated successfully");
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateUserCV = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const path = `public/assets/images/${req.file.filename}`;
+
+    await tables.user.updateCV(userId, path);
+
+    res.status(200).json({ filePath: path });
+  } catch (err) {
+    next(err);
+  }
+};
+
 // The R of BREAD - Read operation
 // const read = async (req, res, next) => {
 //   try {
@@ -136,12 +163,12 @@ const add = async (req, res, next) => {
 module.exports = {
   getConsultant,
   // read,
-  // edit,
-  // add,
   // browse,
   login,
   getProfile,
   // edit,
   add,
+  updateUser,
+  updateUserCV,
   // destroy,
 };

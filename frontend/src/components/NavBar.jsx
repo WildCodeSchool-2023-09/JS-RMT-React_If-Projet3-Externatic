@@ -25,9 +25,7 @@ function NavBar() {
         ""
       )}
       <div className="button-container">
-        {connected.role_id === 1 ||
-        connected.role_id === 2 ||
-        connected.role_id === 3 ? (
+        {connected.role_id !== undefined ? (
           <Link className="button-connect" to="/account">
             Mon Compte
           </Link>
