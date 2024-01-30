@@ -6,7 +6,7 @@ import "./AdminNavBar.css";
 function AdminNavBar() {
   return (
     <nav className="admin-nav-links">
-      <Link to="./companies">
+      <Link to="companies">
         <button type="button" className="connection-button">
           Admin entreprises
         </button>
