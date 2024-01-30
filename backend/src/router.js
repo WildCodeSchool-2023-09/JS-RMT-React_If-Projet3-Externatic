@@ -11,6 +11,7 @@ const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
 const jobControllers = require("./controllers/jobControllers");
 const companyControllers = require("./controllers/companyControllers");
+const roleControllers = require("./controllers/roleControllers");
 
 const checkCredentials = require("./middleware/checkCredentials");
 
@@ -29,6 +30,9 @@ router.get("/companies/:id", companyControllers.read);
 router.get("/companies/:id/jobs", jobControllers.readByCompany);
 router.get("/jobs/:id", jobControllers.readByCompanyJob);
 router.get("/users/profile", checkCredentials, userControllers.getProfile);
+router.get("/roles", roleControllers.browse);
+router.get("/roles/:id", roleControllers.read);
+router.get("/users/:id", userControllers.read);
 
 // Route to add a new item
 
@@ -42,8 +46,10 @@ router.post("/register", validateUser, userControllers.add);
 router.post("/companies", validateCompany, companyControllers.add);
 router.put("/companies/:id", validateCompany, companyControllers.edit);
 
-router.delete("/companies/:id", companyControllers.destroy);
-router.delete("/consultants/:id", userControllers.destroy);
+router.delete("/companies/:id", checkCredentials, companyControllers.destroy);
+router.delete("/consultants/:id", checkCredentials, userControllers.destroy);
+
+router.put("/users/:id", userControllers.updateUser);
 
 /* ************************************************************************* */
 

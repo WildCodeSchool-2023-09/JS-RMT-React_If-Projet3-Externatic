@@ -59,8 +59,18 @@ class UserManager extends AbstractManager {
   }
 
   // The Rs of CRUD - Read operations
+  async read(id) {
+    // Execute the SQL SELECT query to retrieve a specific user by its ID
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where id = ?`,
+      [id]
+    );
 
-  async read(email) {
+    // Return the first row of the result, which represents the user
+    return rows[0];
+  }
+
+  async readByEmail(email) {
     // Execute the SQL SELECT query to retrieve a specific user by its ID
     const [rows] = await this.database.query(
       `select * from ${this.table} where email = ?`,
@@ -92,7 +102,26 @@ class UserManager extends AbstractManager {
   } */
 
   // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing user
+  async update(userData) {
+    // Execute the SQL UPDATE query to update the user in the "user" table
+    await this.database.query(
+      `update ${this.table} set firstname = ?, lastname = ?, email = ?, role_id = ?,  phone_number = ?, city = ?, employment_type = ?, experience = ?, diploma = ?, status = ? , url = ? where id = ?`,
+      [
+        userData.firstname,
+        userData.lastname,
+        userData.email,
+        userData.role_id,
+        userData.phone_number,
+        userData.city,
+        userData.employment_type,
+        userData.experience,
+        userData.diploma,
+        userData.status,
+        userData.url,
+        userData.id,
+      ]
+    );
+  }
 
   // async update(user) {
   //   ...
