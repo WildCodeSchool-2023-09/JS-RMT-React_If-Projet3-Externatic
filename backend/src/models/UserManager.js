@@ -47,11 +47,11 @@ class UserManager extends AbstractManager {
   // TODO: Implement the update operation to modify an existing consultant/user
 
   // async update(consultant/user) {
-  async create(email, hashPassword) {
+  async create(email, hashPassword, firstname, lastname) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (email, password) values (?, ?)`,
-      [email, hashPassword]
+      `INSERT INTO ${this.table} (email, password, firstname, lastname) VALUES (?, ?, ?, ?)`,
+      [email, hashPassword, firstname, lastname]
     );
 
     // Return the ID of the newly inserted user
