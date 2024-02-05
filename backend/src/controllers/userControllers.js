@@ -80,8 +80,11 @@ const add = async (req, res, next) => {
 
   try {
     const hashPassword = await hash(req.body.password);
-    await tables.user.create(req.body.email, hashPassword);
+    const { email, firstname, lastname } = req.body;
+
     // Insert the user into the database
+    await tables.user.create(email, hashPassword, firstname, lastname);
+
     // Respond with HTTP 201 (Created) and the ID of the newly inserted user
     res.status(201).json("OK");
   } catch (err) {

@@ -14,3 +14,8 @@
   flex-direction: column;
   margin-left: 75px;
 }
+
+.log-container {
+  margin-top: 100px;
+  margin-bottom: 100px;
+}
