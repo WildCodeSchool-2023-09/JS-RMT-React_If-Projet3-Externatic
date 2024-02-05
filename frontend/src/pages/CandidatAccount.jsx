@@ -23,7 +23,7 @@ function CandidatAccount() {
 
   const getProfile = async () => {
     try {
-      const profile = await connexion.get(`/users/profile`);
+      const profile = await connexion.get(`/profile`);
       setConnected(profile.data);
     } catch (err) {
       console.error(err);
@@ -62,7 +62,7 @@ function CandidatAccount() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await connexion.put(`/users/${connected.id}`, userData);
+      const response = await connexion.put(`/profile`, userData);
       setConnected(response.data);
       getProfile();
       handleUpload();

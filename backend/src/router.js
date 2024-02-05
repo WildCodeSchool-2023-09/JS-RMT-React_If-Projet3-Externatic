@@ -36,7 +36,7 @@ router.get("/items/:id", itemControllers.read);
 router.get("/companies/:id", companyControllers.read);
 router.get("/companies/:id/jobs", jobControllers.readByCompany);
 router.get("/companies/:id/jobs/:id", jobControllers.readByCompanyJob);
-router.get("/users/profile", checkCredentials, userControllers.getProfile);
+router.get("/profile", checkCredentials, userControllers.getProfile);
 router.get("/roles/:id", roleControllers.read);
 router.get("/users/:id", userControllers.read);
 
@@ -50,6 +50,7 @@ router.get("/jobs/all/latest", jobControllers.browseLatest);
 router.post("/register", validateUser, userControllers.add);
 
 router.post("/companies", checkAdmin, validateCompany, companyControllers.add);
+
 router.put(
   "/companies/:id",
   checkAdmin,
@@ -60,12 +61,14 @@ router.put(
 router.delete("/companies/:id", checkAdmin, companyControllers.destroy);
 router.delete("/consultants/:id", checkAdmin, userControllers.destroy);
 
+router.put("/users/:id", checkAdmin, userControllers.updateUser); // modification du role d'un user via admin
+
 router.put(
-  "/users/:id",
-  checkAdmin,
+  "/profile",
+  checkCredentials,
   validateAccount,
-  userControllers.updateUser
-);
+  userControllers.updateProfile
+); // modification du profil via user
 
 const upload = require("./services/upload");
 
@@ -73,7 +76,7 @@ router.put(
   "/curriculum",
   checkCredentials,
   upload.single("file"),
-  userControllers.updateUserCV
+  userControllers.updateProfileCV
 );
 
 /* ************************************************************************* */

@@ -11,7 +11,7 @@ CREATE TABLE user (
   password VARCHAR(255) NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   status VARCHAR(255),
-  phone_number VARCHAR(10),
+  phone_number INTEGER(10),
   city VARCHAR(200),
   employment_type VARCHAR(45),
   experience varchar(30),
