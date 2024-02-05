@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import PropTypes from "prop-types";
 import connexion from "../services/connexion";
 
@@ -7,6 +8,8 @@ import "../components/reusable/button.css";
 
 function AdminSpecific({ pageTitle, route }) {
   const [specific, setSpecific] = useState([]);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const getSpecific = async () => {
@@ -31,18 +34,34 @@ function AdminSpecific({ pageTitle, route }) {
   };
 
   return (
-    <div>
+    <div className="admin-section">
       <h2 className="admin-specific-title">Administration {pageTitle}</h2>
+      <button
+        type="button"
+        className="connection-button"
+        onClick={() => navigate(`${location.pathname}/new`)}
+      >
+        Ajouter {pageTitle}
+      </button>
       <div className="admin-cards-container">
         {specific.map((elt) => (
           <div className="admin-card" key={elt.id}>
-            <button
-              type="button"
-              className="connection-button admin-button"
-              onClick={() => handleDeleteClick(elt.id)}
-            >
-              Supprimer
-            </button>
+            <div className="admin-card-buttons-container">
+              <button
+                type="button"
+                className="connection-button admin-button"
+                onClick={() => handleDeleteClick(elt.id)}
+              >
+                Supprimer
+              </button>
+              <button
+                type="button"
+                className="connection-button admin-button"
+                onClick={() => navigate(`${location.pathname}/${elt.id}`)}
+              >
+                Editer
+              </button>
+            </div>
             {route === "/companies" ? (
               <img
                 src={elt.image_url}

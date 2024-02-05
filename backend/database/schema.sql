@@ -91,5 +91,3 @@ CREATE TABLE experience (
   user_id INTEGER NOT NULL,
   FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
-
-
