@@ -16,6 +16,7 @@ const checkCredentials = require("./middleware/checkCredentials");
 const checkCredentialsConsultant = require("./middleware/checkCredentialsConsultant");
 
 const validateUser = require("./validators/validateUser");
+const validateAccount = require("./validators/validateAccount");
 const validateCompany = require("./validators/validateCompany");
 
 router.get("/jobs", jobControllers.browse);
@@ -48,6 +49,23 @@ router.put("/companies/:id", validateCompany, companyControllers.edit);
 
 router.delete("/companies/:id", companyControllers.destroy);
 router.delete("/jobs/:id", checkCredentialsConsultant, jobControllers.destroy);
+
+router.put(
+  "/users/:id",
+  checkCredentials,
+  validateAccount,
+  userControllers.updateUser
+);
+
+const upload = require("./services/upload");
+
+router.put(
+  "/curriculum",
+  checkCredentials,
+  upload.single("file"),
+  userControllers.updateUserCV
+);
+
 
 /* ************************************************************************* */
 
