@@ -10,6 +10,13 @@ CREATE TABLE user (
   email VARCHAR(255) NOT NULL unique,
   password VARCHAR(255) NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(255),
+  phone_number VARCHAR(10),
+  city VARCHAR(200),
+  employment_type VARCHAR(45),
+    experience varchar(30),
+  diploma varchar(30),
+  url VARCHAR(255),
   role_id INTEGER NOT NULL DEFAULT 1,
   FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
 );
@@ -20,16 +27,6 @@ CREATE TABLE company (
   city VARCHAR(200) NOT NULL,
   phone_number VARCHAR(10) NOT NULL,
   image_url VARCHAR(450) NOT NULL
-);
-
-CREATE TABLE candidat ( 
-  id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  user_id INTEGER NOT NULL,
-  status VARCHAR(255),
-  phone_number VARCHAR(10),
-  city VARCHAR(200),
-  employment_type VARCHAR(45),
-  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE job (
@@ -62,35 +59,35 @@ CREATE TABLE application_status (
 
 CREATE TABLE application (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  candidat_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
   job_id INTEGER NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
   status_id INTEGER NOT NULL,
-  FOREIGN KEY (candidat_id) REFERENCES candidat(id) ON DELETE CASCADE,
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE,
   FOREIGN KEY (job_id) REFERENCES job(id) ON DELETE CASCADE,
   FOREIGN KEY (status_id) REFERENCES application_status(id) ON DELETE CASCADE
 );
 
 CREATE TABLE file (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  candidat_id INTEGER NOT NULL,
+  user_id INTEGER NOT NULL,
   name VARCHAR(255) NOT NULL,
   url VARCHAR(255) NOT NULL,
-  FOREIGN KEY (candidat_id) REFERENCES candidat(id) ON DELETE CASCADE
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE diploma (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   label VARCHAR(255) NOT NULL,
   year DATE NOT NULL,
-  candidat_id INTEGER NOT NULL,
-  FOREIGN KEY (candidat_id) REFERENCES candidat(id) ON DELETE CASCADE
+  user_id INTEGER NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
 
 CREATE TABLE experience (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   label VARCHAR(255) NOT NULL,
   years INTEGER NOT NULL,
-  candidat_id INTEGER NOT NULL,
-  FOREIGN KEY (candidat_id) REFERENCES candidat(id) ON DELETE CASCADE
+  user_id INTEGER NOT NULL,
+  FOREIGN KEY (user_id) REFERENCES user(id) ON DELETE CASCADE
 );
