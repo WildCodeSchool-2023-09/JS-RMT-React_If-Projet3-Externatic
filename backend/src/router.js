@@ -59,7 +59,7 @@ router.put(
 );
 
 router.delete("/companies/:id", checkAdmin, companyControllers.destroy);
-router.delete("/consultants/:id", checkAdmin, userControllers.destroy);
+router.delete("/users/:id", checkAdmin, userControllers.destroy);
 
 router.put("/users/:id", checkAdmin, userControllers.updateUser); // modification du role d'un user via admin
 
