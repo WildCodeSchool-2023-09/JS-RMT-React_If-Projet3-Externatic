@@ -25,12 +25,10 @@ function NavBar() {
         ""
       )}
       <div className="button-container">
-        {connected.role_id !== undefined ? (
+        {connected.role_id && (
           <Link className="button-connect" to="/account">
             Mon Compte
           </Link>
-        ) : (
-          ""
         )}
         <Link className="button-connect" to="/login">
           Se connecter

@@ -78,7 +78,7 @@ function CandidatAccount() {
   }, [connected, navigate]);
 
   return (
-    <div>
+    <>
       <h1 className="form-title">Votre Compte</h1>
       <div className="form-container">
         <form onSubmit={handleSubmit}>
@@ -217,7 +217,7 @@ function CandidatAccount() {
           </div>
         </form>
       </div>
-    </div>
+    </>
   );
 }
 

@@ -98,7 +98,7 @@ const updateUser = async (req, res, next) => {
 
     await tables.user.update(userId, userData);
 
-    res.status(200).json("User updated successfully");
+    res.status(203).json("User updated successfully");
   } catch (err) {
     next(err);
   }
@@ -111,7 +111,7 @@ const updateUserCV = async (req, res, next) => {
 
     await tables.user.updateCV(userId, path);
 
-    res.status(200).json({ filePath: path });
+    res.status(203).json({ filePath: path });
   } catch (err) {
     next(err);
   }
