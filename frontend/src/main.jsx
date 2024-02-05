@@ -16,17 +16,30 @@ import AdminJob from "./pages/AdminJobs";
 import AllJobsPage from "./pages/AllJobsPage";
 import ConsultantPage from "./pages/layout/ConsultantPage";
 import ConsultantCompany from "./pages/consultant/ConsultantCompany";
+import CandidatAccount from "./pages/CandidatAccount";
 import ConsultantJob from "./pages/consultant/ConsultantJob";
 import ConsultantJobOffre from "./pages/consultant/ConsultantJobOffre";
 import AdminPage from "./pages/AdminPage";
 import AdminSpecific from "./pages/AdminSpecific";
 import FormCompany from "./pages/FormCompany";
 
+import JobId from "./pages/jobId";
+
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
     children: [
+      {
+        path: "/jobs/:jobId",
+        element: <JobId />,
+        loader: ({ params }) => {
+          return connexion
+            .get(`/jobs/${params.jobId}`)
+            .then((res) => res.data)
+            .catch((err) => console.error(err));
+        },
+      },
       {
         path: "/",
         element: <HomePage />,
@@ -64,7 +77,7 @@ const router = createBrowserRouter([
             element: <ConsultantJobOffre />,
             loader: ({ params }) => {
               return connexion
-                .get(`/jobs/${params.id}`)
+                .get(`/companies/${params.companyId}/jobs/${params.id}`)
                 .then((res) => res.data)
                 .catch((err) => console.error(err));
             },
@@ -88,6 +101,10 @@ const router = createBrowserRouter([
       {
         path: "/register",
         element: <FormRegister />,
+      },
+      {
+        path: "/account",
+        element: <CandidatAccount />,
       },
       {
         path: "/administration",

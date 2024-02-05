@@ -92,12 +92,42 @@ const add = async (req, res, next) => {
 
   try {
     const hashPassword = await hash(req.body.password);
-    await tables.user.create(req.body.email, hashPassword);
+    const { email, firstname, lastname } = req.body;
+
     // Insert the user into the database
+    await tables.user.create(email, hashPassword, firstname, lastname);
+
     // Respond with HTTP 201 (Created) and the ID of the newly inserted user
     res.status(201).json("OK");
   } catch (err) {
     // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+const updateProfile = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+
+    const userData = req.body;
+
+    await tables.user.updateProfile(userId, userData);
+
+    res.status(203).json("User updated successfully");
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateProfileCV = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const path = `public/assets/images/${req.file.filename}`;
+
+    await tables.user.updateCV(userId, path);
+
+    res.status(203).json({ filePath: path });
+  } catch (err) {
     next(err);
   }
 };
@@ -162,12 +192,12 @@ module.exports = {
   updateUser,
   read,
   getCandidates,
-  // edit,
-  // add,
   // browse,
   login,
   getProfile,
   // edit,
   add,
   destroy,
+  updateProfile,
+  updateProfileCV,
 };

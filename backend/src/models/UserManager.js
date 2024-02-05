@@ -55,11 +55,11 @@ class UserManager extends AbstractManager {
   // TODO: Implement the update operation to modify an existing consultant/user
 
   // async update(consultant/user) {
-  async create(email, hashPassword) {
+  async create(email, hashPassword, firstname, lastname) {
     // Execute the SQL INSERT query to add a new user to the "user" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (email, password) values (?, ?)`,
-      [email, hashPassword]
+      `INSERT INTO ${this.table} (email, password, firstname, lastname) VALUES (?, ?, ?, ?)`,
+      [email, hashPassword, firstname, lastname]
     );
 
     // Return the ID of the newly inserted user
@@ -73,7 +73,6 @@ class UserManager extends AbstractManager {
       `select * from ${this.table} where id = ?`,
       [id]
     );
-
     // Return the first row of the result, which represents the user
     return rows[0];
   }
@@ -92,12 +91,41 @@ class UserManager extends AbstractManager {
   async readProfile(id) {
     // Execute the SQL SELECT query to retrieve a specific user by its ID
     const [rows] = await this.database.query(
-      `select id, firstname, lastname, email, role_id from ${this.table} where id = ?`,
+      `select id, firstname, lastname, email, city, employment_type, phone_number, experience, diploma, status, url, role_id from ${this.table} where id = ?`,
       [id]
     );
 
     // Return the first row of the result, which represents the user
     return rows[0];
+  }
+
+  async updateProfile(id, userData) {
+    // Execute the SQL UPDATE query to update the user in the "user" table
+    await this.database.query(
+      `update ${this.table} set firstname = ?, lastname = ?, email = ?, phone_number = ?, city = ?, employment_type = ?, experience = ?, diploma = ?, status = ? , url = ? where id = ?`,
+      [
+        userData.firstname,
+        userData.lastname,
+        userData.email,
+        userData.phone_number,
+        userData.city,
+        userData.employment_type,
+        userData.experience,
+        userData.diploma,
+        userData.status,
+        userData.url,
+        id,
+      ]
+    );
+  }
+
+  async updateCV(userId, filePath) {
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} SET url = ? WHERE id = ?`,
+      [filePath, userId]
+    );
+
+    return result.affectedRows;
   }
 
   /*
