@@ -13,6 +13,7 @@ const jobControllers = require("./controllers/jobControllers");
 const companyControllers = require("./controllers/companyControllers");
 
 const checkCredentials = require("./middleware/checkCredentials");
+const checkCredentialsConsultant = require("./middleware/checkCredentialsConsultant");
 
 const validateUser = require("./validators/validateUser");
 const validateCompany = require("./validators/validateCompany");
@@ -43,7 +44,7 @@ router.post("/companies", validateCompany, companyControllers.add);
 router.put("/companies/:id", validateCompany, companyControllers.edit);
 
 router.delete("/companies/:id", companyControllers.destroy);
-router.delete("/jobs/:id", jobControllers.destroy);
+router.delete("/jobs/:id", checkCredentialsConsultant, jobControllers.destroy);
 
 /* ************************************************************************* */
 

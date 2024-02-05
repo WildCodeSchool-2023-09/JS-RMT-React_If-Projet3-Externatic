@@ -14,7 +14,7 @@ export const AuthContext = createContext();
 export const useAuthContext = () => useContext(AuthContext);
 
 export function AuthProvider({ children }) {
-  const [connected, setConnected] = useState("not connected");
+  const [connected, setConnected] = useState({ role_id: 2 });
 
   const contextValue = useMemo(
     () => ({ connected, setConnected }),

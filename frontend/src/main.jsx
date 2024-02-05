@@ -87,9 +87,6 @@ const router = createBrowserRouter([
                   );
                   return { data: response.data, page: parseInt(page, 10) };
                 },
-                // element: <AdminJobDelete />,
-                // loader: async () => {
-                //   return connexion.get(`/jobs`).then((res) => res.data);
               },
             ],
           },
