@@ -146,19 +146,6 @@ const read = async (req, res, next) => {
   }
 };
 
-// The E of BREAD - Edit (Update) operation
-const updateUser = async (req, res, next) => {
-  try {
-    const userData = req.body;
-
-    await tables.user.update(userData);
-
-    res.status(200).json("User updated successfully");
-  } catch (err) {
-    next(err);
-  }
-};
-
 // The A of BREAD - Add (Create) operation
 // const add = async (req, res, next) => {
 //   // Extract the item data from the request body
