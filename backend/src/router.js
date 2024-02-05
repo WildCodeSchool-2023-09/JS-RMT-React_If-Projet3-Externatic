@@ -17,6 +17,7 @@ const checkCredentials = require("./middleware/checkCredentials");
 const checkAdmin = require("./middleware/checkAdmin");
 
 const validateUser = require("./validators/validateUser");
+const validateAccount = require("./validators/validateAccount");
 const validateCompany = require("./validators/validateCompany");
 
 router.get("/jobs", jobControllers.browse);
@@ -28,10 +29,13 @@ router.get("/roles", roleControllers.browse);
 router.get("/candidates", userControllers.getCandidates);
 
 // Route to get a specific item by ID
+
+// router.get("/items/:id", itemControllers.read);
+router.get("/jobs/:id", jobControllers.read);
 router.get("/items/:id", itemControllers.read);
 router.get("/companies/:id", companyControllers.read);
 router.get("/companies/:id/jobs", jobControllers.readByCompany);
-router.get("/jobs/:id", jobControllers.readByCompanyJob);
+router.get("/companies/:id/jobs/:id", jobControllers.readByCompanyJob);
 router.get("/users/profile", checkCredentials, userControllers.getProfile);
 router.get("/roles/:id", roleControllers.read);
 router.get("/users/:id", userControllers.read);
@@ -57,6 +61,16 @@ router.delete("/companies/:id", checkAdmin, companyControllers.destroy);
 router.delete("/consultants/:id", checkAdmin, userControllers.destroy);
 
 router.put("/users/:id", checkAdmin, userControllers.updateUser);
+
+const upload = require("./services/upload");
+
+router.put(
+  "/curriculum",
+  checkCredentials,
+  upload.single("file"),
+  userControllers.updateUserCV
+);
+
 
 /* ************************************************************************* */
 

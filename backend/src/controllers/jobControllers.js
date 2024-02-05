@@ -128,6 +128,7 @@ const add = async (req, res, next) => {
     const insertId = await tables.job.create(job);
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted job
+
     res.status(201).json({ insertId });
   } catch (err) {
     // Pass any errors to the error-handling middleware
