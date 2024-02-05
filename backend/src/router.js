@@ -65,8 +65,6 @@ router.put(
   upload.single("file"),
   userControllers.updateUserCV
 );
-
-
 /* ************************************************************************* */
 
 module.exports = router;

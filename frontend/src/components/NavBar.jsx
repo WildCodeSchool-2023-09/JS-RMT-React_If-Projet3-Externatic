@@ -24,6 +24,13 @@ function NavBar() {
       ) : (
         ""
       )}
+      {connected.role_id === 2 ? (
+        <Link className="link-page" to="/consultants/company">
+          Consultant
+        </Link>
+      ) : (
+        ""
+      )}
       <div className="button-candidat">
         {connected.role_id && (
           <Link className="button-connect" to="/account">
