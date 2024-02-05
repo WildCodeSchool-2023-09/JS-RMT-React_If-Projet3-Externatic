@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import { Link, useParams } from "react-router-dom";
+
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import connexion from "../services/connexion";
 
@@ -47,13 +48,9 @@ function JobCard({ job, cardStyle, refresh }) {
             type="button"
             aria-label="Add to favorites"
             className="fav-button"
-            onClick={() => manageFavorites(job.job_id)}
+            onClick={() => manageFavorites(job.id)}
           >
-            {favorites.includes(job.job_id) ? (
-              <IoIosHeart />
-            ) : (
-              <IoIosHeartEmpty />
-            )}
+            {favorites.includes(job.id) ? <IoIosHeart /> : <IoIosHeartEmpty />}
           </button>
         )}
       </div>
