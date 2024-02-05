@@ -24,7 +24,6 @@ function NavBar() {
       ) : (
         ""
       )}
-
       <div className="button-candidat">
         {connected.role_id && (
           <Link className="button-connect" to="/account">
