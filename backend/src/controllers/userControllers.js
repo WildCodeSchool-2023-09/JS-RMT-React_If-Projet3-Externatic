@@ -132,6 +132,18 @@ const updateProfileCV = async (req, res, next) => {
   }
 };
 
+const updateUser = async (req, res, next) => {
+  try {
+    const userData = req.body;
+
+    await tables.user.update(userData);
+
+    res.status(203).json("User updated successfully");
+  } catch (err) {
+    next(err);
+  }
+};
+
 // The R of BREAD - Read operation
 const read = async (req, res, next) => {
   try {
@@ -141,19 +153,6 @@ const read = async (req, res, next) => {
     } else {
       res.status(200).json(user);
     }
-  } catch (err) {
-    next(err);
-  }
-};
-
-// The E of BREAD - Edit (Update) operation
-const updateUser = async (req, res, next) => {
-  try {
-    const userData = req.body;
-
-    await tables.user.update(userData);
-
-    res.status(200).json("User updated successfully");
   } catch (err) {
     next(err);
   }
