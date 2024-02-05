@@ -67,7 +67,7 @@ function AdminUserCard({ element, specific, setSpecific, roles, route }) {
     <div className="admin-user-card">
       <div className="user-info">
         <div>
-          {element.firstname}prenom <br /> {element.lastname}nom <br />{" "}
+          {element.firstname} <br /> {element.lastname} <br />
           {element.email}
         </div>
       </div>

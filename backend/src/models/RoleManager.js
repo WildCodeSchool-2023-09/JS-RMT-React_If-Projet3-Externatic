@@ -1,59 +1,59 @@
 const AbstractManager = require("./AbstractManager");
 
-class ItemManager extends AbstractManager {
+class RoleManager extends AbstractManager {
   constructor() {
     // Call the constructor of the parent class (AbstractManager)
-    // and pass the table name "item" as configuration
+    // and pass the table name "role" as configuration
     super({ table: "role" });
   }
 
   // The C of CRUD - Create operation
 
-  async create(item) {
-    // Execute the SQL INSERT query to add a new item to the "item" table
+  async create(role) {
+    // Execute the SQL INSERT query to add a new role to the "role" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (title) values (?)`,
-      [item.title]
+      `insert into ${this.table} (label) values (?)`,
+      [role.label]
     );
 
-    // Return the ID of the newly inserted item
+    // Return the ID of the newly inserted role
     return result.insertId;
   }
 
   // The Rs of CRUD - Read operations
 
   async read(id) {
-    // Execute the SQL SELECT query to retrieve a specific item by its ID
+    // Execute the SQL SELECT query to retrieve a specific role by its ID
     const [rows] = await this.database.query(
       `select * from ${this.table} where id = ?`,
       [id]
     );
 
-    // Return the first row of the result, which represents the item
+    // Return the first row of the result, which represents the role
     return rows[0];
   }
 
   async readAll() {
-    // Execute the SQL SELECT query to retrieve all items from the "item" table
+    // Execute the SQL SELECT query to retrieve all roles from the "role" table
     const [rows] = await this.database.query(`select * from ${this.table}`);
 
-    // Return the array of items
+    // Return the array of roles
     return rows;
   }
 
   // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing item
+  // TODO: Implement the update operation to modify an existing role
 
-  // async update(item) {
+  // async update(role) {
   //   ...
   // }
 
   // The D of CRUD - Delete operation
-  // TODO: Implement the delete operation to remove an item by its ID
+  // TODO: Implement the delete operation to remove an role by its ID
 
   // async delete(id) {
   //   ...
   // }
 }
 
-module.exports = ItemManager;
+module.exports = RoleManager;

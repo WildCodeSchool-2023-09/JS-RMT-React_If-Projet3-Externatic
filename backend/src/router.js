@@ -25,8 +25,8 @@ router.get("/locations", jobControllers.getLocations);
 router.get("/languages", jobControllers.getLanguages);
 router.get("/companies", companyControllers.browse);
 router.get("/consultants", userControllers.getConsultant);
-router.get("/roles", roleControllers.browse);
-router.get("/candidates", userControllers.getCandidates);
+router.get("/roles", checkAdmin, roleControllers.browse);
+router.get("/candidates", checkAdmin, userControllers.getCandidates);
 
 // Route to get a specific item by ID
 
@@ -37,7 +37,7 @@ router.get("/companies/:id", companyControllers.read);
 router.get("/companies/:id/jobs", jobControllers.readByCompany);
 router.get("/companies/:id/jobs/:id", jobControllers.readByCompanyJob);
 router.get("/profile", checkCredentials, userControllers.getProfile);
-router.get("/roles/:id", roleControllers.read);
+router.get("/roles/:id", checkAdmin, roleControllers.read);
 router.get("/users/:id", userControllers.read);
 
 // Route to add a new item
