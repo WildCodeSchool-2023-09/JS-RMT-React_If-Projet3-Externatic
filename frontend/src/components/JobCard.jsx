@@ -1,10 +1,5 @@
 import PropTypes from "prop-types";
-import {
-  Link,
-  useParams,
-  useSearchParams,
-  useNavigate,
-} from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import connexion from "../services/connexion";
 
@@ -12,13 +7,11 @@ import "./JobCard.css";
 import { useJobContext } from "../contexts/context";
 import { useAuthContext } from "../contexts/auth";
 
-function JobCard({ job, cardStyle }) {
+function JobCard({ job, cardStyle, refresh }) {
   const { favorites, manageFavorites } = useJobContext();
   const { connected } = useAuthContext();
   const { companyId } = useParams();
-  const navigate = useNavigate();
 
-  const [searchParams] = useSearchParams();
   const dateDiffInDaysFromToday = (date) => {
     const targetDate = new Date(date);
     const today = new Date();
@@ -26,33 +19,10 @@ function JobCard({ job, cardStyle }) {
     return Math.abs(Math.ceil((targetDate - today) / (24 * 60 * 60 * 1000)));
   };
 
-  const getLocation = (location) => {
-    return `&location=${location}`;
-  };
-
-  const getLanguage = (language) => {
-    return `&language=${language}`;
-  };
-
-  const getSearch = (search) => {
-    return `&search=${search}`;
-  };
-
-  const handleClick = () => {
-    const location = searchParams.get("location");
-    const language = searchParams.get("language");
-    const search = searchParams.get("search");
-    navigate(
-      `?${location ? getLocation(location) : ""}${
-        language ? getLanguage(language) : ""
-      }${search ? getSearch(search) : ""}`
-    );
-  };
-
   const deleteJob = async () => {
     try {
-      await connexion.delete(`jobs/${job.id}`);
-      handleClick();
+      await connexion.delete(`jobs/${job.job_id}`);
+      refresh();
     } catch (error) {
       console.error(error);
     }
@@ -60,25 +30,33 @@ function JobCard({ job, cardStyle }) {
 
   return (
     <div className={cardStyle}>
-      {connected.role_id === 2 ? (
-        <button type="button" onClick={deleteJob}>
-          Supprimer
-        </button>
-      ) : (
-        <div className={`${cardStyle}-header`}>
-          <Link to={`/consultants/company/${companyId}/jobs/${job.job_id}`}>
-            <h3 className={`${cardStyle}-title`}>{job.title}</h3>
-          </Link>
+      <div className={`${cardStyle}-header`}>
+        <Link to={`/consultants/company/${companyId}/jobs/${job.job_id}`}>
+          <h3 className={`${cardStyle}-title`}>{job.title}</h3>
+        </Link>
+        {connected.role_id === 2 ? (
+          <button
+            className="connection-button"
+            type="button"
+            onClick={deleteJob}
+          >
+            Supprimer
+          </button>
+        ) : (
           <button
             type="button"
             aria-label="Add to favorites"
             className="fav-button"
-            onClick={() => manageFavorites(job.id)}
+            onClick={() => manageFavorites(job.job_id)}
           >
-            {favorites.includes(job.id) ? <IoIosHeart /> : <IoIosHeartEmpty />}
+            {favorites.includes(job.job_id) ? (
+              <IoIosHeart />
+            ) : (
+              <IoIosHeartEmpty />
+            )}
           </button>
-        </div>
-      )}
+        )}
+      </div>
       <div className={`${cardStyle}-body`}>
         <div className={`${cardStyle}-requirement`}>
           <p className="job-card-language">{job.language}</p>
@@ -117,6 +95,7 @@ JobCard.propTypes = {
     contract_type: PropTypes.string.isRequired,
   }).isRequired,
   cardStyle: PropTypes.string.isRequired,
+  refresh: PropTypes.func.isRequired,
 };
 
 export default JobCard;
