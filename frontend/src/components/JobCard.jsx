@@ -1,10 +1,12 @@
 import PropTypes from "prop-types";
+
 import {
   Link,
   useParams,
   useSearchParams,
   useNavigate,
 } from "react-router-dom";
+
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
 import connexion from "../services/connexion";
 
@@ -17,7 +19,6 @@ function JobCard({ job, cardStyle }) {
   const { connected } = useAuthContext();
   const { companyId } = useParams();
   const navigate = useNavigate();
-
   const [searchParams] = useSearchParams();
   const dateDiffInDaysFromToday = (date) => {
     const targetDate = new Date(date);
@@ -63,6 +64,17 @@ function JobCard({ job, cardStyle }) {
       {connected.role_id === 2 ? (
         <button type="button" onClick={deleteJob}>
           Supprimer
+      <div className={`${cardStyle}-header`}>
+        <Link to={`/jobs/${job.id}`}>
+          <h3 className={`${cardStyle}-title`}>{job.title}</h3>
+        </Link>
+        <button
+          type="button"
+          aria-label="Add to favorites"
+          className="fav-button"
+          onClick={() => manageFavorites(job.id)}
+        >
+          {favorites.includes(job.id) ? <IoIosHeart /> : <IoIosHeartEmpty />}
         </button>
       ) : (
         <div className={`${cardStyle}-header`}>

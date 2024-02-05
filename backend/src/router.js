@@ -25,10 +25,13 @@ router.get("/companies", companyControllers.browse);
 router.get("/consultants", userControllers.getConsultant);
 
 // Route to get a specific item by ID
+
+// router.get("/items/:id", itemControllers.read);
+router.get("/jobs/:id", jobControllers.read);
 router.get("/items/:id", itemControllers.read);
 router.get("/companies/:id", companyControllers.read);
 router.get("/companies/:id/jobs", jobControllers.readByCompany);
-router.get("/jobs/:id", jobControllers.readByCompanyJob);
+router.get("/companies/:id/jobs/:id", jobControllers.readByCompanyJob);
 router.get("/users/profile", checkCredentials, userControllers.getProfile);
 
 // Route to add a new item

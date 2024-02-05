@@ -8,6 +8,8 @@ import "../components/reusable/button.css";
 import "../components/reusable/formInput.css";
 
 const user = {
+  firstname: "",
+  lastname: "",
   email: "",
   password: "",
 };
@@ -64,6 +66,30 @@ function FormRegister() {
           <form onSubmit={handleRequest} className="form-connection">
             <div className="form-alllabel">
               <label>
+                Prénom :
+                <input
+                  className="label-form"
+                  type="text"
+                  name="firstname"
+                  required
+                  onChange={handleCredentials}
+                  value={credentials.firstname}
+                  placeholder="Prénom"
+                />
+              </label>
+              <label>
+                Nom :
+                <input
+                  className="label-form"
+                  type="text"
+                  name="lastname"
+                  required
+                  onChange={handleCredentials}
+                  value={credentials.lastname}
+                  placeholder="Nom"
+                />
+              </label>
+              <label>
                 Email:
                 <input
                   className="label-form"
@@ -99,7 +125,7 @@ function FormRegister() {
                   placeholder="Confirm Password"
                 />
               </label>
-            </div>{" "}
+            </div>
             {errorMessage && (
               <p className="validate-password" style={{ color: "red" }}>
                 {errorMessage}

@@ -5,7 +5,7 @@ import "./NavBar.css";
 import externatic from "../public/externatic.png";
 
 function NavBar() {
-  const { connected } = useAuthContext();
+  const { connected, logout } = useAuthContext();
   return (
     <div className="navbar">
       <Link to="/">
@@ -24,9 +24,16 @@ function NavBar() {
       ) : (
         ""
       )}
-      <Link className="button-connect" to="/login">
-        Se connecter
-      </Link>
+      <div className="button-candidat">
+        <Link className="button-connect" to="/login">
+          Se connecter
+        </Link>
+        {connected.role_id && (
+          <button type="button" className="button-connect" onClick={logout}>
+            deconnexion
+          </button>
+        )}
+      </div>
     </div>
   );
 }
