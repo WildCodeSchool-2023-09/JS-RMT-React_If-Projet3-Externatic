@@ -14,6 +14,7 @@ const companyControllers = require("./controllers/companyControllers");
 const roleControllers = require("./controllers/roleControllers");
 
 const checkCredentials = require("./middleware/checkCredentials");
+const checkAdmin = require("./middleware/checkAdmin");
 
 const validateUser = require("./validators/validateUser");
 const validateCompany = require("./validators/validateCompany");
@@ -23,6 +24,8 @@ router.get("/locations", jobControllers.getLocations);
 router.get("/languages", jobControllers.getLanguages);
 router.get("/companies", companyControllers.browse);
 router.get("/consultants", userControllers.getConsultant);
+router.get("/roles", roleControllers.browse);
+router.get("/candidates", userControllers.getCandidates);
 
 // Route to get a specific item by ID
 router.get("/items/:id", itemControllers.read);
@@ -30,7 +33,6 @@ router.get("/companies/:id", companyControllers.read);
 router.get("/companies/:id/jobs", jobControllers.readByCompany);
 router.get("/jobs/:id", jobControllers.readByCompanyJob);
 router.get("/users/profile", checkCredentials, userControllers.getProfile);
-router.get("/roles", roleControllers.browse);
 router.get("/roles/:id", roleControllers.read);
 router.get("/users/:id", userControllers.read);
 
@@ -43,13 +45,18 @@ router.post("/login", validateUser, userControllers.login);
 router.get("/jobs/all/latest", jobControllers.browseLatest);
 router.post("/register", validateUser, userControllers.add);
 
-router.post("/companies", validateCompany, companyControllers.add);
-router.put("/companies/:id", validateCompany, companyControllers.edit);
+router.post("/companies", checkAdmin, validateCompany, companyControllers.add);
+router.put(
+  "/companies/:id",
+  checkAdmin,
+  validateCompany,
+  companyControllers.edit
+);
 
-router.delete("/companies/:id", checkCredentials, companyControllers.destroy);
-router.delete("/consultants/:id", checkCredentials, userControllers.destroy);
+router.delete("/companies/:id", checkAdmin, companyControllers.destroy);
+router.delete("/consultants/:id", checkAdmin, userControllers.destroy);
 
-router.put("/users/:id", userControllers.updateUser);
+router.put("/users/:id", checkAdmin, userControllers.updateUser);
 
 /* ************************************************************************* */
 

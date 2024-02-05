@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import AdminCompanyCard from "./AdminCompanyCard";
 import AdminUserCard from "./AdminUserCard";
 
-function AdminCard({ route, element, specific, setSpecific }) {
+function AdminCard({ route, element, specific, setSpecific, roles }) {
   return (
     <div className="admin-card">
       {route === "/companies" && (
@@ -14,11 +14,13 @@ function AdminCard({ route, element, specific, setSpecific }) {
           setSpecific={setSpecific}
         />
       )}
-      {route === "/consultants" && (
+      {route !== "/companies" && (
         <AdminUserCard
           element={element}
           specific={specific}
           setSpecific={setSpecific}
+          roles={roles}
+          route={route}
         />
       )}
     </div>
@@ -27,9 +29,15 @@ function AdminCard({ route, element, specific, setSpecific }) {
 
 AdminCard.propTypes = {
   route: PropTypes.string.isRequired,
-  element: PropTypes.objectOf(PropTypes.string).isRequired,
-  specific: PropTypes.arrayOf(PropTypes.string).isRequired,
+  element: PropTypes.shape().isRequired,
+  specific: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   setSpecific: PropTypes.func.isRequired,
+  roles: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
 };
 
 export default AdminCard;

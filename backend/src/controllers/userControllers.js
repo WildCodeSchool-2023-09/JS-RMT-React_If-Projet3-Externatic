@@ -16,6 +16,18 @@ const getConsultant = async (req, res, next) => {
   }
 };
 
+const getCandidates = async (req, res, next) => {
+  try {
+    // Fetch all items from the database
+    const candidates = await tables.user.readAllCandidates();
+
+    // Respond with the items in JSON format
+    res.status(200).json(candidates);
+  } catch (err) {
+    next(err);
+  }
+};
+
 // The B of BREAD - Browse (Read All) operation
 
 /*
@@ -149,6 +161,7 @@ module.exports = {
   getConsultant,
   updateUser,
   read,
+  getCandidates,
   // edit,
   // add,
   // browse,

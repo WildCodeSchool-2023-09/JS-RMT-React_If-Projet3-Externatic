@@ -4,6 +4,8 @@ import PropTypes from "prop-types";
 
 import connexion from "../../services/connexion";
 
+import "./AdminCompanyCard.css";
+
 function AdminCompanyCard({ element, specific, setSpecific }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -11,8 +13,8 @@ function AdminCompanyCard({ element, specific, setSpecific }) {
   const handleDeleteClick = async (id) => {
     try {
       await connexion.delete(`/companies/${id}`);
-      const updatedElement = specific.filter((item) => item.id !== id);
-      setSpecific(updatedElement);
+      const updatedSpecific = specific.filter((item) => item.id !== id);
+      setSpecific(updatedSpecific);
     } catch (err) {
       console.error(err);
     }
@@ -20,7 +22,15 @@ function AdminCompanyCard({ element, specific, setSpecific }) {
 
   return (
     <div className="admin-company-card">
-      <div className="admin-card-buttons-container">
+      <div className="admin-company-img-container">
+        <img
+          src={element.image_url}
+          alt={element.name}
+          className="company-img"
+        />
+      </div>
+
+      <div className="admin-company-buttons-container">
         <button
           type="button"
           className="connection-button admin-button"
@@ -33,21 +43,16 @@ function AdminCompanyCard({ element, specific, setSpecific }) {
           className="connection-button admin-button"
           onClick={() => navigate(`${location.pathname}/${element.id}`)}
         >
-          Editer
+          Modifier
         </button>
       </div>
-      <img
-        src={element.image_url}
-        alt={element.name}
-        className="compagny-img"
-      />
     </div>
   );
 }
 
 AdminCompanyCard.propTypes = {
-  element: PropTypes.objectOf(PropTypes.string).isRequired,
-  specific: PropTypes.arrayOf(PropTypes.string).isRequired,
+  element: PropTypes.shape().isRequired,
+  specific: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   setSpecific: PropTypes.func.isRequired,
 };
 

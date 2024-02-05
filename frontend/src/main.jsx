@@ -109,6 +109,12 @@ const router = createBrowserRouter([
               <AdminSpecific pageTitle="consultants" route="/consultants" />
             ),
           },
+          {
+            path: "candidates",
+            element: (
+              <AdminSpecific pageTitle="candidats" route="/candidates" />
+            ),
+          },
         ],
       },
     ],

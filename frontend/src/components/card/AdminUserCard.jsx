@@ -1,61 +1,25 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 
 import connexion from "../../services/connexion";
 
-function AdminUserCard({ element, specific, setSpecific }) {
-  const [roles, setRoles] = useState([]);
-  const [userRole, setUserRole] = useState("");
-  const [user, setUser] = useState();
+import "./AdminUserCard.css";
 
-  const getRoles = async () => {
+function AdminUserCard({ element, specific, setSpecific, roles, route }) {
+  const [user, setUser] = useState(element);
+
+  const handleDeleteClick = async () => {
     try {
-      const response = await connexion.get("/roles");
-      setRoles(response.data);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const getRoleById = async () => {
-    try {
-      const response = await connexion.get(`/roles/${element.role_id}`);
-      setUserRole(response.data.label);
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  const getUserInfo = async () => {
-    try {
-      const response = await connexion.get(`/users/${element.id}`);
-      setUser(() => {
-        return response.data;
-      });
-    } catch (err) {
-      console.error(err);
-    }
-  };
-
-  useEffect(() => {
-    getRoles();
-    getRoleById();
-    getUserInfo();
-  }, []);
-
-  const handleDeleteClick = async (id) => {
-    try {
-      await connexion.delete(`/users/${id}`);
-      const updatedElement = specific.filter((item) => item.id !== id);
-      setSpecific(updatedElement);
+      await connexion.delete(`/users/${element.id}`);
+      const updatedSpecific = specific.filter((item) => item.id !== element.id);
+      setSpecific(updatedSpecific);
     } catch (err) {
       console.error(err);
     }
   };
 
   const handleRoleChange = (selectedRole) => {
-    setUserRole(selectedRole.label);
     setUser((prevUser) => ({
       ...prevUser,
       role_id: roles.find((role) => role.label === selectedRole.label)?.id,
@@ -65,49 +29,91 @@ function AdminUserCard({ element, specific, setSpecific }) {
   const handleValidationRoleChange = async () => {
     try {
       await connexion.put(`/users/${element.id}`, user);
+      const updatedSpecific = await connexion.get(route);
+      setSpecific(updatedSpecific.data);
     } catch (err) {
       console.error(err);
     }
   };
 
+  const colorStyles = {
+    control: (styles, { isSelected, isFocused }) => ({
+      ...styles,
+      backgroundColor: "white",
+      borderColor: isSelected || isFocused ? "#ca2061" : "black",
+      boxShadow: "none",
+      ":hover": { borderColor: "#ca2061" },
+    }),
+    clearIndicator: (styles) => ({
+      ...styles,
+      cursor: "pointer",
+      ":hover": { color: "red" },
+    }),
+    dropdownIndicator: (styles) => ({
+      ...styles,
+      cursor: "pointer",
+    }),
+    option: (styles, { isFocused }) => {
+      return {
+        ...styles,
+        backgroundColor: isFocused ? "#ca2061" : "white",
+        color: isFocused ? "white" : "black",
+        cursor: isFocused ? "pointer" : "default",
+      };
+    },
+  };
+
   return (
-    <div className="admin-company-card">
-      <div className="admin-card-buttons-container">
+    <div className="admin-user-card">
+      <div className="user-info">
+        <div>
+          {element.firstname}prenom <br /> {element.lastname}nom <br />{" "}
+          {element.email}
+        </div>
+      </div>
+
+      <div className="admin-user-buttons-container">
+        <div className="change-role">
+          <Select
+            options={roles}
+            value={roles.find(
+              (role) => role.id === (!user ? element.role_id : user.role_id)
+            )}
+            onChange={handleRoleChange}
+            placeholder="Role"
+            styles={colorStyles}
+          />
+          <button
+            type="button"
+            className="connection-button admin-button"
+            onClick={handleValidationRoleChange}
+          >
+            Valider rôle
+          </button>
+        </div>
         <button
           type="button"
           className="connection-button admin-button"
-          onClick={() => handleDeleteClick(element.id)}
+          onClick={handleDeleteClick}
         >
           Supprimer
         </button>
-        <Select
-          options={roles}
-          value={roles.find(
-            (role) => role.id === (!user ? element.role_id : user.role_id)
-          )}
-          onChange={handleRoleChange}
-          placeholder="Role"
-        />
-        <button
-          type="button"
-          className="connection-button admin-button"
-          onClick={handleValidationRoleChange}
-        >
-          Valider
-        </button>
-      </div>
-      <div>
-        {element.firstname} <br /> {element.lastname} <br /> {element.email}
-        <br /> {element.role_id} <br /> {userRole}
       </div>
     </div>
   );
 }
 
 AdminUserCard.propTypes = {
-  element: PropTypes.objectOf(PropTypes.string).isRequired,
-  specific: PropTypes.arrayOf(PropTypes.string).isRequired,
+  element: PropTypes.shape().isRequired,
+  specific: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   setSpecific: PropTypes.func.isRequired,
+  roles: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      label: PropTypes.string.isRequired,
+    })
+  ).isRequired,
+  route: PropTypes.string.isRequired,
 };
 
 export default AdminUserCard;

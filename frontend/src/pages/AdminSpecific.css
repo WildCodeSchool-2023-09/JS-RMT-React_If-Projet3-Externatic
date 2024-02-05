@@ -24,24 +24,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 100%;
   height: auto;
   border: 1px solid black;
-}
-
-.admin-card-buttons-container {
-  display: flex;
-  flex-direction: row;
-  width: 100%;
-  justify-content: space-evenly;
-}
-
-.compagny-img {
-  margin: auto auto;
-  width: 12rem;
-}
-
-.admin-button {
-  margin-top: 0.5rem;
-  height: 1.5rem;
-  width: 6rem;
 }
