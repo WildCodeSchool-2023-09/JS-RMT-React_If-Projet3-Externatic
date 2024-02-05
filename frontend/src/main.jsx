@@ -20,7 +20,6 @@ import ConsultantJobOffre from "./pages/consultant/ConsultantJobOffre";
 import AdminPage from "./pages/AdminPage";
 import AdminSpecific from "./pages/AdminSpecific";
 import FormCompany from "./pages/FormCompany";
-// import AdminJobDelete from "./pages/AdminJobDelete";
 
 const router = createBrowserRouter([
   {
