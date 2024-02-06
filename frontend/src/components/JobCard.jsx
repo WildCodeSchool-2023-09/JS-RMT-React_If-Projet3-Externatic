@@ -35,7 +35,7 @@ function JobCard({ job, cardStyle, refresh }) {
         <Link to={`/consultants/company/${companyId}/jobs/${job.job_id}`}>
           <h3 className={`${cardStyle}-title`}>{job.title}</h3>
         </Link>
-        {connected.role_id === 2 ? (
+        {connected.role_id !== 1 ? (
           <button
             className="connection-button"
             type="button"
