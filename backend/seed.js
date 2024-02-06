@@ -9,6 +9,7 @@ const role = require("./database/data/role.json");
 const company = require("./database/data/company.json");
 const applicationStatus = require("./database/data/applicationStatus.json");
 const job = require("./database/data/job.json");
+const user = require("./database/data/user.json");
 
 const seed = async () => {
   try {
@@ -29,6 +30,23 @@ const seed = async () => {
       );
     }
     await Promise.all(applicationStatusQuery);
+
+    const userQuery = [];
+    for (let i = 0; i < user.length; i += 1) {
+      userQuery.push(
+        database.query(
+          "insert into user(lastname, firstname, email, password, role_id) values (?, ?, ?, ?, ?)",
+          [
+            user[i].lastname,
+            user[i].firstname,
+            user[i].email,
+            user[i].password,
+            user[i].role_id,
+          ]
+        )
+      );
+    }
+    await Promise.all(userQuery);
 
     const companyQuery = [];
     for (let i = 0; i < company.length; i += 1) {
