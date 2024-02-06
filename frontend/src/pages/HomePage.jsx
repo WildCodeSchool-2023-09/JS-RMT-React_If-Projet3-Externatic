@@ -25,7 +25,7 @@ function HomePage() {
             plus qu'un cabinet de recrutement informatique
           </h2>
         </p>
-        <SearchBar />
+        <SearchBar page="home" />
       </div>
       <div className="red-line" />
       <Carousel jobs={allJobsData} />

@@ -1,3 +1,4 @@
+-- SQLBook: Code
 CREATE TABLE role (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   label VARCHAR(50) NOT NULL
@@ -10,16 +11,17 @@ CREATE TABLE user (
   email VARCHAR(255) NOT NULL unique,
   password VARCHAR(255) NOT NULL,
   created_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    status VARCHAR(255),
-  phone_number VARCHAR(10),
+  status VARCHAR(255),
+  phone_number INTEGER(10),
   city VARCHAR(200),
   employment_type VARCHAR(45),
-    experience varchar(30),
+  experience varchar(30),
   diploma varchar(30),
   url VARCHAR(255),
   role_id INTEGER NOT NULL DEFAULT 1,
   FOREIGN KEY (role_id) REFERENCES role(id) ON DELETE CASCADE
 );
+
 CREATE TABLE company (
   id INTEGER PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(255) NOT NULL,

@@ -39,6 +39,13 @@
   border-radius: 5px;
 }
 
+.filters-search-bar {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+}
+
+
 @media only screen and (max-width: 820px) {
   .all-jobs-page-tutorial {
     width: 150%;
