@@ -21,7 +21,9 @@ function HomePage() {
       <div className="search-area">
         <p className="title">
           <h1 className="externatic-red">Externatic,</h1>
-          <h2>plus qu'un cabinet de recrutement informatique</h2>
+          <h2 className="subtitle-externatic-red">
+            plus qu'un cabinet de recrutement informatique
+          </h2>
         </p>
         <SearchBar />
       </div>
@@ -37,16 +39,16 @@ function HomePage() {
         <div className="bar-arrow-container">
           <img className="bar-arrow" src={bararrow} alt="bar-arrow" />
           <div className="small-image-container small-image-1">
-            <img src={succes} alt="Success" />
+            <img src={succes} alt="Success" className="img-home-small" />
           </div>
           <div className="small-image-container small-image-2">
-            <img src={offer} alt="Offer" />
+            <img src={offer} alt="Offer" className="img-home-small" />
           </div>
           <div className="small-image-container small-image-3">
-            <img src={network} alt="Network" />
+            <img src={network} alt="Network" className="img-home-small" />
           </div>
           <div className="small-image-container small-image-4">
-            <img src={free} alt="Free" />
+            <img src={free} alt="Free" className="img-home-small" />
           </div>
         </div>
       </div>
