@@ -2,16 +2,16 @@ import React from "react";
 import { useLoaderData, Link } from "react-router-dom";
 import Carousel from "../components/CarouselJobs";
 import "./HomePage.css";
-import bararrow from "../public/Group 102.png";
-import succes from "../public/Group 90.png";
-import offer from "../public/Group 91.png";
-import network from "../public/Group 92.png";
-import free from "../public/Group 93.png";
+import bararrow from "../assets/Group102.png";
+import succes from "../assets/Group90.png";
+import offer from "../assets/Group91.png";
+import network from "../assets/Group92.png";
+import free from "../assets/Group93.png";
 import SearchBar from "../components/SearchBar";
 import CarouselCompanies from "../components/CarouselCompanies";
-import account from "../public/Group 103.png";
-import post from "../public/Group 104.png";
-import consul from "../public/Group 105.png";
+import account from "../assets/Group103.png";
+import post from "../assets/Group104.png";
+import consul from "../assets/Group105.png";
 
 function HomePage() {
   const allJobsData = useLoaderData();
