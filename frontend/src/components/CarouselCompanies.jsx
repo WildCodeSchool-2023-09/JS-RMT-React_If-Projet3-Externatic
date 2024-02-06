@@ -7,11 +7,20 @@ import "slick-carousel/slick/slick-theme.css";
 import "./CarouselCompanies.css";
 
 function CarouselCompanies() {
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+  function updateDimension() {
+    setWindowSize(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", updateDimension);
+  }, []);
+
   const settings = {
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: 4,
+    slidesToShow: windowSize > 820 ? 4 : 2,
     initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 4000,
