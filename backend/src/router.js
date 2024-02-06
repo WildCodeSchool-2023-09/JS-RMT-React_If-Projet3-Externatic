@@ -15,6 +15,7 @@ const roleControllers = require("./controllers/roleControllers");
 
 const checkCredentials = require("./middleware/checkCredentials");
 const checkAdmin = require("./middleware/checkAdmin");
+const checkCredentialsConsultant = require("./middleware/checkCredentialsConsultant");
 
 const validateUser = require("./validators/validateUser");
 const validateAccount = require("./validators/validateAccount");
@@ -51,6 +52,8 @@ router.post("/register", validateUser, userControllers.add);
 
 router.post("/companies", checkAdmin, validateCompany, companyControllers.add);
 
+router.delete("/jobs/:id", checkCredentialsConsultant, jobControllers.destroy);
+
 router.put(
   "/companies/:id",
   checkAdmin,
@@ -78,7 +81,6 @@ router.put(
   upload.single("file"),
   userControllers.updateProfileCV
 );
-
 /* ************************************************************************* */
 
 module.exports = router;

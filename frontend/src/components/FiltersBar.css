@@ -1,7 +1,7 @@
 .filters-bar {
   display: flex;
   flex-direction: row;
-  width: 80%;
-  align-items: center;
+  width: 60%;
+  justify-items: center;
   justify-content: space-evenly;
 }
