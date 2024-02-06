@@ -2,7 +2,7 @@ import React, { useRef } from "react";
 import { useLoaderData } from "react-router-dom";
 
 import Modal from "./modal";
-import "../styles/headJobs.css";
+import "./headJobs.css";
 
 function formatDate(time) {
   return time.split("T")[0];
