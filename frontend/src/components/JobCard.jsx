@@ -13,7 +13,7 @@ function JobCard({ job, cardStyle, refresh }) {
   const { connected } = useAuthContext();
   const { companyId } = useParams();
 
-  const access = connected.role !== 2 && connected.role !== 3;
+  const access = connected.role_id === 2 || connected.role_id === 3;
 
   const dateDiffInDaysFromToday = (date) => {
     const targetDate = new Date(date);
@@ -37,8 +37,8 @@ function JobCard({ job, cardStyle, refresh }) {
         <Link
           to={
             access
-              ? `/jobs/${job.id}`
-              : `/consultants/company/${companyId}/jobs/${job.job_id}`
+              ? `/consultants/company/${companyId}/jobs/${job.job_id}`
+              : `/jobs/${job.id}`
           }
         >
           <h3 className={`${cardStyle}-title`}>{job.title}</h3>
