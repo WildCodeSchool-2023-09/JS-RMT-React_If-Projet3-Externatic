@@ -40,6 +40,7 @@
   margin-bottom: 100px;
   font-weight: bolder;
   color: #fc005b;
+  font-size: 35px;
 }
 
 .small-image-container {
@@ -124,6 +125,7 @@
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
+  box-shadow: 0px 7px 18px 0px #fc005b;
 }
 
 .title {
@@ -140,7 +142,41 @@
 }
 
 .red-line {
-  background-color: var(--main-red);
-  height: 0.2rem;
-  margin-bottom: 10px;
+  box-shadow: 0px 7px 18px 0px rgba(196, 17, 135, 0.75);
+}
+
+@media only screen and (max-width: 820px) {
+  .small-image-1 {
+    left: 33%;
+    transform: translateX(-50%);
+  }
+
+  .img-home-small {
+    width: auto;
+    height: 150px;
+    margin-top: 40px;
+  }
+
+  .small-image-2 {
+    left: 67%;
+    transform: translateX(-50%);
+  }
+
+  .small-image-3 {
+    left: 34%;
+    transform: translateX(-50%);
+  }
+
+  .small-image-4 {
+    left: 68%;
+    transform: translateX(-50%);
+  }
+
+  .subtitle-externatic-red {
+    font-size: 25px;
+  }
+
+  .externatic-red {
+    font-size: 45px;
+  }
 }
