@@ -1,6 +1,8 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
+import { FiPlus, FiMinus } from "react-icons/fi";
+
 import "./Collapser.css";
 
 function Collapser({ title, content }) {
@@ -18,7 +20,11 @@ function Collapser({ title, content }) {
         onClick={handleToggle}
         aria-expanded={isOpen}
       >
-        {title}
+        {" "}
+        <div className="button-content">
+          <h3 className="collapser-title">{title}</h3>
+          {isOpen ? <FiMinus /> : <FiPlus />}
+        </div>
       </button>
       {isOpen && <div className="collapser-content">{content}</div>}
     </div>

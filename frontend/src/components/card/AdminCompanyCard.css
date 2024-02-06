@@ -1,0 +1,28 @@
+.admin-company-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+}
+
+.admin-company-img-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.company-img {
+  height: 10rem;
+}
+
+.admin-company-buttons-container {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.admin-button {
+  margin-top: 0.5rem;
+  height: 1.5rem;
+  width: 6rem;
+}

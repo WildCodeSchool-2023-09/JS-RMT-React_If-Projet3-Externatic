@@ -43,6 +43,14 @@ class UserManager extends AbstractManager {
     return rows;
   }
 
+  async readAllCandidates() {
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where role_id = 1`
+    );
+
+    return rows;
+  }
+
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing consultant/user
 
@@ -59,6 +67,15 @@ class UserManager extends AbstractManager {
   }
 
   // The Rs of CRUD - Read operations
+  async read(id) {
+    // Execute the SQL SELECT query to retrieve a specific user by its ID
+    const [rows] = await this.database.query(
+      `select * from ${this.table} where id = ?`,
+      [id]
+    );
+    // Return the first row of the result, which represents the user
+    return rows[0];
+  }
 
   async readByEmail(email) {
     // Execute the SQL SELECT query to retrieve a specific user by its ID
@@ -82,7 +99,7 @@ class UserManager extends AbstractManager {
     return rows[0];
   }
 
-  async update(id, userData) {
+  async updateProfile(id, userData) {
     // Execute the SQL UPDATE query to update the user in the "user" table
     await this.database.query(
       `update ${this.table} set firstname = ?, lastname = ?, email = ?, phone_number = ?, city = ?, employment_type = ?, experience = ?, diploma = ?, status = ? , url = ? where id = ?`,
@@ -121,15 +138,41 @@ class UserManager extends AbstractManager {
   } */
 
   // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing user
+  async update(userData) {
+    // Execute the SQL UPDATE query to update the user in the "user" table
+    await this.database.query(
+      `update ${this.table} set firstname = ?, lastname = ?, email = ?, role_id = ?,  phone_number = ?, city = ?, employment_type = ?, experience = ?, diploma = ?, status = ? , url = ? where id = ?`,
+      [
+        userData.firstname,
+        userData.lastname,
+        userData.email,
+        userData.role_id,
+        userData.phone_number,
+        userData.city,
+        userData.employment_type,
+        userData.experience,
+        userData.diploma,
+        userData.status,
+        userData.url,
+        userData.id,
+      ]
+    );
+  }
 
   // async update(user) {
   //   ...
   // }
 
   // The D of CRUD - Delete operation
-  // TODO: Implement the delete operation to remove an consultant/user by its ID
-  // TODO: Implement the delete operation to remove an user by its ID
+  async delete(id) {
+    const result = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+
+    // Return the first row of the result, which represents the user
+    return result;
+  }
 
   // async delete(id) {
   //   ...
