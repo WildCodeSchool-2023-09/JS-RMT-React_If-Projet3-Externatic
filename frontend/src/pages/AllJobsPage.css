@@ -31,3 +31,9 @@
 .all-jobs-page-tutorial-title {
   color: var(--main-red);
 }
+
+.filters-search-bar {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+}
