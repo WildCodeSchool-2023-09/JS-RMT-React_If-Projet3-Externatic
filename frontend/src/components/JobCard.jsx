@@ -1,12 +1,18 @@
 import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { IoIosHeart, IoIosHeartEmpty } from "react-icons/io";
+import connexion from "../services/connexion";
+
 import "./JobCard.css";
 import { useJobContext } from "../contexts/context";
+import { useAuthContext } from "../contexts/auth";
 
-function JobCard({ job, cardStyle }) {
+function JobCard({ job, cardStyle, refresh }) {
   const { favorites, manageFavorites } = useJobContext();
+  const { connected } = useAuthContext();
+  const { companyId } = useParams();
+
   const dateDiffInDaysFromToday = (date) => {
     const targetDate = new Date(date);
     const today = new Date();
@@ -14,20 +20,39 @@ function JobCard({ job, cardStyle }) {
     return Math.abs(Math.ceil((targetDate - today) / (24 * 60 * 60 * 1000)));
   };
 
+  const deleteJob = async () => {
+    try {
+      await connexion.delete(`jobs/${job.job_id}`);
+      refresh();
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className={cardStyle}>
       <div className={`${cardStyle}-header`}>
-        <Link to={`/jobs/${job.id}`}>
+        <Link to={`/consultants/company/${companyId}/jobs/${job.job_id}`}>
           <h3 className={`${cardStyle}-title`}>{job.title}</h3>
         </Link>
-        <button
-          type="button"
-          aria-label="Add to favorites"
-          className="fav-button"
-          onClick={() => manageFavorites(job.id)}
-        >
-          {favorites.includes(job.id) ? <IoIosHeart /> : <IoIosHeartEmpty />}
-        </button>
+        {connected.role_id === 2 ? (
+          <button
+            className="connection-button"
+            type="button"
+            onClick={deleteJob}
+          >
+            Supprimer
+          </button>
+        ) : (
+          <button
+            type="button"
+            aria-label="Add to favorites"
+            className="fav-button"
+            onClick={() => manageFavorites(job.id)}
+          >
+            {favorites.includes(job.id) ? <IoIosHeart /> : <IoIosHeartEmpty />}
+          </button>
+        )}
       </div>
       <div className={`${cardStyle}-body`}>
         <div className={`${cardStyle}-requirement`}>
@@ -67,6 +92,7 @@ JobCard.propTypes = {
     contract_type: PropTypes.string.isRequired,
   }).isRequired,
   cardStyle: PropTypes.string.isRequired,
+  refresh: PropTypes.func.isRequired,
 };
 
 export default JobCard;
