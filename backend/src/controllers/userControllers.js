@@ -188,6 +188,10 @@ const destroy = async (req, res, next) => {
   }
 };
 
+const logout = (req, res) => {
+  res.cookie("auth", "", { expires: new Date(0) }).sendStatus(200);
+};
+
 // Ready to export the controller functions
 module.exports = {
   getConsultant,
@@ -202,4 +206,5 @@ module.exports = {
   destroy,
   updateProfile,
   updateProfileCV,
+  logout,
 };

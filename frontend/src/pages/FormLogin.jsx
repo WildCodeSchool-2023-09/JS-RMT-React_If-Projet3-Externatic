@@ -30,7 +30,6 @@ function FormLogin() {
     try {
       const valid = await connexion.post("/login", credentials);
       setConnected(valid.data);
-      sessionStorage.setItem("connected", true);
       setTimeout(() => {
         navigate("/");
       }, 1000);

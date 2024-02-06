@@ -31,6 +31,7 @@ function ConsultantJob() {
               job={job}
               refresh={getJobsByCompany}
               cardStyle="job-card"
+              isUserPage={false}
             />
           ))}
         </div>
