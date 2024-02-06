@@ -26,7 +26,7 @@ function SearchBar({ page }) {
       <input
         className={`search-input input-${page}`}
         type="text"
-        placeholder={page !== "job" ? "Un job en particulier ?" : "Rehercher"}
+        placeholder={page !== "job" ? "Un job en particulier ?" : "Rechercher"}
         onChange={handleChange}
         onKeyDown={handleKeyDown}
       />

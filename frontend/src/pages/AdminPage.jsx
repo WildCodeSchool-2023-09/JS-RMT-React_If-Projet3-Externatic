@@ -17,7 +17,7 @@ function AdminPage() {
   }, [connected]);
 
   return (
-    <div>
+    <div className="admin-page">
       <h1 className="admin-title">ADMINISTRATION GLOBALE</h1>
       <AdminNavBar />
       <Outlet />
