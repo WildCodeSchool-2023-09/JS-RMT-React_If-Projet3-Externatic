@@ -61,7 +61,8 @@ function FormRegister() {
 
   return (
     <div>
-      <main className="log-container">
+      <h1 className="login-title">INSCRIPTION</h1>
+      <main className="reg-container">
         <div className="form-container">
           <form onSubmit={handleRequest} className="form-connection">
             <div className="form-alllabel">

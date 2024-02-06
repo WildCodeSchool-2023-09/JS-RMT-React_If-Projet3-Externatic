@@ -42,6 +42,7 @@ function FormLogin() {
 
   return (
     <div>
+      <h1 className="login-title">CONNEXION</h1>
       <main className="log-container">
         <div className="form-container">
           <form onSubmit={handleRequest} className="form-connection">
@@ -70,7 +71,9 @@ function FormLogin() {
               />
             </label>
 
-            <Link to="/register">Crée un compte</Link>
+            <Link to="/register" className="reg-link">
+              Crée un compte
+            </Link>
 
             {errorMessage && (
               <p className="validate-password" style={{ color: "red" }}>
