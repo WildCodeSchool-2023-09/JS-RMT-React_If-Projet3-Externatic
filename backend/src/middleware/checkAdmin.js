@@ -1,9 +1,5 @@
-const { verifyToken } = require("../services/jwt");
-
 const checkAdmin = (req, res, next) => {
-  const decode = verifyToken(req.cookies.auth);
-  if (decode.role_id === 3) {
-    req.user = decode;
+  if (req.user.role_id === 3) {
     next();
   } else {
     res.sendStatus(403);
