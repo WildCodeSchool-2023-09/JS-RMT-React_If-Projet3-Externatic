@@ -18,7 +18,6 @@ export function AuthProvider({ children }) {
 
   function logout() {
     setConnected("not connected");
-    sessionStorage.removeItem("connected");
   }
 
   const contextValue = useMemo(
@@ -26,18 +25,16 @@ export function AuthProvider({ children }) {
     [connected, setConnected]
   );
   useEffect(() => {
-    if (sessionStorage.getItem("connected")) {
-      const getProfile = async () => {
-        try {
-          const profile = await connexion.get(`/users/profile`);
-          setConnected(profile.data);
-        } catch (err) {
-          console.error(err);
-        }
-      };
-      getProfile();
-    }
-  }, [sessionStorage.getItem("connected")]);
+    const getProfile = async () => {
+      try {
+        const profile = await connexion.get(`/users/profile`);
+        setConnected(profile.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getProfile();
+  }, []);
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

@@ -17,6 +17,7 @@ const checkCredentials = require("./middleware/checkCredentials");
 const validateUser = require("./validators/validateUser");
 const validateAccount = require("./validators/validateAccount");
 const validateCompany = require("./validators/validateCompany");
+const validateCV = require("./validators/validateCV");
 
 router.get("/jobs", jobControllers.browse);
 router.get("/locations", jobControllers.getLocations);
@@ -60,6 +61,7 @@ router.put(
   "/curriculum",
   checkCredentials,
   upload.single("file"),
+  validateCV,
   userControllers.updateUserCV
 );
 

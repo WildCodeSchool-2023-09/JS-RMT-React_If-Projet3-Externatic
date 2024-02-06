@@ -63,7 +63,10 @@ const getProfile = async (req, res, next) => {
   try {
     const profile = await tables.user.readProfile(req.user.id);
     res
-      .cookie("auth", createToken(profile), { httpOnly: true })
+      .cookie("auth", createToken(profile), {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      })
       .status(200)
       .json(profile);
   } catch (err) {
