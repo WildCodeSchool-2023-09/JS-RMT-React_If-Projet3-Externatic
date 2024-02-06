@@ -37,7 +37,7 @@ function NavBar() {
         )}
         {connected.role_id && (
           <button type="button" className="button-connect" onClick={logout}>
-            deconnexion
+            Deconnexion
           </button>
         )}
       </div>
