@@ -17,3 +17,8 @@
 .pdf-title {
   margin-top: 50px;
 }
+
+.application-container {
+  display: flex;
+  justify-content: center;
+}

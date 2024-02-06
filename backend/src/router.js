@@ -26,12 +26,7 @@ const validateCompany = require("./validators/validateCompany");
 router.get("/jobs", jobControllers.browse);
 router.get("/locations", jobControllers.getLocations);
 router.get("/languages", jobControllers.getLanguages);
-router.get(
-  "/companies",
-  checkCredentials,
-  checkConsultant,
-  companyControllers.browse
-);
+router.get("/companies", companyControllers.browse);
 router.get(
   "/consultants",
   checkCredentials,

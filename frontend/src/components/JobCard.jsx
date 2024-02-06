@@ -37,8 +37,8 @@ function JobCard({ job, cardStyle, refresh }) {
         <Link
           to={
             access
-              ? `/jobs/${job.id}`
-              : `/consultants/company/${companyId}/jobs/${job.job_id}`
+              ? `/consultants/company/${companyId}/jobs/${job.job_id}`
+              : `/jobs/${job.id}`
           }
         >
           <h3 className={`${cardStyle}-title`}>{job.title}</h3>

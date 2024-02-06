@@ -13,7 +13,7 @@ class ApplicationManager extends AbstractManager {
     // Execute the SQL INSERT query to add a new application to the "application" table
     const [result] = await this.database.query(
       `insert into ${this.table} (user_id, job_id) values (?, ?)`,
-      [application.job_id, application.user_id]
+      [application.user_id, application.job_id]
     );
 
     // Return the ID of the newly inserted application
@@ -41,9 +41,30 @@ class ApplicationManager extends AbstractManager {
     return rows;
   }
 
+  /* async getApplications(userId) {
+    const [rows] = await this.database.query(
+      `SELECT id, job_id from ${this.table} INNER JOIN user ON user.id = ?`,
+      [userId]
+    );
+    return rows;
+  } */
+
   async getApplications(userId) {
     const [rows] = await this.database.query(
-      `SELECT job_id from ${this.table} INNER JOIN user ON user.id = ?`,
+      `SELECT 
+        application.id, 
+        application.job_id,
+        application.status_id,
+        job.title AS job_title, 
+        job.consultant_id, 
+        consultant.email AS consultant_email,
+        application_status.label as status_label
+      FROM ${this.table} AS application
+      INNER JOIN job ON application.job_id = job.id
+      INNER JOIN user AS consultant ON job.consultant_id = consultant.id
+      INNER JOIN user ON application.user_id = user.id
+      INNER JOIN application_status ON application.status_id = application_status.id
+      WHERE user.id = ?`,
       [userId]
     );
     return rows;
