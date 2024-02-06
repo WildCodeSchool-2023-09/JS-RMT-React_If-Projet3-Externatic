@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
     if (sessionStorage.getItem("connected")) {
       const getProfile = async () => {
         try {
-          const profile = await connexion.get(`/users/profile`);
+          const profile = await connexion.get(`/profile`);
           setConnected(profile.data);
         } catch (err) {
           console.error(err);

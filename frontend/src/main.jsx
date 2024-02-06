@@ -130,6 +130,18 @@ const router = createBrowserRouter([
             path: "companies/:id",
             element: <FormCompany />,
           },
+          {
+            path: "consultants",
+            element: (
+              <AdminSpecific pageTitle="consultants" route="/consultants" />
+            ),
+          },
+          {
+            path: "candidates",
+            element: (
+              <AdminSpecific pageTitle="candidats" route="/candidates" />
+            ),
+          },
         ],
       },
     ],
