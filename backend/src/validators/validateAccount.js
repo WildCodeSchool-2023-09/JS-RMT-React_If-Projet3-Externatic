@@ -5,7 +5,9 @@ const schema = Joi.object({
   lastname: Joi.string().allow(""),
   firstname: Joi.string().allow(""),
   status: Joi.string().allow(""),
-  phone_number: Joi.number().max(15).allow(""),
+  phone_number: Joi.number()
+    .max(10 ** 10 - 1)
+    .allow(""),
   city: Joi.string().allow(""),
   employment_type: Joi.string().allow(""),
   experience: Joi.string().allow(""),

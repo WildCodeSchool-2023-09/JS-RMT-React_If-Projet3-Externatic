@@ -179,9 +179,15 @@ class JobManager extends AbstractManager {
   // The D of CRUD - Delete operation
   // TODO: Implement the delete operation to remove an job by its ID
 
-  // async delete(id) {
-  //   ...
-  // }
+  async delete(id) {
+    const result = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+
+    // Return the first row of the result, which represents the user
+    return result;
+  }
 }
 
 module.exports = JobManager;

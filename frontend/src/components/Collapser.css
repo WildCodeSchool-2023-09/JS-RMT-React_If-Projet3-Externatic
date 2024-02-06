@@ -21,3 +21,14 @@
 .collapser-content {
   margin-top: 1rem;
 }
+
+.button-content {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+
+.collapser-title {
+  margin-right: 1rem;
+}
