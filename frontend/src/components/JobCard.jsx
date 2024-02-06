@@ -13,7 +13,7 @@ function JobCard({ job, cardStyle, refresh }) {
   const { connected } = useAuthContext();
   const { companyId } = useParams();
 
-  const access = connected.role !== 2 && connected.role !== 3;
+  const access = connected.role === 2 && connected.role === 3;
 
   const dateDiffInDaysFromToday = (date) => {
     const targetDate = new Date(date);
