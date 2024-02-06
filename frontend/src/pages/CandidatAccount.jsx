@@ -77,6 +77,15 @@ function CandidatAccount() {
     }
   }, [connected, navigate]);
 
+  const getApplications = async () => {
+    try {
+      const applications = connexion.get("/profile/applications", connected.id);
+      console.info(applications);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  getApplications();
   return (
     <>
       <h1 className="form-title">Votre Compte</h1>

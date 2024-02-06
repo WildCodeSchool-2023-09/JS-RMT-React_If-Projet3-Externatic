@@ -12,6 +12,7 @@ const userControllers = require("./controllers/userControllers");
 const jobControllers = require("./controllers/jobControllers");
 const companyControllers = require("./controllers/companyControllers");
 const roleControllers = require("./controllers/roleControllers");
+const applicationControllers = require("./controllers/applicationControllers");
 
 const checkCredentials = require("./middleware/checkCredentials");
 const checkAdmin = require("./middleware/checkAdmin");
@@ -21,11 +22,22 @@ const validateUser = require("./validators/validateUser");
 const validateAccount = require("./validators/validateAccount");
 const validateCompany = require("./validators/validateCompany");
 
+// ROUTES GET
 router.get("/jobs", jobControllers.browse);
 router.get("/locations", jobControllers.getLocations);
 router.get("/languages", jobControllers.getLanguages);
-router.get("/companies", companyControllers.browse);
-router.get("/consultants", userControllers.getConsultant);
+router.get(
+  "/companies",
+  checkCredentials,
+  checkConsultant,
+  companyControllers.browse
+);
+router.get(
+  "/consultants",
+  checkCredentials,
+  checkAdmin,
+  userControllers.getConsultant
+);
 router.get("/roles", checkCredentials, checkAdmin, roleControllers.browse);
 router.get(
   "/candidates",
@@ -34,8 +46,14 @@ router.get(
   userControllers.getCandidates
 );
 router.get("/profile", checkCredentials, userControllers.getProfile);
+router.get(
+  "/profile/applications",
+  checkCredentials,
+  applicationControllers.readProfileApplications
+);
 router.get("/jobs/all/latest", jobControllers.browseLatest);
 
+// ROUTES GET BY ID
 router.get("/jobs/:id", jobControllers.read);
 router.get(
   "/companies/:id",
@@ -58,6 +76,7 @@ router.get(
 router.get("/roles/:id", checkCredentials, checkAdmin, roleControllers.read);
 router.get("/users/:id", checkCredentials, userControllers.read);
 
+// ROUTES POST
 router.post("/jobs", checkCredentials, checkConsultant, jobControllers.add);
 router.post("/login", validateUser, userControllers.login);
 router.post("/register", validateUser, userControllers.add);
@@ -68,7 +87,9 @@ router.post(
   validateCompany,
   companyControllers.add
 );
+router.post("/application", checkCredentials, applicationControllers.add);
 
+// ROUTES DELETE
 router.delete(
   "/jobs/:id",
   checkCredentials,
@@ -88,6 +109,7 @@ router.delete(
   userControllers.destroy
 );
 
+// ROUTES PUT
 router.put(
   "/companies/:id",
   checkCredentials,
