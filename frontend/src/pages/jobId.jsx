@@ -4,8 +4,8 @@ import { useLoaderData } from "react-router-dom";
 import Modal from "../components/modal";
 import HeadJob from "../components/headJobs";
 
-import "../styles/jobId.css";
-import "../styles/headJobs.css";
+import "./jobId.css";
+import "../components/headJobs.css";
 
 function formatDate(time) {
   return time.split("T")[0];
