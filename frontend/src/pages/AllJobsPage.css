@@ -37,3 +37,11 @@
   flex-direction: row;
   width: 80%;
 }
+
+@media screen and (max-width: 820px) {
+  .filters-search-bar {
+    display: flex;
+    flex-direction: column;
+    width: 80%;
+  }
+}

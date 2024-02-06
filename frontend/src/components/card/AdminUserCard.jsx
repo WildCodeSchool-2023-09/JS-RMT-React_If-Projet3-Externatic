@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Select from "react-select";
 
@@ -7,7 +7,11 @@ import connexion from "../../services/connexion";
 import "./AdminUserCard.css";
 
 function AdminUserCard({ element, specific, setSpecific, roles, route }) {
-  const [user, setUser] = useState(element);
+  const [user, setUser] = useState();
+
+  useEffect(() => {
+    setUser(element);
+  }, [element]);
 
   const handleDeleteClick = async () => {
     try {
@@ -74,15 +78,15 @@ function AdminUserCard({ element, specific, setSpecific, roles, route }) {
 
       <div className="admin-user-buttons-container">
         <div className="change-role">
-          <Select
-            options={roles}
-            value={roles.find(
-              (role) => role.id === (!user ? element.role_id : user.role_id)
-            )}
-            onChange={handleRoleChange}
-            placeholder="Role"
-            styles={colorStyles}
-          />
+          {user && (
+            <Select
+              options={roles}
+              value={roles.find((role) => role.id === user.role_id)}
+              onChange={handleRoleChange}
+              placeholder="Role"
+              styles={colorStyles}
+            />
+          )}
           <button
             type="button"
             className="connection-button admin-button"

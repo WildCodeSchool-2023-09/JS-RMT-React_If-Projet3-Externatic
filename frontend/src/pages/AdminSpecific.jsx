@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import PropTypes from "prop-types";
 import connexion from "../services/connexion";
 
 import "./AdminSpecific.css";
 import "../components/reusable/button.css";
-import AdminCard from "../components/card/AdminCard";
+
+import AdminCompanyCard from "../components/card/AdminCompanyCard";
+import AdminUserCard from "../components/card/AdminUserCard";
 
 function AdminSpecific({ pageTitle, route }) {
   const [specific, setSpecific] = useState([]);
   const navigate = useNavigate();
-  const location = useLocation();
 
   const [roles, setRoles] = useState([]);
 
@@ -33,9 +34,33 @@ function AdminSpecific({ pageTitle, route }) {
   };
 
   useEffect(() => {
-    getSpecific();
     getRoles();
-  }, [location]);
+  }, []);
+
+  useEffect(() => {
+    getSpecific();
+  }, [route]);
+
+  const getComponent = (elt) => {
+    if (route === "/companies") {
+      return (
+        <AdminCompanyCard
+          element={elt}
+          specific={specific}
+          setSpecific={setSpecific}
+        />
+      );
+    }
+    return (
+      <AdminUserCard
+        element={elt}
+        specific={specific}
+        setSpecific={setSpecific}
+        roles={roles}
+        route={route}
+      />
+    );
+  };
 
   return (
     <div className="admin-section">
@@ -44,22 +69,19 @@ function AdminSpecific({ pageTitle, route }) {
         <button
           type="button"
           className="connection-button"
-          onClick={() => navigate(`${location.pathname}/new`)}
+          onClick={() => navigate(`${route}/new`)}
         >
           Ajouter {pageTitle}
         </button>
       )}
       <div className="admin-cards-container">
-        {specific.map((elt) => (
-          <AdminCard
-            route={route}
-            element={elt}
-            specific={specific}
-            setSpecific={setSpecific}
-            roles={roles}
-            key={elt.id}
-          />
-        ))}
+        {specific.map((elt) => {
+          return (
+            <div key={elt.id} className="admin-card">
+              {getComponent(elt)}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
