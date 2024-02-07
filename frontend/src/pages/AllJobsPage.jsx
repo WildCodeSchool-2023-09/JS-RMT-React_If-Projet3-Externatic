@@ -25,7 +25,7 @@ function AllJobsPage() {
       </div>
       <div>
         {connected.role_id === 2 ? (
-          <Link to="new" className="button">
+          <Link to="/consultants/administration/job/new" className="button">
             <button className="connection-button" type="button">
               Ajouter un job
             </button>

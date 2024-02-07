@@ -45,7 +45,7 @@ function JobCard({ job, cardStyle, refresh }) {
         </Link>
         {access ? (
           <div>
-            <Link to={`/consultants/administration/jobs/${job.id}`}>
+            <Link to={`consultants/administration/jobs/${job.id}`}>
               <button className="connection-button delete-card" type="button">
                 Editer
               </button>
