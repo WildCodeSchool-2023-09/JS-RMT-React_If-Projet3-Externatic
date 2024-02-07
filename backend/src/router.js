@@ -138,6 +138,9 @@ router.put(
   validateCV,
   userControllers.updateProfileCV
 );
+
+router.post("/logout", userControllers.logout);
+
 /* ************************************************************************* */
 
 module.exports = router;

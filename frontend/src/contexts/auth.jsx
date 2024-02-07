@@ -24,10 +24,11 @@ export function AuthProvider({ children }) {
     () => ({ connected, setConnected, logout }),
     [connected, setConnected]
   );
+
   useEffect(() => {
     const getProfile = async () => {
       try {
-        const profile = await connexion.get(`/users/profile`);
+        const profile = await connexion.get(`/profile`);
         setConnected(profile.data);
       } catch (err) {
         console.error(err);

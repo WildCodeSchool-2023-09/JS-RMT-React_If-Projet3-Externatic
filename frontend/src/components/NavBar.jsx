@@ -1,11 +1,24 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/auth";
 import "./NavBar.css";
 import externatic from "../assets/externatic.png";
+import connexion from "../services/connexion";
 
 function NavBar() {
+  const navigate = useNavigate();
   const { connected, logout } = useAuthContext();
+
+  const handleLogout = async () => {
+    try {
+      await connexion.post("/logout");
+      logout();
+      navigate("/");
+      window.location.reload();
+    } catch (err) {
+      console.error("Erreur lors de la déconnexion :", err);
+    }
+  };
   return (
     <div className="navbar">
       <Link to="/">
@@ -43,7 +56,11 @@ function NavBar() {
           </Link>
         )}
         {connected.role_id && (
-          <button type="button" className="button-connect" onClick={logout}>
+          <button
+            type="button"
+            className="button-connect"
+            onClick={handleLogout}
+          >
             Deconnexion
           </button>
         )}
