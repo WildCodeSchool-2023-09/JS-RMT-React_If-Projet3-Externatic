@@ -28,5 +28,6 @@ RUN cd frontend && \
 
 COPY ./backend ./backend
 COPY docker-entry.sh .
+COPY package.json .
 
 CMD ["sh","./docker-entry.sh"]
