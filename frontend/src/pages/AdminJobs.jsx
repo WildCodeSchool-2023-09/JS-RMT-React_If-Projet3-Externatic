@@ -30,7 +30,6 @@ function AdminJobs() {
   const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const { id } = useParams();
-
   const handleJob = (event) => {
     setJob((previousState) => ({
       ...previousState,
@@ -94,6 +93,7 @@ function AdminJobs() {
                 handleSelect={handleJob}
                 name="company_id"
                 className="filter-select"
+                company={job.company_id}
               />
               <SelectConsultant
                 label="Consultant"
@@ -103,6 +103,7 @@ function AdminJobs() {
                 handleSelect={handleJob}
                 name="consultant_id"
                 className="filter-select"
+                company={job.consultant_id}
               />
               <label>
                 Titre
@@ -172,8 +173,9 @@ function AdminJobs() {
                 text="Choisissez un language"
                 handleSelect={handleJob}
                 name="language"
-                dataSet={["Java-script", "React", "PHP", "Java"]}
+                dataSet={["Javascript", "React", "PHP", "Java"]}
                 className="label-form"
+                find={job.language}
               />
               <label>
                 Salaire
@@ -202,8 +204,9 @@ function AdminJobs() {
                 text="Choisissez un horaire hebdomadaire"
                 handleSelect={handleJob}
                 name="working_type"
-                dataSet={["35 heures", "30 heures", "25 heures"]}
+                dataSet={["Temps Plein", "Mi-temps", "30 heures"]}
                 className="label-form"
+                find={job.working_type}
               />
               <label>
                 Date de début
@@ -234,6 +237,7 @@ function AdminJobs() {
                 name="contract_type"
                 dataSet={["CDI", "CDD", "Alternance", "Stage"]}
                 className="label-form"
+                find={job.contract_type}
               />
               <label>
                 Qualification

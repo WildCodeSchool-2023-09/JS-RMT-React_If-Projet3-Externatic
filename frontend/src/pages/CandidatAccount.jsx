@@ -212,10 +212,19 @@ function CandidatAccount() {
           <p>{userData.url && userData.url.split("/").pop()}</p>
           <div className="button-form-container">
             <button type="submit" className="connection-button">
-              valider
+              Valider
             </button>
           </div>
         </form>
+      </div>
+      <div className="application-container">
+        <button
+          type="button"
+          className="connection-button"
+          onClick={() => navigate("/account/applications")}
+        >
+          Voir mes candidatures
+        </button>
       </div>
     </>
   );

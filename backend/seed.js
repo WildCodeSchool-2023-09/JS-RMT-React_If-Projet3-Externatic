@@ -6,10 +6,10 @@ require("dotenv").config();
 // Import database client
 const database = require("./database/client");
 const role = require("./database/data/role.json");
+const user = require("./database/data/user.json");
 const company = require("./database/data/company.json");
 const applicationStatus = require("./database/data/applicationStatus.json");
 const job = require("./database/data/job.json");
-const user = require("./database/data/user.json");
 
 const seed = async () => {
   try {

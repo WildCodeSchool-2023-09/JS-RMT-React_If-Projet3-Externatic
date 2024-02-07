@@ -1,0 +1,38 @@
+.candidat-application {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.candidat-application-title {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.application-table {
+  width: 50%;
+  margin-bottom: 40rem;
+}
+
+.application-th {
+  width: auto;
+  border-bottom: 2px solid var(--main-red);
+  font-size: 1.5rem;
+}
+
+.application-td {
+  height: 3rem;
+  text-align: center;
+  border-bottom: 2px solid var(--main-red);
+  font-size: 1.1rem;
+}
+
+.job-link {
+  text-decoration: underline;
+  text-underline-position: under;
+}
+
+.job-link:hover {
+  color: var(--main-red);
+}

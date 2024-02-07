@@ -24,6 +24,7 @@ export function AuthProvider({ children }) {
     () => ({ connected, setConnected, logout }),
     [connected, setConnected]
   );
+
   useEffect(() => {
     const getProfile = async () => {
       try {

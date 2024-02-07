@@ -10,3 +10,8 @@
 .ajout-card {
   margin: auto;
 }
+
+.container-ajout {
+  display: flex;
+  justify-content: center;
+}

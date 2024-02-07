@@ -20,15 +20,16 @@ function ConsultantJob() {
   useEffect(() => {
     getJobsByCompany();
   }, []);
-
   return (
     <div>
-      <div className="ajout-card">
-        <Link to="/consultants/administration/job/new">
-          <button className="connection-button ajout-card" type="button">
-            Ajouter un job
-          </button>
-        </Link>
+      <div className="container-ajout">
+        <div className="ajout-card">
+          <Link to="/consultants/administration/job/new">
+            <button className="connection-button ajout-card" type="button">
+              Ajouter un job
+            </button>
+          </Link>
+        </div>
       </div>
       <div className="container">
         {jobs.map((job) => (

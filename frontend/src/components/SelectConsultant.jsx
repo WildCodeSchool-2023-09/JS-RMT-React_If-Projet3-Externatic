@@ -5,37 +5,52 @@ import connexion from "../services/connexion";
 
 import colorStyles from "../assets/selectStyle";
 
-function SelectConsultant({ label, url, criteria, handleSelect, name }) {
-  const [list, setList] = useState([]);
-
-  const getList = async () => {
-    try {
-      const result = await connexion.get(`/${url}`).then((res) => res.data);
-      setList(result);
-    } catch (error) {
-      console.error(error);
-    }
-  };
+function SelectConsultant({
+  label,
+  url,
+  criteria,
+  handleSelect,
+  name,
+  company,
+}) {
+  const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    getList();
-  }, []);
+    const getList = async () => {
+      try {
+        const result = await connexion.get(`/${url}`);
+        const formattedOptions = result.data.map((item) => ({
+          value: item.id,
+          label: item[criteria],
+        }));
+        setOptions(formattedOptions);
+      } catch (error) {
+        console.error(error);
+      }
+    };
 
-  const standardizeEvent = (option) => {
-    handleSelect({ target: { name, value: option.value } });
+    getList();
+  }, [url, criteria]);
+
+  const standardizeEvent = (selectedOption) => {
+    handleSelect({
+      target: { name, value: selectedOption ? selectedOption.value : "" },
+    });
   };
+
+  const value = company
+    ? options.find((option) => String(option.value) === String(company))
+    : null;
 
   return (
     <label className="label">
       {label}
       <Select
         onChange={standardizeEvent}
-        required
-        options={list.map((el) => ({
-          value: el.id,
-          label: el[criteria],
-        }))}
+        value={value}
+        options={options}
         styles={colorStyles}
+        isClearable
       />
     </label>
   );
@@ -47,6 +62,7 @@ SelectConsultant.propTypes = {
   criteria: PropTypes.string.isRequired,
   handleSelect: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
 };
 
 export default SelectConsultant;
