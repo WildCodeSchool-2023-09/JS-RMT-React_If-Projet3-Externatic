@@ -20,6 +20,11 @@
   margin-top: 50px;
 }
 
+.application-container {
+  display: flex;
+  justify-content: center;
+}
+
 .select-form {
   display: flex;
   justify-content: center;

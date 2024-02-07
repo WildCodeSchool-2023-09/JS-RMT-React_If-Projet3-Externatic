@@ -23,6 +23,7 @@ import AdminSpecific from "./pages/AdminSpecific";
 import FormCompany from "./pages/FormCompany";
 
 import JobId from "./pages/jobId";
+import CandidatApplications from "./pages/CandidatApplications";
 
 const router = createBrowserRouter([
   {
@@ -115,6 +116,10 @@ const router = createBrowserRouter([
       {
         path: "/account",
         element: <CandidatAccount />,
+      },
+      {
+        path: "/account/applications",
+        element: <CandidatApplications />,
       },
       {
         path: "/administration",

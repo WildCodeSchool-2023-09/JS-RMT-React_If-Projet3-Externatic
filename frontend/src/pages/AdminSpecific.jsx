@@ -69,7 +69,7 @@ function AdminSpecific({ pageTitle, route }) {
         <button
           type="button"
           className="connection-button"
-          onClick={() => navigate(`${route}/new`)}
+          onClick={() => navigate(`/administration${route}/new`)}
         >
           Ajouter {pageTitle}
         </button>
