@@ -1,7 +1,9 @@
-import React, { useRef } from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
 
-import Modal from "./modal";
+import { AuthContext } from "../contexts/auth";
+import connexion from "../services/connexion";
+
 import "./headJobs.css";
 
 function formatDate(time) {
@@ -10,11 +12,16 @@ function formatDate(time) {
 
 function HeadJob() {
   const job = useLoaderData();
-  const modal = useRef(null);
+  const { connected } = useContext(AuthContext);
 
-  function toggleRefModal() {
-    modal.current.toggleModal();
-  }
+  const handleClick = async () => {
+    const application = { job_id: job.id, user_id: connected.id };
+    try {
+      connexion.post("/application", application);
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   return (
     <div className="headjob_container">
@@ -22,10 +29,11 @@ function HeadJob() {
       <div className="body_job">
         <div className="offer">
           <h1 className="title">{job.title}</h1>
-          <button type="button" onClick={toggleRefModal} className="btn-modal">
-            Postuler a l'offre
-          </button>
-          <Modal ref={modal} />
+          {connected.role_id && (
+            <button type="button" onClick={handleClick} className="btn-modal">
+              Postuler a l'offre
+            </button>
+          )}
         </div>
         <div className="resume_jobs">
           <ul>
