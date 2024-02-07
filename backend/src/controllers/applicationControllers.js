@@ -36,12 +36,30 @@ const read = async (req, res, next) => {
 
 const readProfileApplications = async (req, res, next) => {
   try {
-    const application = await tables.application.getApplications(req.user.id);
+    const applications = await tables.application.getProfileApplications(
+      req.user.id
+    );
 
-    if (application == null) {
+    if (applications == null) {
       res.sendStatus(404);
     } else {
-      res.status(200).json(application);
+      res.status(200).json(applications);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const readConsultantApplications = async (req, res, next) => {
+  try {
+    const applications = await tables.application.getConsultantApplications(
+      req.user.id
+    );
+
+    if (applications == null) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(applications);
     }
   } catch (err) {
     next(err);
@@ -49,7 +67,24 @@ const readProfileApplications = async (req, res, next) => {
 };
 
 // The E of BREAD - Edit (Update) operation
-// This operation is not yet implemented
+const edit = async (req, res, next) => {
+  // Extract the application data from the request body
+  const application = req.body;
+  try {
+    // Fetch a specific city from the database based on the provided ID
+    const result = await tables.application.update(req.params.id, application);
+
+    // If the application is not found, respond with HTTP 404 (Not Found)
+    if (result.affectedRows === 1) {
+      res.sendStatus(204);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
@@ -76,7 +111,8 @@ module.exports = {
   browse,
   read,
   readProfileApplications,
-  // edit,
+  readConsultantApplications,
+  edit,
   add,
   // destroy,
 };

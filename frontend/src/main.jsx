@@ -24,6 +24,7 @@ import FormCompany from "./pages/FormCompany";
 
 import JobId from "./pages/jobId";
 import CandidatApplications from "./pages/CandidatApplications";
+import ConsultantApplication from "./pages/ConsultantApplications";
 
 const router = createBrowserRouter([
   {
@@ -81,6 +82,10 @@ const router = createBrowserRouter([
                 .then((res) => res.data)
                 .catch((err) => console.error(err));
             },
+          },
+          {
+            path: "applications",
+            element: <ConsultantApplication />,
           },
           {
             path: "administration",

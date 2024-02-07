@@ -41,7 +41,7 @@ class ApplicationManager extends AbstractManager {
     return rows;
   }
 
-  async getApplications(userId) {
+  async getProfileApplications(userId) {
     const [rows] = await this.database.query(
       `SELECT 
         application.id, 
@@ -62,12 +62,43 @@ class ApplicationManager extends AbstractManager {
     return rows;
   }
 
-  // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing application
+  async getConsultantApplications(consultantId) {
+    const [rows] = await this.database.query(
+      `SELECT 
+        application.id AS application_id, 
+        application.job_id,
+        application.status_id,
+        job.title AS job_title, 
+        consultant.id AS consultant_id,
+        consultant.email AS consultant_email,
+        user.id AS candidate_id,
+        user.email AS candidate_email,
+        application_status.label AS status_label,
+        company.name AS company_name
+      FROM ${this.table} AS application
+      INNER JOIN job ON application.job_id = job.id
+      INNER JOIN user AS consultant ON job.consultant_id = consultant.id
+      INNER JOIN user ON application.user_id = user.id
+      INNER JOIN application_status ON application.status_id = application_status.id
+      INNER JOIN company ON job.company_id = company.id
+      WHERE consultant.id = ?
+      ORDER BY company.name`,
+      [consultantId]
+    );
+    return rows;
+  }
 
-  // async update(application) {
-  //   ...
-  // }
+  // The U of CRUD - Update operation
+  async update(id, application) {
+    // Execute the SQL SELECT query to retrieve a specific application by its ID
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} set ? WHERE id = ?`,
+      [application, id]
+    );
+
+    // Return the first row of the result, which represents the item
+    return result;
+  }
 
   // The D of CRUD - Delete operation
   // TODO: Implement the delete operation to remove an application by its ID

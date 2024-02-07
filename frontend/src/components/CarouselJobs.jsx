@@ -41,7 +41,7 @@ function Carousel({ jobs }) {
       >
         {jobs.map((job) => (
           <div key={job.id}>
-            <JobCard job={job} cardStyle="card-carrousel" />
+            <JobCard job={job} cardStyle="card-carrousel" isUserPage />
           </div>
         ))}
       </Slider>
