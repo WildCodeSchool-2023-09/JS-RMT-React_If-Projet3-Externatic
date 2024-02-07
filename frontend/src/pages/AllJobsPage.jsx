@@ -1,10 +1,11 @@
 import React from "react";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 
 import AllJobs from "../components/AllJobs";
 import Collapser from "../components/Collapser";
 import Pagination from "../components/Pagination";
 import SearchBar from "../components/SearchBar";
+import { useAuthContext } from "../contexts/auth";
 
 import "./AllJobsPage.css";
 import FiltersBar from "../components/FiltersBar";
@@ -13,6 +14,7 @@ function AllJobsPage() {
   const allJobsData = useLoaderData();
   const { jobs, totalPagesNb } = allJobsData.data;
   const currentPage = allJobsData.page;
+  const { connected } = useAuthContext();
 
   return (
     <div className="all-jobs-page-body">
@@ -20,6 +22,17 @@ function AllJobsPage() {
       <div className="filters-search-bar">
         <FiltersBar />
         <SearchBar page="job" />
+      </div>
+      <div>
+        {connected.role_id === 2 ? (
+          <Link to="new" className="button">
+            <button className="connection-button" type="button">
+              Ajouter un job
+            </button>
+          </Link>
+        ) : (
+          ""
+        )}
       </div>
       <AllJobs jobs={jobs} />
       <Pagination pageNb={totalPagesNb} currentPage={currentPage} />

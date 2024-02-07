@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 import connexion from "../services/connexion";
 import SelectConsultant from "../components/SelectConsultant";
@@ -27,6 +28,8 @@ const jobType = {
 function AdminJobs() {
   const [job, setJob] = useState(jobType);
   const [isSubmissionSuccessful, setIsSubmissionSuccessful] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
+  const { id } = useParams();
 
   const handleJob = (event) => {
     setJob((previousState) => ({
@@ -43,17 +46,45 @@ function AdminJobs() {
       setJob(jobType);
     } catch (error) {
       console.error(error);
+      setErrorMessage(
+        " Votre job n'a pu être ajouté. Veuillez verifier votre saisie."
+      );
     }
   };
+
+  const putJob = async (event) => {
+    event.preventDefault();
+    try {
+      await connexion.put(`/jobs/${id}`, job);
+      setIsSubmissionSuccessful(true);
+      setJob(jobType);
+    } catch (error) {
+      console.error(error);
+      setErrorMessage(
+        " Votre job n'a pu être modifié. Veuillez verifier votre saisie."
+      );
+    }
+  };
+
+  useEffect(() => {
+    if (id !== "new") {
+      const getJob = async () => {
+        await connexion.get(`/jobs/${id}`).then((res) => setJob(res.data));
+      };
+      getJob();
+    }
+  }, []);
+
   return (
     <div>
-      <h2>Ajout d'un job</h2>
-      {isSubmissionSuccessful && (
-        <p>Votre annonce a été envoyée avec succès.</p>
-      )}
+      {id !== "new" ? <h2>Modifier un job</h2> : <h2>Ajouter un job</h2>}
+
       <main>
         <div className="form-container">
-          <form className="form-connection" onSubmit={postJob}>
+          <form
+            className="form-connection"
+            onSubmit={id !== "new" ? putJob : postJob}
+          >
             <div className="form-alllabel">
               <SelectConsultant
                 label="Entreprise"
@@ -91,7 +122,7 @@ function AdminJobs() {
                   required
                   value={job.description_mission}
                   onChange={handleJob}
-                  className="label-form"
+                  className="label-form textera"
                 />
               </label>
               <label>
@@ -101,7 +132,7 @@ function AdminJobs() {
                   required
                   value={job.description_about_candidate}
                   onChange={handleJob}
-                  className="label-form"
+                  className="label-form textera"
                 />
               </label>
               <label>
@@ -133,7 +164,7 @@ function AdminJobs() {
                   required
                   value={job.description_process}
                   onChange={handleJob}
-                  className="label-form"
+                  className="label-form textera"
                 />
               </label>
               <SelectFromList
@@ -217,13 +248,19 @@ function AdminJobs() {
               </label>
               <div className="button-container">
                 <button type="submit" className="connection-button">
-                  Ajouter
+                  {id !== "new" ? "Modifier" : "Ajouter"}
                 </button>
               </div>
             </div>
           </form>
         </div>
       </main>
+      <div className="message">
+        {isSubmissionSuccessful && (
+          <p style={{ color: "green" }}>Votre job a été envoyé avec succès.</p>
+        )}
+        {errorMessage && <p style={{ color: "red" }}>{errorMessage}</p>}
+      </div>
     </div>
   );
 }

@@ -14,7 +14,7 @@ function SelectFromList({ label, dataSet, handleSelect, name }) {
         onChange={standardizeEvent}
         required
         options={dataSet.map((el) => ({
-          value: el.id,
+          value: el,
           label: el,
         }))}
         styles={colorStyles}

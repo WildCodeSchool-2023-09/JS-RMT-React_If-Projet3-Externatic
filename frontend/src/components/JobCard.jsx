@@ -44,13 +44,21 @@ function JobCard({ job, cardStyle, refresh }) {
           <h3 className={`${cardStyle}-title`}>{job.title}</h3>
         </Link>
         {access ? (
-          <button
-            className="connection-button delete-card"
-            type="button"
-            onClick={deleteJob}
-          >
-            Supprimer
-          </button>
+          <div>
+            <Link to={`/consultants/administration/jobs/${job.id}`}>
+              <button className="connection-button delete-card" type="button">
+                Editer
+              </button>
+            </Link>
+
+            <button
+              className="connection-button delete-card"
+              type="button"
+              onClick={deleteJob}
+            >
+              Supprimer
+            </button>
+          </div>
         ) : (
           <button
             type="button"
@@ -62,6 +70,7 @@ function JobCard({ job, cardStyle, refresh }) {
           </button>
         )}
       </div>
+
       <div className={`${cardStyle}-body`}>
         <div className={`${cardStyle}-requirement`}>
           <p className="job-card-language">{job.language}</p>

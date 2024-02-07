@@ -6,3 +6,7 @@
   gap: 5rem;
   flex-wrap: wrap;
 }
+
+.ajout-card {
+  margin: auto;
+}
