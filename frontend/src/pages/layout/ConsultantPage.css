@@ -11,3 +11,8 @@
   font-weight: bolder;
   text-align: center;
 }
+
+.application-button-container {
+  display: flex;
+  justify-content: center;
+}

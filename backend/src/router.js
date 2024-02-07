@@ -1,4 +1,5 @@
 const express = require("express");
+const upload = require("./services/upload");
 
 const router = express.Router();
 
@@ -7,37 +8,151 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import itemControllers module for handling item-related operations
-const itemControllers = require("./controllers/itemControllers");
 const userControllers = require("./controllers/userControllers");
 const jobControllers = require("./controllers/jobControllers");
 const companyControllers = require("./controllers/companyControllers");
+const roleControllers = require("./controllers/roleControllers");
+const applicationControllers = require("./controllers/applicationControllers");
+const applicationStatusControllers = require("./controllers/applicationStatusControllers");
 
 const checkCredentials = require("./middleware/checkCredentials");
+const checkAdmin = require("./middleware/checkAdmin");
+const checkConsultant = require("./middleware/checkConsultant");
 
 const validateUser = require("./validators/validateUser");
+const validateAccount = require("./validators/validateAccount");
+const validateCompany = require("./validators/validateCompany");
+const validateCV = require("./validators/validateCV");
 
+// ROUTES GET
 router.get("/jobs", jobControllers.browse);
 router.get("/locations", jobControllers.getLocations);
 router.get("/languages", jobControllers.getLanguages);
 router.get("/companies", companyControllers.browse);
-router.get("/consultants", userControllers.getConsultant);
+router.get(
+  "/consultants",
+  checkCredentials,
+  checkAdmin,
+  userControllers.getConsultant
+);
+router.get("/roles", checkCredentials, checkAdmin, roleControllers.browse);
+router.get(
+  "/candidates",
+  checkCredentials,
+  checkAdmin,
+  userControllers.getCandidates
+);
+router.get("/profile", checkCredentials, userControllers.getProfile);
+router.get(
+  "/profile/applications",
+  checkCredentials,
+  applicationControllers.readProfileApplications
+);
+router.get(
+  "/applications/consultant",
+  checkCredentials,
+  checkConsultant,
+  applicationControllers.readConsultantApplications
+);
+router.get("/jobs/all/latest", jobControllers.browseLatest);
+router.get(
+  "/applicationStatus",
+  checkCredentials,
+  checkConsultant,
+  applicationStatusControllers.browse
+);
 
-// Route to get a specific item by ID
-router.get("/items/:id", itemControllers.read);
-router.get("/companies/:id", companyControllers.read);
-router.get("/companies/:id/jobs", jobControllers.readByCompany);
-router.get("/users/profile", checkCredentials, userControllers.getProfile);
+// ROUTES GET BY ID
+router.get("/jobs/:id", jobControllers.read);
+router.get(
+  "/companies/:id",
+  checkCredentials,
+  checkConsultant,
+  companyControllers.read
+);
+router.get(
+  "/companies/:id/jobs",
+  checkCredentials,
+  checkConsultant,
+  jobControllers.readByCompany
+);
+router.get(
+  "/companies/:id/jobs/:id",
+  checkCredentials,
+  checkConsultant,
+  jobControllers.readByCompanyJob
+);
+router.get("/roles/:id", checkCredentials, checkAdmin, roleControllers.read);
+router.get("/users/:id", checkCredentials, userControllers.read);
 
-// Route to add a new item
-
-router.post("/items", itemControllers.add);
-router.post("/jobs", jobControllers.add);
-
+// ROUTES POST
+router.post("/jobs", checkCredentials, checkConsultant, jobControllers.add);
 router.post("/login", validateUser, userControllers.login);
-router.get("/jobs/latest", jobControllers.browseLatest);
 router.post("/register", validateUser, userControllers.add);
+router.post(
+  "/companies",
+  checkCredentials,
+  checkAdmin,
+  validateCompany,
+  companyControllers.add
+);
+router.post("/application", checkCredentials, applicationControllers.add);
 
-router.delete("/companies/:id", companyControllers.destroy);
+// ROUTES DELETE
+router.delete(
+  "/jobs/:id",
+  checkCredentials,
+  checkConsultant,
+  jobControllers.destroy
+);
+router.delete(
+  "/companies/:id",
+  checkCredentials,
+  checkAdmin,
+  companyControllers.destroy
+);
+router.delete(
+  "/users/:id",
+  checkCredentials,
+  checkAdmin,
+  userControllers.destroy
+);
+
+// ROUTES PUT
+router.put(
+  "/companies/:id",
+  checkCredentials,
+  checkAdmin,
+  validateCompany,
+  companyControllers.edit
+);
+router.put(
+  "/users/:id",
+  checkCredentials,
+  checkAdmin,
+  userControllers.updateUser
+); // modification du role d'un user via admin
+router.put(
+  "/profile",
+  checkCredentials,
+  validateAccount,
+  userControllers.updateProfile
+); // modification du profil via user
+router.put(
+  "/curriculum",
+  checkCredentials,
+  upload.single("file"),
+  validateCV,
+  userControllers.updateProfileCV
+);
+router.put(
+  "/application/:id",
+  checkCredentials,
+  checkConsultant,
+  applicationControllers.edit
+);
+
+router.post("/logout", userControllers.logout);
 
 /* ************************************************************************* */
 

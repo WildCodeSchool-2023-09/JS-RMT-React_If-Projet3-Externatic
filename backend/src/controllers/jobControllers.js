@@ -90,6 +90,23 @@ const readByCompany = async (req, res, next) => {
   }
 };
 
+const readByCompanyJob = async (req, res, next) => {
+  try {
+    // Fetch a specific job from the database based on the provided ID
+    const job = await tables.job.readByCompanyJob(req.params.id);
+
+    // If the job is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the job in JSON format
+    if (job.length === 0) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(job[0]);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 const browseLatest = async (req, res, next) => {
   try {
     const latestJobs = await tables.job.readLatest();
@@ -111,6 +128,7 @@ const add = async (req, res, next) => {
     const insertId = await tables.job.create(job);
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted job
+
     res.status(201).json({ insertId });
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -119,6 +137,15 @@ const add = async (req, res, next) => {
 };
 
 // The D of BREAD - Destroy (Delete) operation
+
+const destroy = async (req, res, next) => {
+  try {
+    await tables.job.delete(req.params.id);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
 // This operation is not yet implemented
 
 // Ready to export the controller functions
@@ -128,8 +155,9 @@ module.exports = {
   getLanguages,
   read,
   readByCompany,
+  readByCompanyJob,
   browseLatest,
   // edit,
   add,
-  // destroy,
+  destroy,
 };

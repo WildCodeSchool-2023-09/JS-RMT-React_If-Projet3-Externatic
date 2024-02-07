@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import Slider from "react-slick";
 import JobCard from "./JobCard";
@@ -7,12 +7,21 @@ import "slick-carousel/slick/slick-theme.css";
 import "./Carousel.css";
 
 function Carousel({ jobs }) {
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+  function updateDimension() {
+    setWindowSize(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", updateDimension);
+  }, []);
+
   const settings = {
     dots: true,
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: 4,
+    slidesToShow: windowSize > 820 ? 4 : 1,
     initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 4000,
@@ -32,7 +41,7 @@ function Carousel({ jobs }) {
       >
         {jobs.map((job) => (
           <div key={job.id}>
-            <JobCard job={job} cardStyle="card-carrousel" />
+            <JobCard job={job} cardStyle="card-carrousel" isUserPage />
           </div>
         ))}
       </Slider>

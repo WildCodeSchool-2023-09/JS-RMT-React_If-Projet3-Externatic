@@ -4,6 +4,7 @@ import { useLoaderData } from "react-router-dom";
 import AllJobs from "../components/AllJobs";
 import Collapser from "../components/Collapser";
 import Pagination from "../components/Pagination";
+import SearchBar from "../components/SearchBar";
 
 import "./AllJobsPage.css";
 import FiltersBar from "../components/FiltersBar";
@@ -16,7 +17,10 @@ function AllJobsPage() {
   return (
     <div className="all-jobs-page-body">
       <h2>Vos opportunités d'emploi</h2>
-      <FiltersBar />
+      <div className="filters-search-bar">
+        <FiltersBar />
+        <SearchBar page="job" />
+      </div>
       <AllJobs jobs={jobs} />
       <Pagination pageNb={totalPagesNb} currentPage={currentPage} />
       <div className="all-jobs-page-separator" />

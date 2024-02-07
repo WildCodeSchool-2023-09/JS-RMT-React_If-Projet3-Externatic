@@ -7,6 +7,7 @@ import connexion from "../../services/connexion";
 function ConsultantJob() {
   const [jobs, setJobs] = useState([]);
   const { companyId } = useParams();
+
   const getJobsByCompany = async () => {
     const myJobs = await connexion
       .get(`/companies/${companyId}/jobs`)
@@ -25,7 +26,13 @@ function ConsultantJob() {
       <div>
         <div className="container">
           {jobs.map((job) => (
-            <JobCard key={job.id} job={job} />
+            <JobCard
+              key={job.id}
+              job={job}
+              refresh={getJobsByCompany}
+              cardStyle="job-card"
+              isUserPage={false}
+            />
           ))}
         </div>
       </div>

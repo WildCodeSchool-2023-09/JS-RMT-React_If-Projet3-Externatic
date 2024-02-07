@@ -1,0 +1,33 @@
+.form-container {
+  display: flex;
+  justify-content: center;
+}
+
+.button-form-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 30px;
+}
+
+.form-title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 40px;
+  margin-top: 40px;
+}
+
+.pdf-title {
+  margin-top: 50px;
+}
+
+.application-container {
+  display: flex;
+  justify-content: center;
+}
+
+.select-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}

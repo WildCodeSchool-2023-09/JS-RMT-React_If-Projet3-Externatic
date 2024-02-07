@@ -16,23 +16,26 @@ export const useAuthContext = () => useContext(AuthContext);
 export function AuthProvider({ children }) {
   const [connected, setConnected] = useState("not connected");
 
+  function logout() {
+    setConnected("not connected");
+  }
+
   const contextValue = useMemo(
-    () => ({ connected, setConnected }),
+    () => ({ connected, setConnected, logout }),
     [connected, setConnected]
   );
+
   useEffect(() => {
-    if (sessionStorage.getItem("connected")) {
-      const getProfile = async () => {
-        try {
-          const profile = await connexion.get(`/users/profile`);
-          setConnected(profile.data);
-        } catch (err) {
-          console.error(err);
-        }
-      };
-      getProfile();
-    }
-  }, [sessionStorage.getItem("connected")]);
+    const getProfile = async () => {
+      try {
+        const profile = await connexion.get(`/profile`);
+        setConnected(profile.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+    getProfile();
+  }, []);
 
   return (
     <AuthContext.Provider value={contextValue}>{children}</AuthContext.Provider>

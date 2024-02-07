@@ -11,13 +11,13 @@ function AdminPage() {
   const { connected } = useAuthContext();
   const navigate = useNavigate();
   useEffect(() => {
-    if (connected.role_id !== 3) {
+    if (connected.role_id === 2) {
       navigate("/");
     }
   }, [connected]);
 
   return (
-    <div>
+    <div className="admin-page">
       <h1 className="admin-title">ADMINISTRATION GLOBALE</h1>
       <AdminNavBar />
       <Outlet />

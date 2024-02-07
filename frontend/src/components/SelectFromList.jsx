@@ -1,24 +1,32 @@
 import PropTypes from "prop-types";
+import Select from "react-select";
+import colorStyles from "../assets/selectStyle";
 
-function SelectFromList({ label, text, dataSet, handleSelect, name }) {
+function SelectFromList({ label, dataSet, handleSelect, name }) {
+  const standardizeEvent = (option) => {
+    handleSelect({ target: { name, value: option.value } });
+  };
   return (
     <label className="label">
       {label}
-      <select onChange={handleSelect} name={name} required>
-        <option value="">{text}</option>
-        {dataSet.map((el) => (
-          <option value={el}>{el}</option>
-        ))}
-      </select>
+
+      <Select
+        onChange={standardizeEvent}
+        required
+        options={dataSet.map((el) => ({
+          value: el.id,
+          label: el,
+        }))}
+        styles={colorStyles}
+      />
     </label>
   );
 }
 
 SelectFromList.propTypes = {
   label: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  dataSet: PropTypes.string.isRequired,
-  handleSelect: PropTypes.string.isRequired,
+  dataSet: PropTypes.arrayOf(PropTypes.string).isRequired,
+  handleSelect: PropTypes.func.isRequired,
   name: PropTypes.string.isRequired,
 };
 

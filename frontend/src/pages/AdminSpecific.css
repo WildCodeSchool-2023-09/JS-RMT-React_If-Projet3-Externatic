@@ -1,12 +1,18 @@
+.admin-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 .admin-specific-title {
   display: flex;
   justify-content: center;
   margin-top: 1rem;
-  margin-top: 3rem;
 }
 
 .admin-cards-container {
   display: grid;
+  gap: 0.5rem 0.5rem;
   grid-template-columns: 1fr 1fr 1fr;
   margin: auto;
   width: 90%;
@@ -18,17 +24,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-bottom: 1rem;
+  width: 100%;
+  height: auto;
   border: 1px solid black;
-}
-
-.compagny-img {
-  margin: auto auto;
-  width: 12rem;
-}
-
-.admin-button {
-  margin-top: 0.5rem;
-  height: 1.5rem;
-  width: 6rem;
 }

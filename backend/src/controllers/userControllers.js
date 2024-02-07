@@ -16,6 +16,18 @@ const getConsultant = async (req, res, next) => {
   }
 };
 
+const getCandidates = async (req, res, next) => {
+  try {
+    // Fetch all items from the database
+    const candidates = await tables.user.readAllCandidates();
+
+    // Respond with the items in JSON format
+    res.status(200).json(candidates);
+  } catch (err) {
+    next(err);
+  }
+};
+
 // The B of BREAD - Browse (Read All) operation
 
 /*
@@ -36,7 +48,7 @@ const browse = async (req, res, next) => {
 const login = async (req, res, next) => {
   try {
     // Fetch a specific user from the database based on the provided ID
-    const user = await tables.user.read(req.body.email);
+    const user = await tables.user.readByEmail(req.body.email);
 
     // If the user is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the user in JSON format
@@ -63,7 +75,10 @@ const getProfile = async (req, res, next) => {
   try {
     const profile = await tables.user.readProfile(req.user.id);
     res
-      .cookie("auth", createToken(profile), { httpOnly: true })
+      .cookie("auth", createToken(profile), {
+        httpOnly: true,
+        maxAge: 24 * 60 * 60 * 1000,
+      })
       .status(200)
       .json(profile);
   } catch (err) {
@@ -80,8 +95,11 @@ const add = async (req, res, next) => {
 
   try {
     const hashPassword = await hash(req.body.password);
-    await tables.user.create(req.body.email, hashPassword);
+    const { email, firstname, lastname } = req.body;
+
     // Insert the user into the database
+    await tables.user.create(email, hashPassword, firstname, lastname);
+
     // Respond with HTTP 201 (Created) and the ID of the newly inserted user
     res.status(201).json("OK");
   } catch (err) {
@@ -90,27 +108,58 @@ const add = async (req, res, next) => {
   }
 };
 
+const updateProfile = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+
+    const userData = req.body;
+
+    await tables.user.updateProfile(userId, userData);
+
+    res.status(203).json("User updated successfully");
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateProfileCV = async (req, res, next) => {
+  try {
+    const userId = req.user.id;
+    const path = `public/assets/images/${req.file.filename}`;
+
+    await tables.user.updateCV(userId, path);
+
+    res.status(203).json({ filePath: path });
+  } catch (err) {
+    next(err);
+  }
+};
+
+const updateUser = async (req, res, next) => {
+  try {
+    const userData = req.body;
+
+    await tables.user.update(userData);
+
+    res.status(203).json("User updated successfully");
+  } catch (err) {
+    next(err);
+  }
+};
+
 // The R of BREAD - Read operation
-// const read = async (req, res, next) => {
-//   try {
-//     //     // Fetch a specific item from the database based on the provided ID
-//     const consultant = await tables.consultant.read(req.params.id);
-
-//     //     // If the item is not found, respond with HTTP 404 (Not Found)
-//     //     // Otherwise, respond with the item in JSON format
-//     if (consultant == null) {
-//       res.sendStatus(404);
-//     } else {
-//       res.status(200).json(consultant);
-//     }
-//   } catch (err) {
-//     //     // Pass any errors to the error-handling middleware
-//     next(err);
-//   }
-// };
-
-// The E of BREAD - Edit (Update) operation
-// This operation is not yet implemented
+const read = async (req, res, next) => {
+  try {
+    const user = await tables.user.read(req.params.id);
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.status(200).json(user);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
 
 // The A of BREAD - Add (Create) operation
 // const add = async (req, res, next) => {
@@ -130,18 +179,32 @@ const add = async (req, res, next) => {
 // };
 
 // The D of BREAD - Destroy (Delete) operation
-// This operation is not yet implemented
+const destroy = async (req, res, next) => {
+  try {
+    await tables.user.delete(req.params.id);
+    res.sendStatus(204);
+  } catch (err) {
+    next(err);
+  }
+};
+
+const logout = (req, res) => {
+  res.cookie("auth", "", { expires: new Date(0) }).sendStatus(200);
+};
 
 // Ready to export the controller functions
 module.exports = {
   getConsultant,
-  // read,
-  // edit,
-  // add,
+  updateUser,
+  read,
+  getCandidates,
   // browse,
   login,
   getProfile,
   // edit,
   add,
-  // destroy,
+  destroy,
+  updateProfile,
+  updateProfileCV,
+  logout,
 };
