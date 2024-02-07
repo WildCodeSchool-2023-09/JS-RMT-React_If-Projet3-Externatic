@@ -8,7 +8,7 @@ const browse = async (req, res, next) => {
     const applications = await tables.application.readAll();
 
     // Respond with the applications in JSON format
-    res.json(applications);
+    res.status(200).json(applications);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);
@@ -26,7 +26,7 @@ const read = async (req, res, next) => {
     if (application == null) {
       res.sendStatus(404);
     } else {
-      res.json(application);
+      res.status(200).json(application);
     }
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -41,7 +41,7 @@ const readProfileApplications = async (req, res, next) => {
     if (application == null) {
       res.sendStatus(404);
     } else {
-      res.json(application);
+      res.status(200).json(application);
     }
   } catch (err) {
     next(err);

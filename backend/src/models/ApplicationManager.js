@@ -41,14 +41,6 @@ class ApplicationManager extends AbstractManager {
     return rows;
   }
 
-  /* async getApplications(userId) {
-    const [rows] = await this.database.query(
-      `SELECT id, job_id from ${this.table} INNER JOIN user ON user.id = ?`,
-      [userId]
-    );
-    return rows;
-  } */
-
   async getApplications(userId) {
     const [rows] = await this.database.query(
       `SELECT 
