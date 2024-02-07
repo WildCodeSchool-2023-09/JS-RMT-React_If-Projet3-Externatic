@@ -7,11 +7,20 @@ import "slick-carousel/slick/slick-theme.css";
 import "./CarouselCompanies.css";
 
 function CarouselCompanies() {
+  const [windowSize, setWindowSize] = useState(window.innerWidth);
+
+  function updateDimension() {
+    setWindowSize(window.innerWidth);
+  }
+  useEffect(() => {
+    window.addEventListener("resize", updateDimension);
+  }, []);
+
   const settings = {
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: 4,
+    slidesToShow: windowSize > 820 ? 4 : 2,
     initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 4000,
@@ -32,22 +41,26 @@ function CarouselCompanies() {
   }, []);
 
   return (
-    <div className="carousel-wrapper">
-      <Slider
-        infinite={settings.infinite}
-        speed={settings.speed}
-        slidesToScroll={settings.slidesToScroll}
-        slidesToShow={settings.slidesToShow}
-        initialSlide={settings.initialSlide}
-        autoplay={settings.autoplay}
-        autoplaySpeed={settings.autoplaySpeed}
-      >
-        {companies.map((compagny) => (
-          <div key={compagny.id}>
-            <img src={compagny.image_url} alt={compagny.name} />
-          </div>
-        ))}
-      </Slider>
+    <div className="carousel-container">
+      <h1 className="title-caroussel">Ils nous font confiance</h1>{" "}
+      <div className="img-card-carrousel">
+        <Slider
+          infinite={settings.infinite}
+          speed={settings.speed}
+          slidesToScroll={settings.slidesToScroll}
+          slidesToShow={settings.slidesToShow}
+          initialSlide={settings.initialSlide}
+          Z
+          autoplay={settings.autoplay}
+          autoplaySpeed={settings.autoplaySpeed}
+        >
+          {companies.map((compagny) => (
+            <div key={compagny.id}>
+              <img src={compagny.image_url} alt={compagny.name} />
+            </div>
+          ))}
+        </Slider>{" "}
+      </div>
     </div>
   );
 }

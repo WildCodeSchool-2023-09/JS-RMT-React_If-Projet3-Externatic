@@ -6,8 +6,8 @@ import HeadJob from "../components/headJobs";
 import connexion from "../services/connexion";
 import { AuthContext } from "../contexts/auth";
 
-import "../styles/jobId.css";
-import "../styles/headJobs.css";
+import "./jobId.css";
+import "../components/headJobs.css";
 
 function formatDate(time) {
   return time.split("T")[0];

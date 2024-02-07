@@ -4,6 +4,8 @@
 }
 
 .button-form-container {
+  display: flex;
+  justify-content: center;
   margin-bottom: 30px;
 }
 
@@ -21,4 +23,11 @@
 .application-container {
   display: flex;
   justify-content: center;
+}
+
+.select-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
 }

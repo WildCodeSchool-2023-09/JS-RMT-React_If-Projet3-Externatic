@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../contexts/auth";
 import "./NavBar.css";
-import externatic from "../public/externatic.png";
+import externatic from "../assets/externatic.png";
 
 function NavBar() {
   const { connected, logout } = useAuthContext();
