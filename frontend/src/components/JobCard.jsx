@@ -8,7 +8,7 @@ import "./JobCard.css";
 import { useJobContext } from "../contexts/context";
 import { useAuthContext } from "../contexts/auth";
 
-function JobCard({ job, cardStyle, refresh }) {
+function JobCard({ job, cardStyle, refresh, isUserPage }) {
   const { favorites, manageFavorites } = useJobContext();
   const { connected } = useAuthContext();
   const { companyId } = useParams();
@@ -36,7 +36,7 @@ function JobCard({ job, cardStyle, refresh }) {
       <div className={`${cardStyle}-header`}>
         <Link
           to={
-            access
+            isUserPage && access
               ? `/jobs/${job.id}`
               : `/consultants/company/${companyId}/jobs/${job.job_id}`
           }
@@ -45,7 +45,7 @@ function JobCard({ job, cardStyle, refresh }) {
         </Link>
         {access ? (
           <div>
-            <Link to={`consultants/administration/jobs/${job.id}`}>
+            <Link to={`/consultants/administration/job/${job.job_id}`}>
               <button className="connection-button delete-card" type="button">
                 Editer
               </button>
@@ -110,6 +110,7 @@ JobCard.propTypes = {
   }).isRequired,
   cardStyle: PropTypes.string.isRequired,
   refresh: PropTypes.func.isRequired,
+  isUserPage: PropTypes.bool.isRequired,
 };
 
 export default JobCard;

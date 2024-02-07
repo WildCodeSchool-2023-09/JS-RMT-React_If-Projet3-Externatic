@@ -1,6 +1,6 @@
 import React from "react";
 import { useLoaderData, Link } from "react-router-dom";
-
+import PropTypes from "prop-types";
 import AllJobs from "../components/AllJobs";
 import Collapser from "../components/Collapser";
 import Pagination from "../components/Pagination";
@@ -10,7 +10,7 @@ import { useAuthContext } from "../contexts/auth";
 import "./AllJobsPage.css";
 import FiltersBar from "../components/FiltersBar";
 
-function AllJobsPage() {
+function AllJobsPage({ isUserPage }) {
   const allJobsData = useLoaderData();
   const { jobs, totalPagesNb } = allJobsData.data;
   const currentPage = allJobsData.page;
@@ -24,7 +24,7 @@ function AllJobsPage() {
         <SearchBar page="job" />
       </div>
       <div>
-        {connected.role_id === 2 ? (
+        {isUserPage && connected.role_id === 2 ? (
           <Link to="/consultants/administration/job/new" className="button">
             <button className="connection-button" type="button">
               Ajouter un job
@@ -74,5 +74,9 @@ Ce n’est pas parce que vous démarrez que l’on n’est plus en contact ! Si 
     </div>
   );
 }
+
+AllJobsPage.propTypes = {
+  isUserPage: PropTypes.bool.isRequired,
+};
 
 export default AllJobsPage;
