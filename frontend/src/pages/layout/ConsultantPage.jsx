@@ -6,13 +6,16 @@ function ConsultantPage() {
   return (
     <div>
       <h2 className="consultantTitre">Consultant</h2>
-      <button
-        type="button"
-        className="connection-button"
-        onClick={() => navigate("/consultants/applications")}
-      >
-        Voir mes candidatures
-      </button>
+      <div className="application-button-container">
+        <button
+          type="button"
+          className="connection-button"
+          onClick={() => navigate("/consultants/applications")}
+        >
+          Voir mes candidatures
+        </button>
+      </div>
+
       <div className="containerConsultant">
         <Outlet />
       </div>

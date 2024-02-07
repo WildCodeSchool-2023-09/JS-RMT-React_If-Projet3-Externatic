@@ -145,6 +145,12 @@ router.put(
   validateCV,
   userControllers.updateProfileCV
 );
+router.put(
+  "/application/:id",
+  checkCredentials,
+  checkConsultant,
+  applicationControllers.edit
+);
 
 router.post("/logout", userControllers.logout);
 

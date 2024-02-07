@@ -37,3 +37,15 @@
 .job-link:hover {
   color: var(--main-red);
 }
+
+.application-status {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.validate-status-button {
+  width: 5rem;
+  height: 2rem;
+}
