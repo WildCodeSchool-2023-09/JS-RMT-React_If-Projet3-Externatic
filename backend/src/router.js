@@ -13,6 +13,7 @@ const jobControllers = require("./controllers/jobControllers");
 const companyControllers = require("./controllers/companyControllers");
 const roleControllers = require("./controllers/roleControllers");
 const applicationControllers = require("./controllers/applicationControllers");
+const applicationStatusControllers = require("./controllers/applicationStatusControllers");
 
 const checkCredentials = require("./middleware/checkCredentials");
 const checkAdmin = require("./middleware/checkAdmin");
@@ -54,6 +55,12 @@ router.get(
   applicationControllers.readConsultantApplications
 );
 router.get("/jobs/all/latest", jobControllers.browseLatest);
+router.get(
+  "/applicationStatus",
+  checkCredentials,
+  checkConsultant,
+  applicationStatusControllers.browse
+);
 
 // ROUTES GET BY ID
 router.get("/jobs/:id", jobControllers.read);

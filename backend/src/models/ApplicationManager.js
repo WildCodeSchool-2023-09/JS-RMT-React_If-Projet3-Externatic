@@ -62,23 +62,25 @@ class ApplicationManager extends AbstractManager {
     return rows;
   }
 
-  async getConsultantApplications(userId) {
+  async getConsultantApplications(consultantId) {
     const [rows] = await this.database.query(
       `SELECT 
-        application.id, 
+        application.id AS application_id, 
         application.job_id,
         application.status_id,
         job.title AS job_title, 
-        user.id,
-        user.email,
-        application_status.label as status_label
+        consultant.id AS consultant_id,
+        consultant.email AS consultant_email,
+        user.id AS candidate_id,
+        user.email AS candidate_email,
+        application_status.label AS status_label
       FROM ${this.table} AS application
       INNER JOIN job ON application.job_id = job.id
       INNER JOIN user AS consultant ON job.consultant_id = consultant.id
       INNER JOIN user ON application.user_id = user.id
       INNER JOIN application_status ON application.status_id = application_status.id
-      WHERE user.id = ?`,
-      [userId]
+      WHERE consultant.id = ?`,
+      [consultantId]
     );
     return rows;
   }

@@ -8,6 +8,7 @@ const CompanyManager = require("./models/CompanyManager");
 const UserManager = require("./models/UserManager");
 const RoleManager = require("./models/RoleManager");
 const ApplicationManager = require("./models/ApplicationManager");
+const ApplicationStatusManager = require("./models/ApplicationStatusManager");
 
 const managers = [
   JobManager,
@@ -15,6 +16,7 @@ const managers = [
   UserManager,
   RoleManager,
   ApplicationManager,
+  ApplicationStatusManager,
   // Add other managers here
 ];
 
