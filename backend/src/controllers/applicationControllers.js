@@ -36,12 +36,30 @@ const read = async (req, res, next) => {
 
 const readProfileApplications = async (req, res, next) => {
   try {
-    const application = await tables.application.getApplications(req.user.id);
+    const applications = await tables.application.getProfileApplications(
+      req.user.id
+    );
 
-    if (application == null) {
+    if (applications == null) {
       res.sendStatus(404);
     } else {
-      res.json(application);
+      res.json(applications);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
+const readConsultantApplications = async (req, res, next) => {
+  try {
+    const applications = await tables.application.getConsultantApplications(
+      req.user.id
+    );
+
+    if (applications == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(applications);
     }
   } catch (err) {
     next(err);
@@ -76,6 +94,7 @@ module.exports = {
   browse,
   read,
   readProfileApplications,
+  readConsultantApplications,
   // edit,
   add,
   // destroy,

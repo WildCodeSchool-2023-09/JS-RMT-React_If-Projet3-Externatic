@@ -47,6 +47,12 @@ router.get(
   checkCredentials,
   applicationControllers.readProfileApplications
 );
+router.get(
+  "/applications/consultant",
+  checkCredentials,
+  checkConsultant,
+  applicationControllers.readConsultantApplications
+);
 router.get("/jobs/all/latest", jobControllers.browseLatest);
 
 // ROUTES GET BY ID
