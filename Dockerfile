@@ -11,8 +11,8 @@ RUN corepack enable && \
 	corepack prepare --activate pnpm@latest && \
 	pnpm config -g set store-dir /.pnpm-store
 
-COPY --link ./frontend/package.json ./frontend/
-COPY --link ./backend/package.json ./backend/
+COPY --link ./frontend/package.json ./frontend/package.json
+COPY --link ./backend/package.json ./backend/package.json
 
 RUN cd frontend && \
     pnpm fetch && \
