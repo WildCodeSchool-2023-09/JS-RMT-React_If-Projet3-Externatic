@@ -62,29 +62,6 @@ class ApplicationManager extends AbstractManager {
     return rows;
   }
 
-  /* async getConsultantApplications(consultantId) {
-    const [rows] = await this.database.query(
-      `SELECT 
-        application.id AS application_id, 
-        application.job_id,
-        application.status_id,
-        job.title AS job_title, 
-        consultant.id AS consultant_id,
-        consultant.email AS consultant_email,
-        user.id AS candidate_id,
-        user.email AS candidate_email,
-        application_status.label AS status_label
-      FROM ${this.table} AS application
-      INNER JOIN job ON application.job_id = job.id
-      INNER JOIN user AS consultant ON job.consultant_id = consultant.id
-      INNER JOIN user ON application.user_id = user.id
-      INNER JOIN application_status ON application.status_id = application_status.id
-      WHERE consultant.id = ?`,
-      [consultantId]
-    );
-    return rows;
-  } */
-
   async getConsultantApplications(consultantId) {
     const [rows] = await this.database.query(
       `SELECT 
@@ -105,7 +82,7 @@ class ApplicationManager extends AbstractManager {
       INNER JOIN application_status ON application.status_id = application_status.id
       INNER JOIN company ON job.company_id = company.id
       WHERE consultant.id = ?
-      ORDER BY company.name`, // Tri par nom d'entreprise
+      ORDER BY company.name`,
       [consultantId]
     );
     return rows;
