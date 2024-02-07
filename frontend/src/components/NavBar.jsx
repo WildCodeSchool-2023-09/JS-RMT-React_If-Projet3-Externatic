@@ -14,7 +14,6 @@ function NavBar() {
       await connexion.post("/logout");
       logout();
       navigate("/");
-      window.location.reload();
     } catch (err) {
       console.error("Erreur lors de la déconnexion :", err);
     }

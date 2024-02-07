@@ -16,9 +16,9 @@ export const useAuthContext = () => useContext(AuthContext);
 export function AuthProvider({ children }) {
   const [connected, setConnected] = useState("not connected");
 
-  function logout() {
+  const logout = () => {
     setConnected("not connected");
-  }
+  };
 
   const contextValue = useMemo(
     () => ({ connected, setConnected, logout }),
