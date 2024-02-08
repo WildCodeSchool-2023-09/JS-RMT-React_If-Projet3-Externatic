@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 import JobCard from "../../components/JobCard";
 import "./ConsultantJob.css";
 import connexion from "../../services/connexion";
@@ -20,21 +20,27 @@ function ConsultantJob() {
   useEffect(() => {
     getJobsByCompany();
   }, []);
-
   return (
     <div>
-      <div>
-        <div className="container">
-          {jobs.map((job) => (
-            <JobCard
-              key={job.id}
-              job={job}
-              refresh={getJobsByCompany}
-              cardStyle="job-card"
-              isUserPage={false}
-            />
-          ))}
+      <div className="container-ajout">
+        <div className="ajout-card">
+          <Link to="/consultants/administration/job/new">
+            <button className="connection-button ajout-card" type="button">
+              Ajouter un job
+            </button>
+          </Link>
         </div>
+      </div>
+      <div className="container">
+        {jobs.map((job) => (
+          <JobCard
+            key={job.id}
+            job={job}
+            refresh={getJobsByCompany}
+            cardStyle="job-card"
+            isUserPage={false}
+          />
+        ))}
       </div>
     </div>
   );

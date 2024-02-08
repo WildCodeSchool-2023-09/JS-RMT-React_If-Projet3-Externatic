@@ -10,7 +10,7 @@ import App from "./App";
 import FormLogin from "./pages/FormLogin";
 import FormRegister from "./pages/FormRegister";
 import HomePage from "./pages/HomePage";
-import AdminJob from "./pages/AdminJobs";
+import AdminJobs from "./pages/AdminJobs";
 
 import AllJobsPage from "./pages/AllJobsPage";
 import ConsultantPage from "./pages/layout/ConsultantPage";
@@ -92,7 +92,7 @@ const router = createBrowserRouter([
             children: [
               {
                 path: "job/:id",
-                element: <AdminJob />,
+                element: <AdminJobs />,
               },
               {
                 path: "job",

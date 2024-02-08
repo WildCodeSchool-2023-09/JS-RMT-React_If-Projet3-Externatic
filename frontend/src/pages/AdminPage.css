@@ -7,3 +7,8 @@
   justify-content: center;
   margin-top: 1rem;
 }
+
+.message {
+  text-align: center;
+  margin: 10px;
+}

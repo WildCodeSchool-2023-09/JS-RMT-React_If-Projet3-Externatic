@@ -44,6 +44,15 @@ function JobCard({ job, cardStyle, refresh, isUserPage }) {
           <h3 className={`${cardStyle}-title`}>{job.title}</h3>
         </Link>
         {!isUserPage ? (
+          <Link to={`/consultants/administration/job/${job.job_id}`}>
+            <button className="connection-button delete-card" type="button">
+              Editer
+            </button>
+          </Link>
+        ) : (
+          ""
+        )}
+        {!isUserPage ? (
           <button
             className="connection-button delete-card"
             type="button"
@@ -62,6 +71,7 @@ function JobCard({ job, cardStyle, refresh, isUserPage }) {
           </button>
         )}
       </div>
+
       <div className={`${cardStyle}-body`}>
         <div className={`${cardStyle}-requirement`}>
           <p className="job-card-language">{job.language}</p>

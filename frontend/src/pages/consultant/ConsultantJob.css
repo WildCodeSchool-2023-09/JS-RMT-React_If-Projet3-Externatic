@@ -6,3 +6,12 @@
   gap: 5rem;
   flex-wrap: wrap;
 }
+
+.ajout-card {
+  margin: auto;
+}
+
+.container-ajout {
+  display: flex;
+  justify-content: center;
+}
