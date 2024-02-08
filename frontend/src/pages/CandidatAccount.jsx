@@ -12,7 +12,7 @@ function CandidatAccount() {
     email: connected.email,
     lastname: connected.lastname || "",
     firstname: connected.firstname || "",
-    phone_number: connected.phone_number || "",
+    phone_number: connected.phone_number || null,
     city: connected.city || "",
     employment_type: connected.employment_type || "",
     experience: connected.experience || "",

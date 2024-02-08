@@ -44,3 +44,13 @@
     margin-left: 220px;
   }
 }
+
+@media only screen and (max-width: 390px) {
+  .slick-list {
+    margin-left: 10px;
+  }
+
+  .img-caroussel {
+    margin-left: 110px;
+  }
+}

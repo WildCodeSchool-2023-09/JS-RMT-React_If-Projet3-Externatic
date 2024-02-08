@@ -7,7 +7,7 @@ const schema = Joi.object({
   status: Joi.string().allow(""),
   phone_number: Joi.number()
     .max(10 ** 10 - 1)
-    .allow(""),
+    .allow(null),
   city: Joi.string().allow(""),
   employment_type: Joi.string().allow(""),
   experience: Joi.string().allow(""),

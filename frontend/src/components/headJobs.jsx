@@ -1,5 +1,7 @@
 import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import { AuthContext } from "../contexts/auth";
 import connexion from "../services/connexion";
@@ -18,8 +20,10 @@ function HeadJob() {
     const application = { job_id: job.id, user_id: connected.id };
     try {
       connexion.post("/application", application);
+      toast.success("Votre candidature a été soumise avec succès");
     } catch (err) {
       console.error(err);
+      toast.error("Une erreur s'est produite. Veuillez réessayer plus tard");
     }
   };
 
@@ -48,6 +52,7 @@ function HeadJob() {
           </ul>
         </div>
       </div>
+      <ToastContainer theme="dark" />
     </div>
   );
 }
