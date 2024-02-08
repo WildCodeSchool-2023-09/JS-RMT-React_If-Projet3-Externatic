@@ -1,1 +1,5 @@
-[{ "label": "Candidat" }, { "label": "Consultant" }, { "label": "Admin" }]
+[
+  { "id": 1, "label": "Candidat" },
+  { "id": 2, "label": "Consultant" },
+  { "id": 3, "label": "Admin" }
+]

@@ -5,6 +5,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 import { AuthContext } from "../contexts/auth";
 import connexion from "../services/connexion";
+import logoext from "../assets/sfddsfdfsfddf.png";
 
 import "./headJobs.css";
 
@@ -29,7 +30,7 @@ function HeadJob() {
 
   return (
     <div className="headjob_container">
-      <img src="../src/assets/Logohead.svg" alt="Logo" />
+      <img src={logoext} alt="Logo" />
       <div className="body_job">
         <div className="offer">
           <h1 className="title">{job.title}</h1>

@@ -104,6 +104,7 @@ router.post(
 );
 router.post("/application", checkCredentials, applicationControllers.add);
 
+router.post("/logout", checkCredentials, userControllers.logout);
 // ROUTES DELETE
 router.delete(
   "/jobs/:id",
@@ -152,6 +153,9 @@ router.put(
   userControllers.updateProfileCV
 );
 router.put("/jobs/:id", checkCredentials, checkConsultant, jobControllers.edit);
+
+router.put("/application/:id", checkCredentials, applicationControllers.edit);
+
 /* ************************************************************************* */
 
 module.exports = router;

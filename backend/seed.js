@@ -16,7 +16,10 @@ const seed = async () => {
     const roleQuery = [];
     for (let i = 0; i < role.length; i += 1) {
       roleQuery.push(
-        database.query("insert into role(label) values (?)", [role[i].label])
+        database.query("insert into role(id ,label) values (?, ?)", [
+          role[i].id,
+          role[i].label,
+        ])
       );
     }
     await Promise.all(roleQuery);
@@ -24,9 +27,10 @@ const seed = async () => {
     const applicationStatusQuery = [];
     for (let i = 0; i < applicationStatus.length; i += 1) {
       applicationStatusQuery.push(
-        database.query("insert into application_status(label) values (?)", [
-          applicationStatus[i].label,
-        ])
+        database.query(
+          "insert into application_status(id, label) values (? , ?)",
+          [applicationStatus[i].id, applicationStatus[i].label]
+        )
       );
     }
     await Promise.all(applicationStatusQuery);
@@ -35,8 +39,9 @@ const seed = async () => {
     for (let i = 0; i < user.length; i += 1) {
       userQuery.push(
         database.query(
-          "insert into user(lastname, firstname, email, password, role_id) values (?, ?, ?, ?, ?)",
+          "insert into user(id, lastname, firstname, email, password, role_id) values (?, ?, ?, ?, ?, ?)",
           [
+            user[i].id,
             user[i].lastname,
             user[i].firstname,
             user[i].email,
