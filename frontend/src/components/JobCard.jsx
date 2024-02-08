@@ -6,14 +6,10 @@ import connexion from "../services/connexion";
 
 import "./JobCard.css";
 import { useJobContext } from "../contexts/context";
-import { useAuthContext } from "../contexts/auth";
 
 function JobCard({ job, cardStyle, refresh, isUserPage }) {
   const { favorites, manageFavorites } = useJobContext();
-  const { connected } = useAuthContext();
   const { companyId } = useParams();
-
-  const access = connected.role_id === 2 || connected.role_id === 3;
 
   const dateDiffInDaysFromToday = (date) => {
     const targetDate = new Date(date);
@@ -36,13 +32,22 @@ function JobCard({ job, cardStyle, refresh, isUserPage }) {
       <div className={`${cardStyle}-header`}>
         <Link
           to={
-            isUserPage && access
+            isUserPage
               ? `/jobs/${job.id}`
               : `/consultants/company/${companyId}/jobs/${job.job_id}`
           }
         >
           <h3 className={`${cardStyle}-title`}>{job.title}</h3>
         </Link>
+        {!isUserPage ? (
+          <Link to={`/consultants/administration/job/${job.job_id}`}>
+            <button className="connection-button delete-card" type="button">
+              Editer
+            </button>
+          </Link>
+        ) : (
+          ""
+        )}
         {!isUserPage ? (
           <button
             className="connection-button delete-card"
@@ -62,6 +67,7 @@ function JobCard({ job, cardStyle, refresh, isUserPage }) {
           </button>
         )}
       </div>
+
       <div className={`${cardStyle}-body`}>
         <div className={`${cardStyle}-requirement`}>
           <p className="job-card-language">{job.language}</p>

@@ -23,6 +23,7 @@ const validateUser = require("./validators/validateUser");
 const validateAccount = require("./validators/validateAccount");
 const validateCompany = require("./validators/validateCompany");
 const validateCV = require("./validators/validateCV");
+const validateJob = require("./validators/validateJob");
 
 // ROUTES GET
 router.get("/jobs", jobControllers.browse);
@@ -32,7 +33,7 @@ router.get("/companies", companyControllers.browse);
 router.get(
   "/consultants",
   checkCredentials,
-  checkAdmin,
+  checkConsultant,
   userControllers.getConsultant
 );
 router.get("/roles", checkCredentials, checkAdmin, roleControllers.browse);
@@ -85,8 +86,13 @@ router.get(
 router.get("/roles/:id", checkCredentials, checkAdmin, roleControllers.read);
 router.get("/users/:id", checkCredentials, userControllers.read);
 
-// ROUTES POST
-router.post("/jobs", checkCredentials, checkConsultant, jobControllers.add);
+router.post(
+  "/jobs",
+  validateJob,
+  checkCredentials,
+  checkConsultant,
+  jobControllers.add
+);
 router.post("/login", validateUser, userControllers.login);
 router.post("/register", validateUser, userControllers.add);
 router.post(
@@ -145,15 +151,7 @@ router.put(
   validateCV,
   userControllers.updateProfileCV
 );
-router.put(
-  "/application/:id",
-  checkCredentials,
-  checkConsultant,
-  applicationControllers.edit
-);
-
-router.post("/logout", userControllers.logout);
-
+router.put("/jobs/:id", checkCredentials, checkConsultant, jobControllers.edit);
 /* ************************************************************************* */
 
 module.exports = router;

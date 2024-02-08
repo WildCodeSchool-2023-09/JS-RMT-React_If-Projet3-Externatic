@@ -115,9 +115,25 @@ const browseLatest = async (req, res, next) => {
     next(err);
   }
 };
-// The E of BREAD - Edit (Update) operation
-// This operation is not yet implemented
 
+// The E of BREAD - Edit (Update) operation
+const edit = async (req, res, next) => {
+  // Extract the job data from the request body
+  const job = req.body;
+  try {
+    const result = await tables.job.update(req.params.id, job);
+
+    // If the job is not found, respond with HTTP 404 (Not Found)
+    if (result.affectedRows === 1) {
+      res.sendStatus(204);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
 // The A of BREAD - Add (Create) operation
 const add = async (req, res, next) => {
   // Extract the job data from the request body
@@ -157,7 +173,7 @@ module.exports = {
   readByCompany,
   readByCompanyJob,
   browseLatest,
-  // edit,
+  edit,
   add,
   destroy,
 };

@@ -172,9 +172,18 @@ class JobManager extends AbstractManager {
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing job
 
-  // async update(job) {
-  //   ...
-  // }
+  async update(id, job) {
+    // Execute the SQL SELECT query to retrieve a specific job by its ID
+    // eslint-disable-next-line no-param-reassign
+    delete job.created_at;
+    const [result] = await this.database.query(
+      `UPDATE ${this.table} set ? WHERE id = ?`,
+      [job, id]
+    );
+
+    // Return the first row of the result, which represents the item
+    return result;
+  }
 
   // The D of CRUD - Delete operation
   // TODO: Implement the delete operation to remove an job by its ID

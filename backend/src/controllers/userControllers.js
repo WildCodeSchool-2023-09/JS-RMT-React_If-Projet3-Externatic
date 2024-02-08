@@ -61,7 +61,7 @@ const login = async (req, res, next) => {
         res
           .cookie("auth", createToken(user), { httpOnly: true })
           .status(200)
-          .json({ id: user.id, email: user.email, roleId: user.role_id });
+          .json({ id: user.id, email: user.email, role_id: user.role_id });
       } else {
         res.sendStatus(403);
       }

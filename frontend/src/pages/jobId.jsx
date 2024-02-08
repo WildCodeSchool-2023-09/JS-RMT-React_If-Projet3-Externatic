@@ -1,7 +1,8 @@
-import React, { useRef, useContext } from "react";
+import React, { useContext } from "react";
 import { useLoaderData } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-import Modal from "../components/modal";
 import HeadJob from "../components/headJobs";
 import connexion from "../services/connexion";
 import { AuthContext } from "../contexts/auth";
@@ -16,19 +17,15 @@ function formatDate(time) {
 function JobId() {
   const job = useLoaderData();
   const { connected } = useContext(AuthContext);
-  const modal = useRef(null);
-
-  function toggleRefModal() {
-    modal.current.toggleModal();
-  }
 
   const handleClick = async () => {
-    toggleRefModal();
     const application = { job_id: job.id, user_id: connected.id };
     try {
       connexion.post("/application", application);
+      toast.success("Votre candidature a été soumise avec succès");
     } catch (err) {
       console.error(err);
+      toast.error("Une erreur s'est produite. Veuillez réessayer plus tard");
     }
   };
 
@@ -56,18 +53,15 @@ function JobId() {
           <p>Type de contrat:{job.working_type}</p>
           <h2>Le processus</h2>
           <p>{job.description_process}</p>
-
           <p>Date de prise de l'emploi:{formatDate(job.starting_date)}</p>
         </div>
-        <div className="consultant">
-          <h2>Votre consultant</h2>
-        </div>
-        <div>Veuillez vous connecter pour en savoir plus</div>
-        <Modal ref={modal} />
-        <button type="button" onClick={handleClick} className="btn-modal">
-          Postuler a l'offre
-        </button>
+        {connected.role_id && (
+          <button type="button" onClick={handleClick} className="btn-modal">
+            Postuler a l'offre
+          </button>
+        )}
       </div>
+      <ToastContainer theme="dark" />
     </div>
   );
 }

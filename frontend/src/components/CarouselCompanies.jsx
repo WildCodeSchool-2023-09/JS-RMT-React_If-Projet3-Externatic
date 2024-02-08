@@ -16,11 +16,21 @@ function CarouselCompanies() {
     window.addEventListener("resize", updateDimension);
   }, []);
 
+  const ShowBreakPoint = {
+    821: 4,
+    820: 2,
+    390: 1,
+  };
+
+  const defaultShow = 4;
+
+  const ToShow = ShowBreakPoint[windowSize] || defaultShow;
+
   const settings = {
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: windowSize > 820 ? 4 : 2,
+    slidesToShow: ToShow,
     initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 4000,
@@ -42,7 +52,7 @@ function CarouselCompanies() {
 
   return (
     <div className="carousel-container">
-      <h1 className="title-caroussel">Ils nous font confiance</h1>{" "}
+      <h1 className="title-caroussel">Ils nous font confiance</h1>
       <div className="img-card-carrousel">
         <Slider
           infinite={settings.infinite}
@@ -55,11 +65,11 @@ function CarouselCompanies() {
           autoplaySpeed={settings.autoplaySpeed}
         >
           {companies.map((compagny) => (
-            <div key={compagny.id}>
+            <div key={compagny.id} className="img-caroussel">
               <img src={compagny.image_url} alt={compagny.name} />
             </div>
           ))}
-        </Slider>{" "}
+        </Slider>
       </div>
     </div>
   );
