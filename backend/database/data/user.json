@@ -1,30 +1,18 @@
 [
   {
-    "lastname": "Doe",
-    "firstname": "John",
-    "email": "john.doe@email.com",
-    "password": "password123",
-    "role_id": 1
-  },
-  {
-    "lastname": "Smith",
-    "firstname": "Alice",
-    "email": "alice.smith@email.com",
-    "password": "securepwd456",
+    "id": 1,
+    "lastname": "super",
+    "firstname": "consultant",
+    "email": "super.consultant@gmail.com",
+    "password": "$argon2d$v=19$m=65536,t=3,p=4$3vtuJ2h5a0bxj/rIy11vqg$BpHBDecl/7MPLSrgUvIPhWL+mGThBX4u4TvMUA8e3T+Ced5SaSqJNkqqQ73AECQRHKw",
     "role_id": 2
   },
   {
-    "lastname": "Admin",
-    "firstname": "Super",
-    "email": "super.admin@email.com",
-    "password": "adminpass789",
+    "id": 2,
+    "lastname": "super",
+    "firstname": "admin",
+    "email": "super.admin@gmail.com",
+    "password": "$argon2d$v=19$m=65536,t=3,p=4$3vtuJ2h5a0bxj/rIy11vqg$BpHBDecl/7MPLSrgUvIPhWL+mGThBX4u4TvMUA8e3T+Ced5SaSqJNkqqQ73AECQRHKw",
     "role_id": 3
-  },
-  {
-    "lastname": "Maamir",
-    "firstname": "Hipticem",
-    "email": "maamir.hipticem@gmail.com",
-    "password": "hipticem",
-    "role_id": 2
   }
 ]

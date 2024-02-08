@@ -1,1 +1,5 @@
-[{ "label": "Accepté" }, { "label": "En cours" }, { "label": "Refusé" }]
+[
+  { "id": 1, "label": "Accepté" },
+  { "id": 2, "label": "En cours" },
+  { "id": 3, "label": "Refusé" }
+]
