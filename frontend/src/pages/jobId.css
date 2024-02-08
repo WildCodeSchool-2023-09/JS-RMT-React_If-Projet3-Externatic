@@ -1,3 +1,9 @@
+:root {
+  --toastify-color-dark: #fc005b;
+  --toastify-color-success: #ffffff;
+  --toastify-color-error: #ffffff;
+}
+
 .resume {
   display: flex;
   justify-content: center;
@@ -31,4 +37,6 @@
   border-radius: 5px;
   font-weight: bold;
   cursor: pointer;
+  margin-bottom: 50px;
+  margin-top: 50px;
 }

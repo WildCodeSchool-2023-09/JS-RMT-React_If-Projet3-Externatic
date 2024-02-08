@@ -180,3 +180,62 @@
     font-size: 45px;
   }
 }
+
+@media only screen and (max-width: 390px) {
+  .small-image-1 {
+    left: 31%;
+    transform: translateX(-50%);
+  }
+
+  .img-home-small {
+    width: auto;
+    height: 80px;
+    margin-top: 40px;
+  }
+
+  .small-image-2 {
+    top: 140px;
+    left: 70%;
+    transform: translateX(-50%);
+  }
+
+  .small-image-3 {
+    top: 350px;
+    left: 32%;
+    transform: translateX(-50%);
+  }
+
+  .small-image-4 {
+    top: 570px;
+    left: 70%;
+    transform: translateX(-50%);
+  }
+
+  .subtitle-externatic-red {
+    font-size: 25px;
+  }
+
+  .externatic-red {
+    font-size: 45px;
+  }
+  .bar-arrow {
+    height: 750px;
+  }
+
+  .account-img {
+    height: 175px;
+  }
+
+  .post-img {
+    height: 110px;
+  }
+
+  .consul-img {
+    height: 105px;
+  }
+
+  .consul-container {
+    margin-top: 100px;
+    margin-left: 10px;
+  }
+}

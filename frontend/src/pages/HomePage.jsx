@@ -58,10 +58,10 @@ function HomePage() {
       <h2 className="join-us">Comment ça marche ?</h2>
       <div className="tuto-accounty">
         <div className="tuto-account">
-          <img src={account} alt="account" />
-          <img src={post} alt="post" />
+          <img src={account} alt="account" className="account-img" />
+          <img src={post} alt="post" className="post-img" />
           <div className="consul-container">
-            <img src={consul} alt="consul" />
+            <img src={consul} alt="consul" className="consul-img" />
           </div>
         </div>
       </div>

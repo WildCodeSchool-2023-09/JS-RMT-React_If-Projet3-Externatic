@@ -6,14 +6,10 @@ import connexion from "../services/connexion";
 
 import "./JobCard.css";
 import { useJobContext } from "../contexts/context";
-import { useAuthContext } from "../contexts/auth";
 
 function JobCard({ job, cardStyle, refresh, isUserPage }) {
   const { favorites, manageFavorites } = useJobContext();
-  const { connected } = useAuthContext();
   const { companyId } = useParams();
-
-  const access = connected.role_id === 2 || connected.role_id === 3;
 
   const dateDiffInDaysFromToday = (date) => {
     const targetDate = new Date(date);
@@ -36,9 +32,9 @@ function JobCard({ job, cardStyle, refresh, isUserPage }) {
       <div className={`${cardStyle}-header`}>
         <Link
           to={
-            isUserPage && access
-              ? `/consultants/company/${companyId}/jobs/${job.job_id}`
-              : `/jobs/${job.id}`
+            isUserPage
+              ? `/jobs/${job.id}`
+              : `/consultants/company/${companyId}/jobs/${job.job_id}`
           }
         >
           <h3 className={`${cardStyle}-title`}>{job.title}</h3>
