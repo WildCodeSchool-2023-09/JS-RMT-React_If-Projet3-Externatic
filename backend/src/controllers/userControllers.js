@@ -49,15 +49,17 @@ const login = async (req, res, next) => {
   try {
     // Fetch a specific user from the database based on the provided ID
     const user = await tables.user.readByEmail(req.body.email);
-
+    console.info(user);
     // If the user is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the user in JSON format
     if (user == null) {
       res.sendStatus(403);
     } else {
       const check = await verify(req.body.password, user.password);
+      console.info(check);
       if (check) {
         delete user.password;
+        console.info(user);
         res
           .cookie("auth", createToken(user), { httpOnly: true })
           .status(200)
