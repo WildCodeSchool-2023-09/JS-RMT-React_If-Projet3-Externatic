@@ -4,7 +4,7 @@
     "lastname": "super",
     "firstname": "consultant",
     "email": "super.consultant@gmail.com",
-    "password": "$argon2d$v=19$m=65536,t=3,p=4$3vtuJ2h5a0bxj/rIy11vqg$BpHBDecl/7MPLSrgUvIPhWL+mGThBX4u4TvMUA8e3T+Ced5SaSqJNkqqQ73AECQRHKw",
+    "password": "$argon2d$v=19$m=65536,t=3,p=4$OgA9J78KZn++onDC2p4tdQ$Jedxo0UTLlUWLsksADrE1ebib8rhZcHTmCKgQmxZmpqMQsT44usXd0cmm1F+GALy9e8",
     "role_id": 2
   },
   {
@@ -12,7 +12,7 @@
     "lastname": "super",
     "firstname": "admin",
     "email": "super.admin@gmail.com",
-    "password": "$argon2d$v=19$m=65536,t=3,p=4$3vtuJ2h5a0bxj/rIy11vqg$BpHBDecl/7MPLSrgUvIPhWL+mGThBX4u4TvMUA8e3T+Ced5SaSqJNkqqQ73AECQRHKw",
+    "password": "$argon2d$v=19$m=65536,t=3,p=4$OgA9J78KZn++onDC2p4tdQ$Jedxo0UTLlUWLsksADrE1ebib8rhZcHTmCKgQmxZmpqMQsT44usXd0cmm1F+GALy9e8",
     "role_id": 3
   }
 ]
