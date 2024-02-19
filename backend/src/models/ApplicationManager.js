@@ -73,6 +73,7 @@ class ApplicationManager extends AbstractManager {
         consultant.email AS consultant_email,
         user.id AS candidate_id,
         user.email AS candidate_email,
+        user.url AS candidate_url,
         application_status.label AS status_label,
         company.name AS company_name
       FROM ${this.table} AS application

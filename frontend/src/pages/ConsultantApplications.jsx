@@ -4,6 +4,7 @@ import Select from "react-select";
 
 import { useAuthContext } from "../contexts/auth";
 import connexion from "../services/connexion";
+import connexionCV from "../services/connexionCV";
 
 import "./ConsultantApplications.css";
 import "../components/reusable/button.css";
@@ -102,6 +103,7 @@ function ConsultantApplication() {
               <th className="application-th">Nom de l'offre</th>
               <th className="application-th">Entreprise</th>
               <th className="application-th">Email du candidat</th>
+              <th className="application-th">CV du candidat</th>
               <th className="application-th">Statut</th>
             </tr>
           </thead>
@@ -116,6 +118,15 @@ function ConsultantApplication() {
                 <td className="application-td">{application.company_name}</td>
                 <td className="application-td">
                   {application.candidate_email}
+                </td>
+                <td className="application-tdd">
+                  <a
+                    href={`${connexionCV.defaults.baseURL}/${application.candidate_url}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    CV_candidat
+                  </a>
                 </td>
                 <td
                   className="application-td application-status"

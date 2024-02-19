@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../contexts/auth";
 import connexion from "../services/connexion";
+import connexionCV from "../services/connexionCV";
 import "./CandidatAccount.css";
 
 function CandidatAccount() {
@@ -25,10 +26,15 @@ function CandidatAccount() {
     try {
       const profile = await connexion.get(`/profile`);
       setConnected(profile.data);
+      setUserData(profile.data);
     } catch (err) {
       console.error(err);
     }
   };
+
+  useEffect(() => {
+    getProfile();
+  }, []);
 
   const handleUpload = async (e) => {
     e.preventDefault();
@@ -209,7 +215,17 @@ function CandidatAccount() {
             />
           </label>
           <h3 className="pdf-title"> Votre fichier actuel :</h3>
-          <p>{userData.url && userData.url.split("/").pop()}</p>
+          {userData.url && (
+            <p>
+              <a
+                href={`${connexionCV.defaults.baseURL}/${userData.url}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                {userData.url.split("/").pop()}
+              </a>
+            </p>
+          )}
           <div className="button-form-container">
             <button type="submit" className="connection-button">
               Valider

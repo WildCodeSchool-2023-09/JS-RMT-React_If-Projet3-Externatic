@@ -8,7 +8,11 @@ const storage = multer.diskStorage({
   filename(req, file, callback) {
     const arrayFile = file.originalname.split(".");
     const extension = arrayFile.pop();
-    callback(null, `${arrayFile[0]}_${Date.now()}.${extension}`);
+    const sanitizedFilename = `${arrayFile[0].replace(
+      /\s/g,
+      "_"
+    )}_${Date.now()}.${extension}`;
+    callback(null, sanitizedFilename);
   },
 });
 
