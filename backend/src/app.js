@@ -91,7 +91,6 @@ app.use("/public/*", (req, res) => {
   res.sendFile(path.join(__dirname, "../", req.originalUrl));
 });
 
-app.use("/public/assets/images", express.static("/public/assets/images"));
 /* ************************************************************************* */
 
 // Production-ready setup: What is it for, and when should I enable it?
