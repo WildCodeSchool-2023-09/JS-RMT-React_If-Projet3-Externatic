@@ -4,7 +4,7 @@ const schema = Joi.object({
   email: Joi.string().email().required(),
   lastname: Joi.string().allow(""),
   firstname: Joi.string().allow(""),
-  status: Joi.string().allow(""),
+  status: Joi.string().allow(null),
   phone_number: Joi.number()
     .max(10 ** 10 - 1)
     .allow(null),
