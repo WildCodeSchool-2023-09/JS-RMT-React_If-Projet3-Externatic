@@ -156,6 +156,12 @@ router.put("/jobs/:id", checkCredentials, checkConsultant, jobControllers.edit);
 
 router.put("/application/:id", checkCredentials, applicationControllers.edit);
 
+router.delete(
+  "/application/:id",
+  checkCredentials,
+  applicationControllers.remove
+);
+
 /* ************************************************************************* */
 
 module.exports = router;

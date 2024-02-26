@@ -101,6 +101,17 @@ class ApplicationManager extends AbstractManager {
     return result;
   }
 
+  async delete(id) {
+    // Execute the SQL DELETE query to remove a specific application by its ID
+    const [result] = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+
+    // Return the result object which contains information about the operation
+    return result;
+  }
+
   // The D of CRUD - Delete operation
   // TODO: Implement the delete operation to remove an application by its ID
 

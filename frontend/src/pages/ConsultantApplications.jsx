@@ -88,6 +88,15 @@ function ConsultantApplication() {
     }
   };
 
+  const deleteApplication = async (applicationId) => {
+    try {
+      await connexion.delete(`/application/${applicationId}`);
+      getApplications();
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   useEffect(() => {
     getApplications();
     getApplicationStatus();
@@ -151,6 +160,17 @@ function ConsultantApplication() {
                     }
                   >
                     Valider
+                  </button>
+                </td>
+                <td className="application-td application-status">
+                  <button
+                    type="button"
+                    className="connection-button delete-button"
+                    onClick={() =>
+                      deleteApplication(application.application_id)
+                    }
+                  >
+                    Supprimer
                   </button>
                 </td>
               </tr>
