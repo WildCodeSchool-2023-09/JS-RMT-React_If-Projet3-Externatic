@@ -107,7 +107,7 @@ function MenuBurger() {
                 <button
                   type="button"
                   className="menu-items-button"
-                  onClick={handleLogout && closeMenu}
+                  onClick={handleLogout}
                 >
                   Deconnexion
                 </button>
