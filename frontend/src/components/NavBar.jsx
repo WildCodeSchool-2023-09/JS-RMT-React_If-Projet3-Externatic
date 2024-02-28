@@ -4,6 +4,7 @@ import { useAuthContext } from "../contexts/auth";
 import "./NavBar.css";
 import externatic from "../assets/externatic.png";
 import connexion from "../services/connexion";
+import MenuBurger from "./MenuBurger";
 
 function NavBar() {
   const navigate = useNavigate();
@@ -20,9 +21,9 @@ function NavBar() {
   };
   return (
     <div className="navbar">
-      <Link to="/">
-        <img className="logo" src={externatic} alt="externatic" />
-      </Link>
+      <div className="burgerVisible">
+        <MenuBurger />
+      </div>
       <Link className="link-page" to="/">
         Home
       </Link>
@@ -63,6 +64,11 @@ function NavBar() {
             Deconnexion
           </button>
         )}
+      </div>
+      <div className="logo-container">
+        <Link to="/">
+          <img className="logo" src={externatic} alt="externatic" />
+        </Link>
       </div>
     </div>
   );
