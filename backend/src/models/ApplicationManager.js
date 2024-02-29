@@ -73,6 +73,7 @@ class ApplicationManager extends AbstractManager {
         consultant.email AS consultant_email,
         user.id AS candidate_id,
         user.email AS candidate_email,
+        user.url AS candidate_url,
         application_status.label AS status_label,
         company.name AS company_name
       FROM ${this.table} AS application
@@ -97,6 +98,17 @@ class ApplicationManager extends AbstractManager {
     );
 
     // Return the first row of the result, which represents the item
+    return result;
+  }
+
+  async delete(id) {
+    // Execute the SQL DELETE query to remove a specific application by its ID
+    const [result] = await this.database.query(
+      `DELETE FROM ${this.table} WHERE id = ?`,
+      [id]
+    );
+
+    // Return the result object which contains information about the operation
     return result;
   }
 

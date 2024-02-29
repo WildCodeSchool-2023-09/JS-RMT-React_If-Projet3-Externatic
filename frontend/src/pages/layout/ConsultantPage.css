@@ -16,3 +16,8 @@
   display: flex;
   justify-content: center;
 }
+
+.container-ajout {
+  margin-left: 30px;
+  margin-right: 30px;
+}

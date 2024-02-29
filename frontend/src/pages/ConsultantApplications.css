@@ -49,3 +49,16 @@
   width: 5rem;
   height: 2rem;
 }
+
+.application-tdd {
+  height: 3rem;
+  text-align: center;
+  border-bottom: 2px solid var(--main-red);
+  font-size: 1.1rem;
+  text-decoration: underline var(--main-red);
+}
+
+.delete-button {
+  width: 5rem;
+  height: 2rem;
+}

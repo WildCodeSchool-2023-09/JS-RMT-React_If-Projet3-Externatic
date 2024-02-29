@@ -103,6 +103,20 @@ const add = async (req, res, next) => {
   }
 };
 
+const remove = async (req, res, next) => {
+  try {
+    const result = await tables.application.delete(req.params.id);
+
+    if (result.affectedRows === 1) {
+      res.sendStatus(204);
+    } else {
+      res.sendStatus(404);
+    }
+  } catch (err) {
+    next(err);
+  }
+};
+
 // The D of BREAD - Destroy (Delete) operation
 // This operation is not yet implemented
 
@@ -114,5 +128,5 @@ module.exports = {
   readConsultantApplications,
   edit,
   add,
-  // destroy,
+  remove,
 };
