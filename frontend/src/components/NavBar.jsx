@@ -25,13 +25,13 @@ function NavBar() {
         <MenuBurger />
       </div>
       <Link className="link-page" to="/">
-        Home
+        Accueil
       </Link>
       <Link className="link-page" to="/jobs">
-        Jobs
+        Offre d'emploi
       </Link>
       {connected.role_id === 3 ? (
-        <Link className="link-page" to="/administration">
+        <Link className="link-page" to="/administration/companies">
           Admin
         </Link>
       ) : (

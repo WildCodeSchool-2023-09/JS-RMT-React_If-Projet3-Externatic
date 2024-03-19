@@ -18,7 +18,8 @@ function AdminSpecific({ pageTitle, route }) {
   const getRoles = async () => {
     try {
       const response = await connexion.get("/roles");
-      setRoles(response.data);
+      const filteredRoles = response.data.filter((role) => role.id !== 3);
+      setRoles(filteredRoles);
     } catch (err) {
       console.error(err);
     }

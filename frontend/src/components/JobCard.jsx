@@ -33,14 +33,14 @@ function JobCard({ job, cardStyle, refresh, isUserPage }) {
         <Link
           to={
             isUserPage
-              ? `/jobs/${job.id}`
+              ? `/jobs/${job.slug}`
               : `/consultants/company/${companyId}/jobs/${job.job_id}`
           }
         >
           <h3 className={`${cardStyle}-title`}>{job.title}</h3>
         </Link>
         {!isUserPage ? (
-          <Link to={`/consultants/administration/job/${job.job_id}`}>
+          <Link to={`/consultants/administration/job/${job.job_slug}`}>
             <button className="connection-button delete-card" type="button">
               Editer
             </button>
@@ -104,6 +104,8 @@ JobCard.propTypes = {
     position_category: PropTypes.string.isRequired,
     position_requirements: PropTypes.string.isRequired,
     contract_type: PropTypes.string.isRequired,
+    slug: PropTypes.string,
+    job_slug: PropTypes.string,
   }).isRequired,
   cardStyle: PropTypes.string.isRequired,
   refresh: PropTypes.func.isRequired,

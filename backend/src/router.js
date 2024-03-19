@@ -24,6 +24,7 @@ const validateAccount = require("./validators/validateAccount");
 const validateCompany = require("./validators/validateCompany");
 const validateCV = require("./validators/validateCV");
 const validateJob = require("./validators/validateJob");
+const { updateSlug } = require("./middleware/updateSlug");
 
 // ROUTES GET
 router.get("/jobs", jobControllers.browse);
@@ -64,7 +65,7 @@ router.get(
 );
 
 // ROUTES GET BY ID
-router.get("/jobs/:id", jobControllers.read);
+router.get("/jobs/:slug", jobControllers.read);
 router.get(
   "/companies/:id",
   checkCredentials,
@@ -152,7 +153,7 @@ router.put(
   validateCV,
   userControllers.updateProfileCV
 );
-router.put("/jobs/:id", checkCredentials, checkConsultant, jobControllers.edit);
+router.put("/jobs/:slug", updateSlug, jobControllers.edit);
 
 router.put("/application/:id", checkCredentials, applicationControllers.edit);
 

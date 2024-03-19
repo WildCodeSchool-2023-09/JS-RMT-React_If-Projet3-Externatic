@@ -35,6 +35,7 @@ CREATE TABLE job (
   company_id INTEGER NOT NULL,
   consultant_id INTEGER NOT NULL,
   title VARCHAR(255) NOT NULL,
+    slug VARCHAR(255) NOT NULL,
   description_mission TEXT NOT NULL,
   description_about_candidate TEXT NOT NULL,
   description_position TEXT NOT NULL,

@@ -14,14 +14,38 @@ function Carousel({ jobs }) {
   }
   useEffect(() => {
     window.addEventListener("resize", updateDimension);
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
   }, []);
 
+  const breakpoints = {
+    1500: 4,
+    1200: 3,
+    820: 2,
+    390: 1,
+  };
+
+  const defaultSlidesToShow = 4;
+
+  const getSlidesToShow = () => {
+    const sortedBreakpoints = Object.keys(breakpoints).sort((a, b) => b - a);
+    for (let i = 0; i < sortedBreakpoints.length; i += 1) {
+      const breakpoint = sortedBreakpoints[i];
+      if (windowSize >= breakpoint) {
+        return breakpoints[breakpoint];
+      }
+    }
+    return defaultSlidesToShow;
+  };
+
+  const slidesToShow = getSlidesToShow();
+
   const settings = {
-    dots: true,
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: windowSize > 820 ? 4 : 1,
+    slidesToShow,
     initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 4000,

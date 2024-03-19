@@ -48,6 +48,7 @@ class ApplicationManager extends AbstractManager {
         application.job_id,
         application.status_id,
         job.title AS job_title, 
+        job.slug AS job_slug, 
         job.consultant_id, 
         consultant.email AS consultant_email,
         application_status.label as status_label
@@ -69,6 +70,7 @@ class ApplicationManager extends AbstractManager {
         application.job_id,
         application.status_id,
         job.title AS job_title, 
+        job.slug AS job_slug, 
         consultant.id AS consultant_id,
         consultant.email AS consultant_email,
         user.id AS candidate_id,

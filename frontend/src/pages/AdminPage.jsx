@@ -11,7 +11,7 @@ function AdminPage() {
   const { connected } = useAuthContext();
   const navigate = useNavigate();
   useEffect(() => {
-    if (connected.role_id === 2) {
+    if (connected.role_id !== 3) {
       navigate("/");
     }
   }, [connected]);

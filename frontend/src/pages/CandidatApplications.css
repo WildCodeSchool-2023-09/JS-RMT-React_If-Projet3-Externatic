@@ -36,3 +36,7 @@
 .job-link:hover {
   color: var(--main-red);
 }
+
+.no-offer {
+  margin-bottom: 500px;
+}

@@ -58,7 +58,7 @@ function FormLogin() {
               />
             </label>
             <label>
-              Password:
+              Mot de passe:
               <input
                 className="label-form"
                 type="password"
@@ -66,7 +66,7 @@ function FormLogin() {
                 required
                 onChange={handleCredentials}
                 value={credentials.password}
-                placeholder="Password"
+                placeholder="Mot de passe"
               />
             </label>
 

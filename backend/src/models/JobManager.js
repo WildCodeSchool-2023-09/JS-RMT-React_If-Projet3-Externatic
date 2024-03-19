@@ -2,8 +2,6 @@ const AbstractManager = require("./AbstractManager");
 
 class JobManager extends AbstractManager {
   constructor() {
-    // Call the constructor of the parent class (AbstractManager)
-    // and pass the table name "job" as configuration
     super({ table: "job" });
   }
 
@@ -12,11 +10,12 @@ class JobManager extends AbstractManager {
   async create(job) {
     // Execute the SQL INSERT query to add a new job to the "job" table
     const [result] = await this.database.query(
-      `insert into ${this.table} (company_id, consultant_id, title, description_mission , description_about_candidate , description_position, description_advantages, description_process, language, salary, location, working_type, starting_date, position_category, contract_type, position_requirements) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+      `insert into ${this.table} (company_id, consultant_id, title, slug, description_mission , description_about_candidate , description_position, description_advantages, description_process, language, salary, location, working_type, starting_date, position_category, contract_type, position_requirements) values (?,?,?,REPLACE(LOWER(?), ' ', '-'),?,?,?,?,?,?,?,?,?,?,?,?,?)`,
       [
         job.company_id,
         job.consultant_id,
         job.title,
+        job.title.replace(/\//g, "-"),
         job.description_mission,
         job.description_about_candidate,
         job.description_position,
@@ -39,11 +38,11 @@ class JobManager extends AbstractManager {
 
   // The Rs of CRUD - Read operations
 
-  async read(id) {
+  async read(slug) {
     // Execute the SQL SELECT query to retrieve a specific job by its ID
     const [rows] = await this.database.query(
-      `select * from ${this.table} where id = ?`,
-      [id]
+      `select * from ${this.table} where slug = ?`,
+      [slug]
     );
 
     // Return the first row of the result, which represents the job
@@ -54,7 +53,7 @@ class JobManager extends AbstractManager {
     // Execute the SQL SELECT query to retrieve all jobs for a specific company by its ID
     const [rows] = await this.database.query(
       `SELECT 
-         job.company_id , job.consultant_id , job.id AS job_id, job.title, job.description_mission, job.description_about_candidate, job.description_position, job.description_advantages, job.description_process, job.language, job.salary, job.location, job.working_type, job.starting_date, job.position_category, job.contract_type, job.position_requirements, company.name FROM ${this.table} INNER JOIN company ON company.id = ${this.table}.company_id WHERE company.id = ?`,
+         job.company_id , job.consultant_id , job.id AS job_id, job.slug AS job_slug, job.title, job.description_mission, job.description_about_candidate, job.description_position, job.description_advantages, job.description_process, job.language, job.salary, job.location, job.working_type, job.starting_date, job.position_category, job.contract_type, job.position_requirements, company.name FROM ${this.table} INNER JOIN company ON company.id = ${this.table}.company_id WHERE company.id = ?`,
       [id]
     );
 
@@ -172,13 +171,13 @@ class JobManager extends AbstractManager {
   // The U of CRUD - Update operation
   // TODO: Implement the update operation to modify an existing job
 
-  async update(id, job) {
+  async update(slug, job) {
     // Execute the SQL SELECT query to retrieve a specific job by its ID
     // eslint-disable-next-line no-param-reassign
     delete job.created_at;
     const [result] = await this.database.query(
-      `UPDATE ${this.table} set ? WHERE id = ?`,
-      [job, id]
+      `UPDATE ${this.table} set ? WHERE slug = ?`,
+      [job, slug]
     );
 
     // Return the first row of the result, which represents the item

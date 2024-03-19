@@ -42,7 +42,10 @@ function CandidatApplications() {
             {applications.map((application) => (
               <tr key={application.id} className="application-tr">
                 <td className="application-td">
-                  <Link to={`/jobs/${application.job_id}`} className="job-link">
+                  <Link
+                    to={`/jobs/${application.job_slug}`}
+                    className="job-link"
+                  >
                     {application.job_title}
                   </Link>
                 </td>
@@ -55,7 +58,9 @@ function CandidatApplications() {
           </tbody>
         </table>
       ) : (
-        <h2>Vous n'avez postulé à aucune offre pour le moment</h2>
+        <h2 className="no-offer">
+          Vous n'avez postulé à aucune offre pour le moment
+        </h2>
       )}
     </div>
   );
