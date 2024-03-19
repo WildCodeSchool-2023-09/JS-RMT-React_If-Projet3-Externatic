@@ -1,25 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React, { useState, useEffect, useContext } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import JobCard from "../../components/JobCard";
 import "./ConsultantJob.css";
 import connexion from "../../services/connexion";
+import { AuthContext } from "../../contexts/auth";
 
 function ConsultantJob() {
   const [jobs, setJobs] = useState([]);
   const { companyId } = useParams();
+  const navigate = useNavigate();
+  const { connected } = useContext(AuthContext);
 
   const getJobsByCompany = async () => {
-    const myJobs = await connexion
-      .get(`/companies/${companyId}/jobs`)
-      .then((res) => res.data)
-      .catch((err) => console.error(err));
-
-    setJobs(myJobs);
+    try {
+      const myJobs = await connexion.get(`/companies/${companyId}/jobs`);
+      setJobs(myJobs.data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   useEffect(() => {
     getJobsByCompany();
   }, []);
+
+  useEffect(() => {
+    if (connected.role_id !== 2) {
+      navigate("/");
+    }
+  }, [connected, navigate]);
+
   return (
     <div>
       <div className="container">

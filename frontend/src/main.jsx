@@ -32,11 +32,11 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {
-        path: "/jobs/:jobId",
+        path: "/jobs/:slug",
         element: <JobId />,
         loader: ({ params }) => {
           return connexion
-            .get(`/jobs/${params.jobId}`)
+            .get(`/jobs/${params.slug}`)
             .then((res) => res.data)
             .catch((err) => console.error(err));
         },

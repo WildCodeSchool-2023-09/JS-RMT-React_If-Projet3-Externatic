@@ -14,23 +14,38 @@ function CarouselCompanies() {
   }
   useEffect(() => {
     window.addEventListener("resize", updateDimension);
+    return () => {
+      window.removeEventListener("resize", updateDimension);
+    };
   }, []);
 
-  const ShowBreakPoint = {
-    821: 4,
+  const breakpoints = {
+    1500: 4,
+    1200: 3,
     820: 2,
-    390: 1,
+    380: 1,
   };
 
-  const defaultShow = 4;
+  const defaultSlidesToShow = 4;
 
-  const ToShow = ShowBreakPoint[windowSize] || defaultShow;
+  const getSlidesToShow = () => {
+    const sortedBreakpoints = Object.keys(breakpoints).sort((a, b) => b - a);
+    for (let i = 0; i < sortedBreakpoints.length; i += 1) {
+      const breakpoint = sortedBreakpoints[i];
+      if (windowSize >= breakpoint) {
+        return breakpoints[breakpoint];
+      }
+    }
+    return defaultSlidesToShow;
+  };
+
+  const slidesToShow = getSlidesToShow();
 
   const settings = {
     infinite: true,
     speed: 500,
     slidesToScroll: 1,
-    slidesToShow: ToShow,
+    slidesToShow,
     initialSlide: 0,
     autoplay: true,
     autoplaySpeed: 4000,

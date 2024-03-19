@@ -57,11 +57,11 @@ const getLanguages = async (req, res, next) => {
 const read = async (req, res, next) => {
   try {
     // Fetch a specific job from the database based on the provided ID
-    const job = await tables.job.read(req.params.id);
+    const job = await tables.job.read(req.params.slug);
 
     // If the job is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the job in JSON format
-    if (job.length === 0) {
+    if (job == null) {
       res.sendStatus(404);
     } else {
       res.status(200).json(job);
@@ -121,7 +121,7 @@ const edit = async (req, res, next) => {
   // Extract the job data from the request body
   const job = req.body;
   try {
-    const result = await tables.job.update(req.params.id, job);
+    const result = await tables.job.update(req.params.slug, job);
 
     // If the job is not found, respond with HTTP 404 (Not Found)
     if (result.affectedRows === 1) {

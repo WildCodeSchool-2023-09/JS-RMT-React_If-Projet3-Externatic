@@ -30,7 +30,7 @@ function HeadJob() {
 
   return (
     <div className="headjob_container">
-      <img src={logoext} alt="Logo" />
+      <img src={logoext} alt="Logo" className="logoext" />
       <div className="body_job">
         <div className="offer">
           <h1 className="title">{job.title}</h1>

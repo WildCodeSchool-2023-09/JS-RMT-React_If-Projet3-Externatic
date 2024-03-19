@@ -1,11 +1,19 @@
 import PropTypes from "prop-types";
-import React from "react";
-
+import React, { useContext, useEffect } from "react";
+import { useLoaderData, useNavigate } from "react-router-dom";
+import { AuthContext } from "../../contexts/auth";
 import "./ConsultantJobOffre.css";
-import { useLoaderData } from "react-router-dom";
 
 function ConsultantJobOffre() {
   const job = useLoaderData();
+  const navigate = useNavigate();
+  const { connected } = useContext(AuthContext);
+
+  useEffect(() => {
+    if (connected.role_id !== 2) {
+      navigate("/");
+    }
+  }, [connected, navigate]);
 
   return (
     <div>

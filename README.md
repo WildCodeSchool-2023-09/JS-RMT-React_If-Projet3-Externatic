@@ -1,3 +1,49 @@
+Hello! Are you new? Let me guide you!
+
+## Libraries & Dependencies
+
+In the Frontend, we use the React JS library under the Vite environment. For dependencies, we use Axios for making database requests with our API, PropTypes for specifying data types, React Router Dom for easy route creation, Slick Carousel for creating carousels quickly, Toastify for managing user alerts, React burger menu for quick implementation of the burger menu, and React Icons for footer icons.
+
+In the Backend, we utilize the Express JS framework. For the database, we use MySQL, and dependencies are managed by Node JS. Notable dependencies include Multer for PDF uploads, JSON Web Token for authentication, Argon2 for password encryption, Nodemon for backend management and execution, CookieParser for parsing cookies, and JOI for ensuring data security and reliability.
+
+## Organization
+
+The project is structured into two main parts: the frontend and the backend, each with its own package JSON for managing node modules and corresponding dependencies.
+
+## Frontend
+
+asset: This directory contains images used in the project.
+
+components: Components used in the application pages are stored here for better organization. For instance, CarouselJobs.jsx is imported into the home.jsx page for display.
+
+contexts: Contains all contexts present on the site, such as the login context.
+
+pages: All pages and their corresponding CSS are stored here. Pages are where elements are displayed to the user. For example, Jobs.jsx is the page for job listings.
+
+services: Houses code snippets for time-saving operations, such as connecting with backend routes.
+
+layout & app: These directories allow displaying necessary elements, such as the navbar or footer, on all pages.
+
+main: The main entry point of our React application, where routing is configured.
+
+## Backend
+
+database: Contains JSON files for our tables' data, as well as SQL scripts for table creation. The client.js file connects our MySQL account.
+
+router: Instead of writing everything in one router, we divide our routes into three parts. Here, we define a CRUD verb, an endpoint, and a function in the controller.
+
+controllers: Houses backend route functions, which subsequently call our managers.
+
+models: Stores manager files responsible for executing SQL queries towards the database.
+
+validators: Data input is validated using JOI in the backend.
+
+services: External function files called in the controllers.
+
+middleware: Files in this directory are mainly for verifying the user.
+
+## Configuration
+
 ## Concept
 
 This template is meant to serve as a foundation for every P2/P3 following the React-Express-MySQL stack, as learned in Wild Code School.

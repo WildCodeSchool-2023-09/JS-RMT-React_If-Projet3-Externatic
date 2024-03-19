@@ -103,7 +103,7 @@ function FormRegister() {
                 />
               </label>
               <label>
-                Password:
+                Mot de Passe:
                 <input
                   className="label-form"
                   type="password"
@@ -111,11 +111,11 @@ function FormRegister() {
                   required
                   onChange={handleCredentials}
                   value={credentials.password}
-                  placeholder="Password"
+                  placeholder=" Mot de Passe"
                 />
               </label>
               <label>
-                Confirm Password:
+                Confirmation Mot de Passe:
                 <input
                   className="label-form"
                   type="password"
@@ -123,7 +123,7 @@ function FormRegister() {
                   required
                   onChange={(e) => setConfirmPassword(e.target.value)}
                   value={confirmPassword}
-                  placeholder="Confirm Password"
+                  placeholder=" Confirmation Mot de Passe"
                 />
               </label>
             </div>
